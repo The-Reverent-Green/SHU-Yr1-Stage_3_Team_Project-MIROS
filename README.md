@@ -7,6 +7,7 @@ Project Choice: To be confirmed
 
 
 Please feel free to add anything you think might be helpful here:
+.
 [Meeting Minutes](https://docs.google.com/document/d/1T1ovChuFnpbQUvdSl6S3yWmoKYXqJVxnD0VXYR-l0wY/edit)
 
 [Please any questions for the next Consultation here: 
