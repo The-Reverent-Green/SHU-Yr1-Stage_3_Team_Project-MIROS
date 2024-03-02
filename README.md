@@ -11,6 +11,8 @@ Project Choice: To be confirmed
 [MIROS website](https://www.miros.gov.my/xs/index.php)
 [Requirement Specification](https://sheffieldhallam-my.sharepoint.com/:w:/g/personal/cmsmo_hallam_shu_ac_uk/EVra_gN0RhNNlT7vqod9UWMBtrzN5D6-QrwQDMS1nChaCQ?e=LZgXtA)
 
+https://docs.google.com/document/d/1096WqdEybK-XNFQwUL-hGe4BnZBmO8BovGQIubEwt1w/edit?usp=sharing
+
 # To dos:
 - [ ] @Lewis - Add the team contract into this repo.
 - [ ] [Add questions for the next Consultation on 04/03/24](https://docs.google.com/document/d/1NakwqqVfq1ckUN6AoTm0QLM07kNtyPI_n8Yf4PbP7xU/edit?usp=sharing) 
