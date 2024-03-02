@@ -6,12 +6,11 @@ Shared documentation is either saved here or linked here.
 Project Choice: To be confirmed
 
 
-Please feel free to add anything you think might be helpful here:
-
+# Resources:
 [Meeting Minutes](https://docs.google.com/document/d/1T1ovChuFnpbQUvdSl6S3yWmoKYXqJVxnD0VXYR-l0wY/edit)
+[MIROS website](https://www.miros.gov.my/xs/index.php)
+[Requirement Specification](https://sheffieldhallam-my.sharepoint.com/:w:/g/personal/cmsmo_hallam_shu_ac_uk/EVra_gN0RhNNlT7vqod9UWMBtrzN5D6-QrwQDMS1nChaCQ?e=LZgXtA)
 
-[Please add your questions for the next Consultation here: 
-For 04/03/24](https://docs.google.com/document/d/1NakwqqVfq1ckUN6AoTm0QLM07kNtyPI_n8Yf4PbP7xU/edit?usp=sharing) 
-
-
-@Lewis - Maybe add the team contract into this repo?
+# To dos:
+- [ ] @Lewis - Add the team contract into this repo.
+- [ ] [Add questions for the next Consultation on 04/03/24](https://docs.google.com/document/d/1NakwqqVfq1ckUN6AoTm0QLM07kNtyPI_n8Yf4PbP7xU/edit?usp=sharing) 
