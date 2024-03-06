@@ -1,0 +1,13 @@
+ Step 1: Find a tutorial that links GitHub to VS code.
+ 
+ Step 2: Follow the steps.
+ 
+ Step 3: Make sure you put the repository in your HTdocs otherwise you won't be able to local host the code.
+
+Step 4: Create a new file called test.txt and make your first push.
+
+Step 5: Go to your browser, go to the link localhost/your_repo_path_here/test.txt
+
+And you should see the file just pushed.
+
+gg
