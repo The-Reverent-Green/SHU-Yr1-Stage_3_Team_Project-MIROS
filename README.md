@@ -14,6 +14,8 @@ Project Choice: To be confirmed
 
 [Requirement Specification](https://sheffieldhallam-my.sharepoint.com/:w:/g/personal/cmsmo_hallam_shu_ac_uk/EVra_gN0RhNNlT7vqod9UWMBtrzN5D6-QrwQDMS1nChaCQ?e=LZgXtA)
 
+[Timeline and project management](https://app.asana.com/0/1206774132928057/1206774186720272)
+
 [User Stories](https://docs.google.com/document/d/1096WqdEybK-XNFQwUL-hGe4BnZBmO8BovGQIubEwt1w/edit?usp=sharing)
 
 # To dos:
