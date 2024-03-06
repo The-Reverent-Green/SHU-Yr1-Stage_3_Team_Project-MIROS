@@ -1,5 +1,4 @@
 <?php // connection.php
-
 try{
     $dbConnection = new PDO('mysql:host=localhost; dbname=; charset=utf8', 'root', '');
     //var_dump($dbConnection);
