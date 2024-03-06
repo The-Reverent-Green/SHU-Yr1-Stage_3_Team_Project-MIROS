@@ -2,7 +2,7 @@
 $servername = "localhost"; // or your MySQL server address
 $username = "your_username"; // your MySQL username
 $password = "your_password"; // your MySQL password
-$database = "enigma_inc"; // your MySQL database name
+$database = "databasename"; // your MySQL database name
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
