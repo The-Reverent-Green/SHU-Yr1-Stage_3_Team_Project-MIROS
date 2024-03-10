@@ -32,7 +32,7 @@ CREATE TABLE Password_Reset_Tokens (
 
 CREATE TABLE Submission_Type (
     Submission_Type_ID INT PRIMARY KEY,
-    Submission_type ENUM('type1', 'type2', 'type3'), -- @George, What submission types should be included?
+    Submission_type ENUM('type1', 'type2', 'type3'), -- @George, What submission types should be included, and how many are there?
     Weighting INT
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE Submission_Verification (
     Submission_ID INT,
     User_ID INT,
     Verification_Date DATETIME,
-    Status ENUM('status tpye 1', 'status tpye 2', 'status tpye 3'), -- @George, What Statuses should be included?
+    Status ENUM('status tpye 1', 'status tpye 2', 'status tpye 3'), -- @George, What statuses should be included and how many?
     FOREIGN KEY (Submission_ID) REFERENCES Submissions(Submission_ID),
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
