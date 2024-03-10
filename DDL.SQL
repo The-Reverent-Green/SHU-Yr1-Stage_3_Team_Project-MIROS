@@ -5,7 +5,7 @@ CREATE TABLE User (
     Date_of_birth DATETIME,
     Email TEXT UNIQUE,
     PasswordHash TEXT,
-    Role ENUM('role1', 'role2', 'role3'), -- Replace 'role1', 'role2', 'role3' with actual roles.
+    Role ENUM('Research Officer', 'Supervisor', 'Top Manager'),
     Reports_To INT,
     FOREIGN KEY (Reports_To) REFERENCES User(User_ID)
 );
