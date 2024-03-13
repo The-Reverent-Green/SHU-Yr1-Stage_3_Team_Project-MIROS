@@ -6,7 +6,7 @@ try{
     echo "Database created successfully";
     $dbConnection->close();
 }catch(Exception $e){
-    echo $e->getMessage();
+    echo "PDO ".$e->getMessage();
 }
 
 try{
@@ -15,5 +15,5 @@ try{
     $mysqliConnection->multi_query($query);
     $mysqliConnection->close();
 } catch(Exception $e){
-    echo $e->getMessage();
+    echo "MySQLi ".$e->getMessage();
 }
