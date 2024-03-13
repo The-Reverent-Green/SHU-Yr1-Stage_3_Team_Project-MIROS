@@ -67,7 +67,7 @@ CREATE TABLE Submission_Verification (
     Submission_ID INT,
     User_ID INT,
     Verification_Date DATETIME,
-    Status ENUM('status tpye 1', 'status tpye 2', 'status tpye 3'), -- @George, What statuses should be included and how many?
+    Status ENUM('Pending verification', 'Verification successful', 'Verification denied'),
     FOREIGN KEY (Submission_ID) REFERENCES Submissions(Submission_ID),
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
