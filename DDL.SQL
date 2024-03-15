@@ -1,10 +1,10 @@
 CREATE TABLE User (
     User_ID INT PRIMARY KEY,
-    First_Name TEXT,
-    Last_Name TEXT,
+    First_Name VARCHAR(256),
+    Last_Name VARCHAR(256),
     Date_of_birth DATETIME,
-    Email TEXT UNIQUE,
-    PasswordHash TEXT,
+    Email VARCHAR(256) UNIQUE,
+    PasswordHash VARCHAR(256),
     Role ENUM('Research Officer', 'Supervisor', 'Top Manager'),
     Reports_To INT,
     FOREIGN KEY (Reports_To) REFERENCES User(User_ID)
@@ -16,14 +16,14 @@ CREATE TABLE Session (
     Log_in_time DATETIME,
     Is_Active BOOLEAN,
     Log_out_time DATETIME,
-    Session_Token VARCHAR(255),
+    Session_Token VARCHAR(256),
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
 
 CREATE TABLE Password_Reset_Tokens (
     Token_ID INT PRIMARY KEY,
     User_ID INT,
-    Reset_Token TEXT,
+    Reset_Token VARCHAR(256),
     Creation_Date DATETIME,
     Expiration_Date DATETIME,
     Is_Used BOOLEAN,
@@ -40,10 +40,10 @@ CREATE TABLE Submissions (
     Submission_ID INT PRIMARY KEY,
     User_ID INT,
     Submission_Type_ID INT,
-    Title TEXT,
+    Title VARCHAR(256),
     Date_Of_Submission DATETIME,
     Deadline DATETIME,
-    Publication_URL TEXT,
+    Publication_URL VARCHAR(256),
     Evidence_attachment BLOB,
     FOREIGN KEY (User_ID) REFERENCES User(User_ID),
     FOREIGN KEY (Submission_Type_ID) REFERENCES Submission_Type(Submission_Type_ID)
@@ -53,10 +53,10 @@ CREATE TABLE Targets (
     Target_ID INT PRIMARY KEY,
     User_ID INT,
     Submission_Type_ID INT,
-    Title TEXT,
+    Title VARCHAR(256),
     Date_Of_Submission DATETIME,
     Deadline DATETIME,
-    Publication_URL TEXT,
+    Publication_URL VARCHAR(256),
     Evidence_attachment BLOB,
     FOREIGN KEY (User_ID) REFERENCES User(User_ID),
     FOREIGN KEY (Submission_Type_ID) REFERENCES Submission_Type(Submission_Type_ID)
