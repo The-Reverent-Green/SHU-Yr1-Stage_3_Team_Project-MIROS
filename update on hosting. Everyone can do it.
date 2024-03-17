@@ -1,0 +1,4 @@
+based on it being mysql and not sqllite we should actually all be able to host it locally and we'll just make a scheme for updating entries and such later so that they all match up.
+But for the purposes of the tables etc it will work.
+
+This way you can code through visual studio and then branch whatever your working on and push to main when the time comes.
