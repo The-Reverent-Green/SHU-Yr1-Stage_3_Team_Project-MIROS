@@ -1,17 +1,19 @@
-CREATE TABLE User (
+CREATE TABLE IF NOT EXISTS Users (
     User_ID INT AUTO_INCREMENT PRIMARY KEY,
     First_Name VARCHAR(256),
     Last_Name VARCHAR(256),
     Date_of_birth DATETIME,
     Email VARCHAR(256) UNIQUE,
     PasswordHash VARCHAR(256),
+    Status ENUM('Active', 'Deactivated') NOT NULL DEFAULT 'Active',
     Role ENUM('Research Officer', 'Supervisor', 'Top Manager'),
+    Creation_date DATETIME,j
     Reports_To INT,
     FOREIGN KEY (Reports_To) REFERENCES User(User_ID)
 );
 
 CREATE TABLE Session (
-    Session_ID INT PRIMARY KEY,
+    Session_ID INT AUTO_INCREMENT PRIMARY KEY,
     User_ID INT,
     Log_in_time DATETIME,
     Is_Active BOOLEAN,
@@ -21,7 +23,7 @@ CREATE TABLE Session (
 );
 
 CREATE TABLE Password_Reset_Tokens (
-    Token_ID INT PRIMARY KEY,
+    Token_ID INT AUTO_INCREMENT PRIMARY KEY,
     User_ID INT,
     Reset_Token VARCHAR(256),
     Creation_Date DATETIME,
@@ -31,13 +33,13 @@ CREATE TABLE Password_Reset_Tokens (
 );
 
 CREATE TABLE Submission_Type (
-    Submission_Type_ID INT PRIMARY KEY,
-    Submission_type ENUM('type1', 'type2', 'type3'), -- @George, What submission types should be included, and how many are there?
+    Submission_Type_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Submission_type ENUM('type1', 'type2', 'type3'), -- For @George, What submission types should be included, and how many are there?
     Weighting INT
 );
 
 CREATE TABLE Submissions (
-    Submission_ID INT PRIMARY KEY,
+    Submission_ID INT AUTO_INCREMENT PRIMARY KEY,
     User_ID INT,
     Submission_Type_ID INT,
     Title VARCHAR(256),
@@ -50,7 +52,7 @@ CREATE TABLE Submissions (
 );
 
 CREATE TABLE Targets (
-    Target_ID INT PRIMARY KEY,
+    Target_ID INT AUTO_INCREMENT PRIMARY KEY,
     User_ID INT,
     Submission_Type_ID INT,
     Title VARCHAR(256),
@@ -63,11 +65,23 @@ CREATE TABLE Targets (
 );
 
 CREATE TABLE Submission_Verification (
-    Verification_ID INT PRIMARY KEY,
+    Verification_ID INT AUTO_INCREMENT PRIMARY KEY,
     Submission_ID INT,
     User_ID INT,
     Verification_Date DATETIME,
     Status ENUM('Pending verification', 'Verification successful', 'Verification denied'),
     FOREIGN KEY (Submission_ID) REFERENCES Submissions(Submission_ID),
+    FOREIGN KEY (User_ID) REFERENCES User(User_ID)
+);
+
+CREATE TABLE Contact (
+    Message_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Contact_Name VARCHAR(255) NOT NULL,
+    Contact_Email VARCHAR(255) NULL,
+    User_ID INT NULL, -- must have either contact email or user_id
+    Subject VARCHAR(255) NOT NULL,
+    Message TEXT NOT NULL,
+    Contact_Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Status ENUM('New', 'In Progress', 'Resolved') NOT NULL DEFAULT 'New',
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
