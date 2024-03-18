@@ -1,7 +1,7 @@
 <?php  // connect_MIROS_Performance_Tracker.php
 
-$servername = "localhost";
-$database = "MIROS_performance_tracker_schema"; 
+$servername = "root";
+$database = "miros"; 
 $username = "your_username"; 
 $password = ""; 
 //configure above with database name and password etc
