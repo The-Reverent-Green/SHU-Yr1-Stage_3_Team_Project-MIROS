@@ -45,7 +45,7 @@
                     <a href="../html/passwordReset.html">Forgotten Password?</a><br>
                     <a href="../html/accountCreation.html">Sign-Up</a>
                     <br>
-                    <a href="../php/database_test.php">Database Test</a>
+                    <a href="../php/database_test.php">Database George Test</a>
                     </form>
                 </div>
                 
