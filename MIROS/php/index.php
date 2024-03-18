@@ -46,6 +46,7 @@
                     <a href="../html/accountCreation.html">Sign-Up</a>
                     <br>
                     <a href="../php/database_test.php">Database George Test</a>
+                    <a href="../php/register_user.php">Create New User </a>
                     </form>
                 </div>
                 
