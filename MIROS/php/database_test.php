@@ -1,5 +1,5 @@
 <?php
-include 'MIROS/php/db_config.php';
+include '../php/db_config.php';
 
 if ($mysqli->connect_errno) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -20,3 +20,5 @@ if ($result) {
 
 $mysqli->close();
 ?>
+
+
