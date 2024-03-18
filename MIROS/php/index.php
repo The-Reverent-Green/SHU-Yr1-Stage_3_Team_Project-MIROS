@@ -44,8 +44,10 @@
                     <button class="btn btn-warning" type="submit" value="login" name="submit" style="font-weight: bold; margin-top: 15px; margin-bottom: 35px">Sign-In</button><br>
                     <a href="../html/passwordReset.html">Forgotten Password?</a><br>
                     <a href="../html/accountCreation.html">Sign-Up</a>
+                    <a href="../php/database_test.php">Database Test</a>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
