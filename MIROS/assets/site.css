@@ -1,0 +1,30 @@
+body { 
+    background-image: url("../assets/background.png"); 
+}
+
+a.hover:hover {
+    background-color: rgba(253,184,19,255);
+    display: block;
+    visibility: visible;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.nav-officer {
+    color: white;
+    font-size: 20px; 
+    margin-top: 10px; 
+    font-weight: bold;
+    visibility: visible;
+    opacity: 1;
+}
+
+.drop-down {
+    color: black;
+    font-size: 18px;
+}
