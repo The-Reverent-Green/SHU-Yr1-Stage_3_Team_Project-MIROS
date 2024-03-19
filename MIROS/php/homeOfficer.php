@@ -43,6 +43,7 @@
             </div>
             <div  class="col" 
                   style="font-family: lato; font-weight: bold">
+
                 <h5 style="text-align: left; font-weight: bold">
                 This website allows you to not only submit new publications for review, but also view all your verified past publications as well.
                 Additional features include, the ability to view potential study opportunities offered by outside clients (both monetary and non-monetary),
@@ -54,7 +55,9 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
   
   </body>
 </html>
