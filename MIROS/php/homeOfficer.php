@@ -6,17 +6,22 @@
   ?>
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <link rel="stylesheet" href="../assets/site.css">
 
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" 
+          href="https://fonts.googleapis.com/css?family=Lato">
+
+    <link rel="stylesheet" 
+          href="../assets/site.css">
   </head>
 
   <body>
-
     <div class="container" style="margin-top: 10px">
         <div class="row">
             <div class="col" style="font-family: lato; font-weight: bold">
@@ -31,9 +36,13 @@
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col">
-                <img src="../assets/chart.png" class="rounded float-left" height="350">
+                <img src="../assets/chart.png" 
+                    class="rounded float-left" 
+                    height="350">
+                    
             </div>
-            <div class="col" style="font-family: lato; font-weight: bold">
+            <div  class="col" 
+                  style="font-family: lato; font-weight: bold">
                 <h5 style="text-align: left; font-weight: bold">
                 This website allows you to not only submit new publications for review, but also view all your verified past publications as well.
                 Additional features include, the ability to view potential study opportunities offered by outside clients (both monetary and non-monetary),
