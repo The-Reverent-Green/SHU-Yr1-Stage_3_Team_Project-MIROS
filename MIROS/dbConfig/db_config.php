@@ -1,22 +1,12 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+class DatabaseConnection {
+    protected $mysqliConnection;    
+    public function __construct() {
+        $this->mysqliConnection = new mysqli("localhost", "root", "", "miros");
+    }
+    public function __destruct() {
+        if ($this->mysqliConnection) {
+            $this->mysqliConnection->close();
+        }
+    }
 }
-
-$host = "localhost";
-$dbname = "miros";
-$username = "root";
-$password = "";
-
-$mysqli = new mysqli(
-    hostname: $host,
-    username: $username,
-    password: $password,
-    database: $dbname
-);
-
-if ($mysqli->connect_errno) {
-    die("Connection error: " . $mysqli->connect_error);
-}
-
-return $mysqli;
