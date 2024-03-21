@@ -1,0 +1,23 @@
+CREATE TABLE User (
+    User_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE,
+    First_Name VARCHAR(256),
+    Last_Name VARCHAR(256),
+    Date_of_birth DATE,
+    Email VARCHAR(256) UNIQUE,
+    PasswordHash VARCHAR(256),
+    Role ENUM('Research Officer', 'Supervisor', 'Top Manager'),
+    Reports_To INT,
+    FOREIGN KEY (Reports_To) REFERENCES User(User_ID)
+);
+
+CREATE TABLE `contact` (
+  `Contact_ID` int(11) NOT NULL,
+  `User_ID` int(11) DEFAULT NULL,
+  `Is_guest` tinyint(1) NOT NULL,
+  `Contact_details` text DEFAULT NULL,
+  `Email` text DEFAULT NULL,
+  `First_Name` varchar(50) DEFAULT NULL,
+  `Last_Name` varchar(50) DEFAULT NULL,
+  `Status` enum('In Progress','Closed','Opened') DEFAULT 'Opened'
+)

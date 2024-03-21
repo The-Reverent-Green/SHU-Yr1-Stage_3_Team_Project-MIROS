@@ -1,6 +1,7 @@
 <?php
-// Include config file
-include '../dbConfig/db_config.php';
+require_once __DIR__ . '/../database/db_config.php';
+
+
 
 // Check for a success message in the session and save it to a variable
 $success_message = "";
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT User_ID, Username, PasswordHash, Role, Account_Status FROM user WHERE Username = ?";
+        $sql = "SELECT User_ID, Username, PasswordHash, ROLE, Account_Status FROM user WHERE Username = ?";
 
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->bind_param("s", $param_username);
@@ -56,18 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $_SESSION["username"] = $username;
                                 $_SESSION["role"] = $role;
                             
-                                // Update the Last_Log_In column with the current timestamp
-                                $current_timestamp = date('Y-m-d H:i:s');
-                                $update_query = "UPDATE user SET Last_Log_In = ? WHERE User_ID = ?";
                             
-                                if ($stmt = $mysqli->prepare($update_query)) {
-                                    $stmt->bind_param("si", $current_timestamp, $id);
-                                    $stmt->execute();
-                                    $stmt->close();
-                                }
                             
                                 // Redirect user to welcome page
-                                header("location: welcome.php");
+                                header("location: index.php");
                             } else {
                                 $login_err = "Your account is deactivated. Please contact the administrator.";
                             }
@@ -100,47 +93,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <link rel="stylesheet" href="../assets/site.css">
-    <link rel="stylesheet" href="../assets/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap.css">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 </head>
 <body>
-<nav class="navbar navbar-expand-sm sticky-top navbar-light bg-black">
-        <div class="container-fluid justify-content-center">
-            <a href="index.php" class="navbar-brand mb-0 h1">
-                <img class="d-inline-block align-top" src="../assets/logo.png" height="65"/>
-            </a>
+<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+
+
+<section class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="circle-container">
+                    <img src="../images/logo_circle.jpg" alt="Miros Image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper">
+                    <h2>Login</h2>
+                    <p>Please fill in your credentials to login.</p>
+                    <?php 
+                    if (!empty($login_err)) {
+                        echo '<div class="alert alert-danger">' . $login_err . '</div>';
+                    }        
+                    ?>
+                    <div class="form-container">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                            </div>    
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Login">
+                            </div>
+                            
+                            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-<div class="wrapper">
-    <h2>Login</h2>
-    <p>Please fill in your credentials to login.</p>
-    <?php 
-    if (!empty($login_err)) {
-        echo '<div class="alert alert-danger">' . $login_err . '</div>';
-    }        
-    ?>
-    <div class="form-container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
     </div>
-</div>    
+</section>
 </body>
 </html>
