@@ -1,5 +1,6 @@
 @import "../css/_bootswatch.scss";
-
+@import "../css/footer.css";
+@import "../css/nav_bar.css";
 
 @charset "UTF-8";
 /*!
@@ -11977,8 +11978,8 @@ th {
 .circle-container {
   border-radius: 50%;
   overflow: hidden;
-  width: 300px; /* Adjust the width as desired */
-  height: 300px; /* Adjust the height as desired */
+  width: 500px; /* Adjust the width as desired */
+  height: 500px; /* Adjust the height as desired */
 }
 
 .circle-container img {
