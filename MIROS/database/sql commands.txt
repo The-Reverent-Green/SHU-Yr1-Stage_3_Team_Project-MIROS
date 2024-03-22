@@ -1,23 +1,88 @@
-CREATE TABLE User (
-    User_ID INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(50) UNIQUE,
-    First_Name VARCHAR(256),
-    Last_Name VARCHAR(256),
-    Date_of_birth DATE,
-    Email VARCHAR(256) UNIQUE,
-    PasswordHash VARCHAR(256),
-    Role ENUM('Research Officer', 'Supervisor', 'Top Manager'),
-    Reports_To INT,
-    FOREIGN KEY (Reports_To) REFERENCES User(User_ID)
-);
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 21, 2024 at 06:03 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
-CREATE TABLE `contact` (
-  `Contact_ID` int(11) NOT NULL,
-  `User_ID` int(11) DEFAULT NULL,
-  `Is_guest` tinyint(1) NOT NULL,
-  `Contact_details` text DEFAULT NULL,
-  `Email` text DEFAULT NULL,
-  `First_Name` varchar(50) DEFAULT NULL,
-  `Last_Name` varchar(50) DEFAULT NULL,
-  `Status` enum('In Progress','Closed','Opened') DEFAULT 'Opened'
-)
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `miros`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `User_ID` int(11) NOT NULL,
+  `Username` varchar(50) DEFAULT NULL,
+  `First_Name` varchar(256) DEFAULT NULL,
+  `Last_Name` varchar(256) DEFAULT NULL,
+  `Date_of_birth` date DEFAULT NULL,
+  `Email` varchar(256) DEFAULT NULL,
+  `PasswordHash` varchar(256) DEFAULT NULL,
+  `ROLE` enum('Research Officer','Supervisor','Top Manager','admin') DEFAULT NULL,
+  `Reports_To` int(11) DEFAULT NULL,
+  `account_status` enum('active','deactivated') NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`) VALUES
+(5, '', 'george', 'first', '1998-12-13', '', '$2y$10$csDMJMV2tLjSFMpFL8IiD.5OXjXd3gRxjUb5snqSHlSfAmekA8Qlq', NULL, NULL, 'active'),
+(11, 'test1', 'okay', 'herewego', '1995-08-06', 'test@gmail.com', '$2y$10$BIkwv862UjKuqlAXWlHVkOzOfUDwtO8geFW6sALYI1a7vB80BBFtC', 'admin', NULL, 'active'),
+(12, 'admin1', 'account3', 'okay', '3020-09-08', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', NULL, NULL, 'active');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`User_ID`),
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Email` (`Email`),
+  ADD KEY `Reports_To` (`Reports_To`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`Reports_To`) REFERENCES `user` (`User_ID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
