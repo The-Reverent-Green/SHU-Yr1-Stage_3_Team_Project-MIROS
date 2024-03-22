@@ -18,6 +18,7 @@ if ($stmt = $mysqli->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
+        // print_r($user); // Uncomment this line to print the $user array
     }
     $stmt->close();
 }
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $updateMessage = "Username already exists.";
                 } else {
                     // Update user details in the database
-                    $sql_update_user = "UPDATE user SET First_name=?, Last_Name=?, Username=?, Date_of_birth=?, Email=? WHERE User_ID=?";
+                    $sql_update_user = "UPDATE user SET First_Name=?, Last_Name=?, Username=?, Date_of_birth=?, Email=? WHERE User_ID=?";
                     if ($stmt_update_user = $mysqli->prepare($sql_update_user)) {
                         $stmt_update_user->bind_param("sssssi", $first_name, $last_name, $username, $date_of_birth, $email, $user_id);
                         if ($stmt_update_user->execute()) {
@@ -120,26 +121,26 @@ if (isset($_POST["delete_account"])) {
         <div class="col-md-6">
             <h3>Edit Account Details</h3>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="mb-3">
-    <label for="first_name" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo isset($user['First_Name']) ? $user['First_Name'] : ''; ?>">
-</div>
-<div class="mb-3">
-    <label for="last_name" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo isset($user['Last_Name']) ? $user['Last_Name'] : ''; ?>">
-</div>
-<div class="mb-3">
-    <label for="username" class="form-label">Username (will be changed upon next login)</label>
-    <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($user['Username']) ? $user['Username'] : ''; ?>">
-</div>
-<div class="mb-3">
-    <label for="date_of_birth" class="form-label">Date of Birth</label>
-    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?php echo isset($user['Date_of_Birth']) ? $user['Date_of_Birth'] : ''; ?>">
-</div>
-<div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($user['Email']) ? $user['Email'] : ''; ?>">
-</div>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo isset($user['First_Name']) ? $user['First_Name'] : ''; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo isset($user['Last_Name']) ? $user['Last_Name'] : ''; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username (will be changed upon next login)</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($user['Username']) ? $user['Username'] : ''; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="date_of_birth" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="<?php echo isset($user['Date_of_birth']) ? $user['Date_of_birth'] : ''; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($user['Email']) ? $user['Email'] : ''; ?>">
+                </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password">
