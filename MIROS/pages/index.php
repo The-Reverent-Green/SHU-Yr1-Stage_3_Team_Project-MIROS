@@ -25,7 +25,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <div class="container mt-5">
     <div class="jumbotron">
-        <h1 class="display-4">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+        <h1 class="display-4">Hello, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1>
         <p class="lead">It's good to see you again</p>
     </div>
     

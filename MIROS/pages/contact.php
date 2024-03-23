@@ -7,9 +7,8 @@ $name_err = $email_err = $message_err = $first_name_err = $last_name_err = "";
 
 // Check if the user is logged in and set name and email
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    // Assume session variables for user's first name, last name, and email are set during login or registration
     if (isset($_SESSION["first_name"]) && isset($_SESSION["last_name"])) {
-        $name = $_SESSION["first_name"] . " " . $_SESSION["last_name"]; // Concatenate first name and last name
+        $name = $_SESSION["first_name"] . " " . $_SESSION["last_name"];
         $first_name = $_SESSION["first_name"];
         $last_name = $_SESSION["last_name"];
     }
@@ -22,7 +21,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate name if user is not logged in
     if (!isset($_SESSION["loggedin"])) {
-        if (empty(trim($_POST["name"]))) {
+        if (!isset($_POST["name"]) || empty(trim($_POST["name"]))) {
             $name_err = "Please enter your name.";
         } else {
             $name = trim($_POST["name"]);
@@ -31,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate email if user is not logged in
     if (!isset($_SESSION["loggedin"])) {
-        if (empty(trim($_POST["email"]))) {
+        if (!isset($_POST["email"]) || empty(trim($_POST["email"]))) {
             $email_err = "Please enter your email.";
         } else {
             $email = trim($_POST["email"]);
@@ -39,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate message
-    if (empty(trim($_POST["message"]))) {
+    if (!isset($_POST["message"]) || empty(trim($_POST["message"]))) {
         $message_err = "Please enter a message.";
     } else {
         $message = trim($_POST["message"]);
@@ -47,13 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate first name and last name if user is not logged in
     if (!isset($_SESSION["loggedin"])) {
-        if (empty(trim($_POST["first_name"]))) {
+        if (!isset($_POST["first_name"]) || empty(trim($_POST["first_name"]))) {
             $first_name_err = "Please enter your first name.";
         } else {
             $first_name = trim($_POST["first_name"]);
         }
 
-        if (empty(trim($_POST["last_name"]))) {
+        if (!isset($_POST["last_name"]) || empty(trim($_POST["last_name"]))) {
             $last_name_err = "Please enter your last name.";
         } else {
             $last_name = trim($_POST["last_name"]);
@@ -63,27 +62,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before inserting in database
     if (empty($name_err) && empty($email_err) && empty($message_err) && empty($first_name_err) && empty($last_name_err)) {
         // Prepare an insert statement
-        $sql = "INSERT INTO contact (User_ID, Is_guest, First_Name, Last_Name, Contact_details, Email, Status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+        $sql = "INSERT INTO contact (User_ID, Is_guest, First_Name, Last_Name, Contact_details, Contact_Email, Status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             if (isset($_SESSION["loggedin"])) {
-                $user_id = $_SESSION["id"]; // Use the user's ID from the session
-                $is_guest = 0; // Not a guest since the user is logged in
-                $first_name = $_SESSION["first_name"]; // Get the user's first name from the session
-                $last_name = $_SESSION["last_name"]; // Get the user's last name from the session
-                $user_email = $_SESSION["email"]; // Get the user's email from the session
+                $user_id = $_SESSION["id"];
+                $is_guest = 0;
+                $first_name = $_SESSION["first_name"];
+                $last_name = $_SESSION["last_name"];
+                $user_contact_email = $_SESSION["email"];
             } else {
-                $user_id = NULL; // NULL for guests
-                $is_guest = 1; // Is a guest
-                $user_email = $email; // Use the validated email from the form
+                $user_id = -1; // Consider a strategy to ensure uniqueness for guests.
+                $is_guest = 1;
+                $user_contact_email = $email;
             }
 
             // Set default status as 'Opened'
             $status = 'Opened';
 
             // Bind parameters
-            $stmt->bind_param("iisssss", $user_id, $is_guest, $first_name, $last_name, $message, $user_email, $status);
+            $stmt->bind_param("iisssss", $user_id, $is_guest, $first_name, $last_name, $message, $user_contact_email, $status);
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
@@ -104,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close connection
 $mysqli->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

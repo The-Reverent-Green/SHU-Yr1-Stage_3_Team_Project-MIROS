@@ -39,7 +39,7 @@
     <?php endif; ?>
 </ul>
 <link rel="stylesheet" href="../css/bootstrap.css">
-
+<link rel="stylesheet" href="../css/nav_bar.css">
 <?php
 function isCurrentPage($page) {
     $currentPage = basename($_SERVER['PHP_SELF']);

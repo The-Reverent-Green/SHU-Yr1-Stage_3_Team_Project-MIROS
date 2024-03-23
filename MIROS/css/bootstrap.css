@@ -246,6 +246,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: calc(1.3rem + 0.6vw);
+  padding: 10px;
 }
 @media (min-width: 1200px) {
   h2, .h2 {
@@ -11966,20 +11967,20 @@ th {
 }
 
 .wrapper {
-  margin: 50px auto 0; /* Adds a 50px top margin, auto horizontal margins, and no bottom margin */
-  padding: 20px; /* Add some padding inside the wrapper */
-  max-width: 800px; /* Set a max-width for the form container */
-  border-radius: 8px; /* Optional: adds rounded corners to the wrapper */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow around the wrapper */
-  background-color: #fff; /* Ensure the background is white, or choose another light color */
+  margin: 50px auto 0; 
+  padding: 20px; 
+  max-width: 800px; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
 }
 
 
 .circle-container {
   border-radius: 50%;
   overflow: hidden;
-  width: 500px; /* Adjust the width as desired */
-  height: 500px; /* Adjust the height as desired */
+  width: 500px; 
+  height: 500px; 
 }
 
 .circle-container img {
@@ -11988,3 +11989,15 @@ th {
   display: block;
 }
 
+
+/* Adjust spacing between table cells */
+.table td,
+.table th {
+    padding: 10px; /* Add padding to create spacing */
+}
+
+/* Add margin between form elements */
+.form-select,
+.btn {
+    margin-bottom: 10px; /* Add margin between select dropdown and button */
+}

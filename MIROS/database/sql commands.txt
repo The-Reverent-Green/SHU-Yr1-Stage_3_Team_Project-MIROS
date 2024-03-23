@@ -26,13 +26,12 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `contact`
 --
-
 CREATE TABLE `contact` (
   `Contact_ID` int(11) NOT NULL,
   `User_ID` int(11) DEFAULT NULL,
   `Is_guest` tinyint(1) NOT NULL,
   `Contact_details` text DEFAULT NULL,
-  `Email` text DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
   `First_Name` varchar(50) DEFAULT NULL,
   `Last_Name` varchar(50) DEFAULT NULL,
   `Status` enum('In Progress','Closed','Opened') DEFAULT 'Opened'

@@ -1,4 +1,4 @@
-/* Base styles for navigation menu */
+/* Existing styles */
 .nav {
   background-image: url('../images/background.png');
   background-size: auto;
@@ -8,32 +8,35 @@
   margin-bottom: 10px;
 }
 
-/* Styles for navigation links */
 .nav-link {
   color: black;
-  font-weight: 700; /* Increased font weight for bolder text */
+  font-weight: 700;
   font-size: 18px;
-  text-align: center; /* Center align the text within links */
+  text-align: center;
 }
 
-/* Styles for active page link */
 .nav-link.active {
   background-color: gold;
 }
 
-/* Updated styles for dropdown menus */
 .nav-item {
-  position: relative; /* Ensure dropdown is positioned relative to this item */
+  position: relative;
 }
 
 .dropdown-menu {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Center the dropdown */
-  text-align: left; /* Align text to the left within the dropdown */
+  transform: translateX(-50%);
+  text-align: left;
 }
 
-/* Ensure dropdown content is styled for clarity */
 .dropdown-link {
-  font-weight: 700; /* Bolder text for dropdown links */
+  font-weight: 700;
 }
+
+/* New style for admin-mode */
+.admin-mode {
+  background-color: yellow; /* Sets the background color to yellow for admin mode */
+}
+
+

@@ -8,11 +8,14 @@ $dbname = "miros";
 $username = "root";
 $password = "";
 
-$mysqli = @new mysqli($host, $username, $password, $dbname);
+// Establish a new connection to the database
+$mysqli = new mysqli($host, $username, $password, $dbname);
 
-if ($mysqli->connect_errno) {
-    die("Connection error: " . $mysqli->connect_error);
+// Check connection
+if ($mysqli->connect_error) {
+    // Consider logging this error and then displaying a generic error message to the user
+    error_log("Connection failed: " . $mysqli->connect_error);
+    // Display a user-friendly message
+    echo "Sorry, we're experiencing some technical difficulties. Please try again later.";
+    exit; // Stop script execution if connection fails
 }
-
-return $mysqli;
-?>

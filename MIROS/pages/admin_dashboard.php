@@ -1,65 +1,154 @@
+<?php
+require_once __DIR__ . '/../database/db_config.php'; // Adjust the path as necessary
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
+    foreach ($_POST['roles'] as $userId => $role) {
+        if (!empty($role)) { // Only update if a role was selected
+            $stmt = $mysqli->prepare("UPDATE user SET role = ? WHERE user_id = ?");
+            $stmt->bind_param("si", $role, $userId);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+}
+
+$sql = "SELECT user_id, username, first_name, last_name, last_log_in FROM user WHERE role IS NULL";
+$result = $mysqli->query($sql);
+$users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
+// Fetch contact details
+$sqlContact = "SELECT Contact_ID, User_ID, Is_guest, Contact_details, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
+$resultContact = $mysqli->query($sqlContact);
+$contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
+
+// Check if the status update form was submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
+    $contactId = $_POST['Contact_ID'];
+    $newStatus = $_POST['Status'];
+
+    // Prepare the update statement
+    $stmt = $mysqli->prepare("UPDATE contact SET Status = ? WHERE Contact_ID = ?");
+    $stmt->bind_param("si", $newStatus, $contactId);
+    $stmt->execute();
+    $stmt->close();
+    
+    // Refresh the contact details to reflect the update
+    $sqlContact = "SELECT Contact_ID, User_ID, Is_guest, Contact_details, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
+    $resultContact = $mysqli->query($sqlContact);
+    $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- Optional Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" integrity="sha512-+4WZ1vQ+DF6B847sA+P7k8Ee5fyR5YrPI8Eg8F2b5HAFR9/NoFiGfCJaiXp/K5FYXTg8S0VviQWGzUc3PxDOzg==" crossorigin="anonymous" />
-    <!-- Custom CSS -->
-    <style>
-        .sidebar {
-            min-height: 100vh;
-        }
-    </style>
+    <title>Manage User Roles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/bootstrap.css">    
+    
 </head>
 <body>
+<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
-                            <i class="bi bi-speedometer2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-people-fill"></i>
-                            Users
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-bar-chart-line-fill"></i>
-                            Reports
-                        </a>
-                    </li>
-                    <!-- Add more navigation items here -->
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Page Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
-            </div>
-
-            <!-- Your Dashboard Content Here -->
-            <div>Welcome to the Admin Dashboard!</div>
-
-        </main>
+    <div class="container">
+        
+        <h2>Manage User Roles</h2>
+        <form method="POST">
+            <?php if (!empty($users)): ?>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Last Login</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($users as $user): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($user['username']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($user['last_log_in']); ?></td>
+                                    <td>
+                                        <select class="form-select" name="roles[<?php echo $user['user_id']; ?>]">
+                                            <option value="">Select Role</option>
+                                            <option value="Research Officer">Research Officer</option>
+                                            <option value="Supervisor">Supervisor</option>
+                                            <option value="Top Manager">Top Manager</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Update Roles</button>
+                </div>
+            <?php else: ?>
+                <p class="text-center">No users with missing roles found.</p>
+            <?php endif; ?>
+        </form>
     </div>
-</div>
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYFZxT/+tv7ePzQbFqz5hInA+GI9kZ2ixP6Jk8S" crossorigin="anonymous"></script>
+    <!-- Contact Details Section -->
+    <div class="container">
+    <h2>Contact Messages</h2>
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Contact ID</th>
+                <th>User ID</th>
+                <th>Guest</th>
+                <th>Contact Details</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Status</th>
+                <th>Update Status</th>
+            </tr>
+            </thead>
+        <tbody>
+            <?php foreach ($contactDetails as $contact): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($contact['Contact_ID']); ?></td>
+                    <td><?php echo htmlspecialchars($contact['User_ID']); ?></td>
+                    <td><?php echo $contact['Is_guest'] ? 'Yes' : 'No'; ?></td>
+                    <td><?php echo htmlspecialchars($contact['Contact_details']); ?></td>
+                    <td><?php echo htmlspecialchars($contact['contact_email']); ?></td>
+                    <td><?php echo htmlspecialchars($contact['First_Name']); ?></td>
+                    <td><?php echo htmlspecialchars($contact['Last_Name']); ?></td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="Contact_ID" value="<?php echo $contact['Contact_ID']; ?>">
+                            <select class="form-select" name="Status" style="width: 200px;">
+    <option value="Opened" <?php echo $contact['Status'] == 'Opened' ? 'selected' : ''; ?>>Opened</option>
+    <option value="In Progress" <?php echo $contact['Status'] == 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
+    <option value="Closed" <?php echo $contact['Status'] == 'Closed' ? 'selected' : ''; ?>>Closed</option>
+</select>
+
+                    </td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="Contact_ID" value="<?php echo $contact['Contact_ID']; ?>">
+                            <button type="submit" name="update_status" class="btn btn-secondary btn-sm">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+    </div>
+
 </body>
 </html>

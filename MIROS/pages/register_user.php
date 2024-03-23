@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/../database/db_config.php';
 
-// Define variables and initialise with empty values
+$success_message = "";
+
+
+
+
 $first_name = $last_name = $username = $date_of_birth = $email = $password = $confirm_password = "";
 $first_name_err = $last_name_err = $username_err = $date_of_birth_err = $email_err = $password_err = $confirm_password_err = "";
 
@@ -101,45 +105,41 @@ if(empty($email_input)){
         }
     }
 
-    // Check input errors before inserting in database
-    if (empty($first_name_err) && empty($last_name_err) && empty($username_err) && empty($date_of_birth_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
+   // Check input errors before inserting in database
+   if (empty($first_name_err) && empty($last_name_err) && empty($username_err) && empty($date_of_birth_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
         
-        // Prepare an insert statement
-        $sql = "INSERT INTO user (First_name, Last_Name, Username, Date_of_birth, Email, PasswordHash) VALUES (?, ?, ?, ?, ?, ?)";
-        if ($stmt = $mysqli->prepare($sql)) {
-            // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("ssssss", $param_first_name, $param_last_name, $param_username, $param_date_of_birth, $param_email, $param_password_hash);
+    // Prepare an insert statement
+    $sql = "INSERT INTO user (First_name, Last_Name, Username, Date_of_birth, Email, PasswordHash) VALUES (?, ?, ?, ?, ?, ?)";
+    if ($stmt = $mysqli->prepare($sql)) {
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param("ssssss", $param_first_name, $param_last_name, $param_username, $param_date_of_birth, $param_email, $param_password_hash);
 
-            // Set parameters
-            $param_first_name = $first_name;
-            $param_last_name = $last_name;
-            $param_username = $username;
-            $param_date_of_birth = $date_of_birth;
-            $param_email = $email;
-            $param_password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+        // Set parameters
+        $param_first_name = $first_name;
+        $param_last_name = $last_name;
+        $param_username = $username;
+        $param_date_of_birth = $date_of_birth;
+        $param_email = $email;
+        $param_password_hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
-            // Attempt to execute the prepared statement
-            
-            if ($stmt->execute()) {
-                // Redirect to login page
-                $_SESSION['success_message'] = "Congratulations, your account has been created! You can now log in.";
+ 
+        if ($stmt->execute()) {
+                
+            $_SESSION['success_message'] = "Congratulations, your account has been created! You can now log in.";
 
-                header("location: index.php");
-            } else {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-            // Close statement
-            $stmt->close();
+           
+        } else {
+            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
         }
+        // Close statement
+        $stmt->close();
     }
-    
-    // Close connection
-    $mysqli->close();
+}
+
+// Close connection
+$mysqli->close();
 }
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -157,6 +157,12 @@ if(empty($email_input)){
 
 <div class="wrapper">
         <h2>Sign Up</h2>
+        <?php
+if (!empty($_SESSION['success_message'])) {
+    echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
+    unset($_SESSION['success_message']); 
+}?>
+
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
