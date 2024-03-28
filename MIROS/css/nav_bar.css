@@ -24,10 +24,16 @@
 }
 
 .dropdown-menu {
+  display: none; 
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  top: 100%; 
   text-align: left;
+  z-index: 1; 
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block; 
 }
 
 .dropdown-link {
@@ -38,4 +44,3 @@
 .admin-mode {
   background-color: yellow; /* Sets the background color to yellow for admin mode */
 }
-

@@ -15,17 +15,15 @@ header {
 .headerLogo {
     margin-left: 5%;
     margin-top: 1%;
-    margin-bottom: 1%;
     display: flex;
     justify-content: left;
     float: left;
-    width: 20%;
+    width: 19%;
 }
 
 .headerText {
     position: absolute;
-    left: 50%;
-    margin-top: 10px;    
+    left: 50%;    
     transform: translateX(-50%);
     color: #ccc;
     font-size: 12px;
