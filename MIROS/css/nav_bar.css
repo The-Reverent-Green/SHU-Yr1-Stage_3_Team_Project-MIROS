@@ -1,0 +1,42 @@
+/* Existing styles */
+.nav {
+  background-image: url('../images/background.png');
+  background-size: auto;
+  background-repeat: repeat;
+  border-bottom: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+}
+
+.nav-link.active {
+  background-color: gold;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+}
+
+.dropdown-link {
+  font-weight: 700;
+}
+
+/* New style for admin-mode */
+.admin-mode {
+  background-color: yellow; /* Sets the background color to yellow for admin mode */
+}
+
+
