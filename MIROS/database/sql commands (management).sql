@@ -1,3 +1,10 @@
+/* 
+    1) Create an account through the register user page.
+    2) Have admin assign the "Top Manager" Role to your account.
+    3) Run the SQL commands below to populate your database tables.
+    4) Sign-in to your account and access the newly populated tables through the nav bar.
+*/
+
 INSERT INTO `user` 
 (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `Status`, `ROLE`, `account_status`) VALUES
 (14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '1234', 'Active', 'Research Officer', 'active'),
