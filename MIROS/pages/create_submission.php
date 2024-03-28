@@ -1,7 +1,5 @@
 <?php require_once __DIR__ . '/../database/db_config.php'; 
 
-
-
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     // Redirect to login page if user is not logged in
@@ -128,7 +126,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 
     <div class="container">
         <br>
@@ -168,4 +168,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

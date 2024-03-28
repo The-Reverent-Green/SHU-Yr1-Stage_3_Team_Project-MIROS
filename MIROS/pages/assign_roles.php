@@ -48,7 +48,9 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
    
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 <body>
     <div class="container mt-5">
         <?php if(isset($successMessage)): ?>

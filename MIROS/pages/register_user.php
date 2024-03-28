@@ -153,7 +153,9 @@ $mysqli->close();
 
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 
 <div class="wrapper">
         <h2>Sign Up</h2>
@@ -212,4 +214,5 @@ if (!empty($_SESSION['success_message'])) {
     </div>    
 </div>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

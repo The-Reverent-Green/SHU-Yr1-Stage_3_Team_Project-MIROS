@@ -20,7 +20,18 @@
         <li class="nav-item">
             <a class="nav-link <?php echo isCurrentPage('profile.php') ? 'active' : ''; ?>" href="profile.php">Profile</a>
         </li>
-       
+
+        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Top Manager"): ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Management Panel</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item <?php echo isCurrentPage('management_dashboard.php') ? 'active' : ''; ?>" href="management_dashboard.php">Dashboard</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('research.php') ? 'active' : ''; ?>" href="research.php">Published Research</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('officer_overview.php') ? 'active' : ''; ?>" href="officers_overview.php">Officers Overview</a>
+                </div>
+            </li>
+        <?php endif; ?>
+
         <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "admin"): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
@@ -46,3 +57,4 @@ function isCurrentPage($page) {
     return $currentPage === $page;
 }
 ?>
+

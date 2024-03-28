@@ -1,0 +1,39 @@
+
+header {
+    width: 100%;
+    height: 100px;
+    display: table;
+    background-color: #212625;
+    border-bottom: 2px solid gold;
+}
+
+.outer {
+    display: flex;
+    align-items: center;
+}
+
+.headerLogo {
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: left;
+    float: left;
+    width: 20%;
+}
+
+.headerText {
+    position: absolute;
+    left: 50%;
+    margin-top: 10px;    
+    transform: translateX(-50%);
+    color: #ccc;
+    font-size: 12px;
+    font-weight: lighter;
+    line-height: 1;
+}
+
+.headerText p span {
+    font-size: 24px;
+    font-weight: bold;
+}

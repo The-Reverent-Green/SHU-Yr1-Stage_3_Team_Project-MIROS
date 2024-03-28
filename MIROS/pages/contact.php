@@ -114,7 +114,9 @@ $mysqli->close();
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<?php require_once '../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 
 <?php if (isset($successMessage)): ?>
     <div class="alert alert-success" role="alert">
@@ -170,4 +172,5 @@ $mysqli->close();
     </div>
 </div>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
