@@ -19,3 +19,4 @@ if ($mysqli->connect_error) {
     echo "Sorry, we're experiencing some technical difficulties. Please try again later.";
     exit; // Stop script execution if connection fails
 }
+

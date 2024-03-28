@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../database/db_config.php'; // Adjust the path as necessary
+require_once __DIR__ . '/../database/db_config.php'; 
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
@@ -18,7 +18,7 @@ $result = $mysqli->query($sql);
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
 // Fetch contact details
-$sqlContact = "SELECT Contact_ID, User_ID, Is_guest, Contact_details, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
+$sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
 $resultContact = $mysqli->query($sqlContact);
 $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 
@@ -34,13 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     $stmt->close();
     
     // Refresh the contact details to reflect the update
-    $sqlContact = "SELECT Contact_ID, User_ID, Is_guest, Contact_details, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
+    $sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
     $resultContact = $mysqli->query($sqlContact);
     $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,15 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
 
     <!-- Contact Details Section -->
     <div class="container">
-    <h2>Contact Messages</h2>
+    <h2>Contact / Help Messages</h2>
 <div class="table-responsive">
-    <table class="table align-middle">
+    <table class="table align-middle" style="text-align: center;">
         <thead>
             <tr>
                 <th>Contact ID</th>
                 <th>User ID</th>
-                <th>Guest</th>
-                <th>Contact Details</th>
+                <th>Message</th> 
                 <th>Email</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -120,10 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
         <tbody>
             <?php foreach ($contactDetails as $contact): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($contact['Contact_ID']); ?></td>
+                <td style="text-align: center;"><?php echo htmlspecialchars($contact['Contact_ID']); ?></td>
                     <td><?php echo htmlspecialchars($contact['User_ID']); ?></td>
-                    <td><?php echo $contact['Is_guest'] ? 'Yes' : 'No'; ?></td>
-                    <td><?php echo htmlspecialchars($contact['Contact_details']); ?></td>
+                    <td><?php echo htmlspecialchars($contact['contact_message']); ?></td> 
                     <td><?php echo htmlspecialchars($contact['contact_email']); ?></td>
                     <td><?php echo htmlspecialchars($contact['First_Name']); ?></td>
                     <td><?php echo htmlspecialchars($contact['Last_Name']); ?></td>
@@ -131,11 +128,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
                         <form method="POST">
                             <input type="hidden" name="Contact_ID" value="<?php echo $contact['Contact_ID']; ?>">
                             <select class="form-select" name="Status" style="width: 200px;">
-    <option value="Opened" <?php echo $contact['Status'] == 'Opened' ? 'selected' : ''; ?>>Opened</option>
-    <option value="In Progress" <?php echo $contact['Status'] == 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
-    <option value="Closed" <?php echo $contact['Status'] == 'Closed' ? 'selected' : ''; ?>>Closed</option>
-</select>
-
+                                <option value="Opened" <?php echo $contact['Status'] == 'Opened' ? 'selected' : ''; ?>>Opened</option>
+                                <option value="In Progress" <?php echo $contact['Status'] == 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
+                                <option value="Closed" <?php echo $contact['Status'] == 'Closed' ? 'selected' : ''; ?>>Closed</option>
+                            </select>
                     </td>
                     <td>
                         <form method="POST">

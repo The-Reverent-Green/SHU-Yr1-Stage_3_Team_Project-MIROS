@@ -97,15 +97,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   
+    <style>
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 20px;
+    }
+}
+</style>
 </head>
 <body>
 <?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
@@ -113,8 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12 col-md-6 mb-4 mb-md-0">
-                <div class="circle-container text-center">
-                    <img src="../images/logo_circle.jpg" alt="Miros Image" class="img-fluid">
+                <div class="text-center">
+                <img src="../images/logo_circle.jpg" alt="Logo Image" class="img-fluid" style="border-radius: 50%;">
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -122,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2>Login</h2>
                     <p>Please fill in your credentials to login.</p>
                     <?php 
-                    if (!empty($login_err)) {
+                    if(!empty($login_err)){
                         echo '<div class="alert alert-danger">' . $login_err . '</div>';
                     }        
                     ?>
