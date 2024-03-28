@@ -2,3 +2,4 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
 https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js
 https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js
 https://use.fontawesome.com/releases/v5.7.2/css/all.css
+https://www.pexels.com/photo/three-white-ceramic-pots-with-green-leaf-plants-near-open-notebook-with-click-pen-on-top-796602/
