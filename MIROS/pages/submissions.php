@@ -1,12 +1,46 @@
 <?php 
 session_start();
 include('../includes/nav_bar.php');
-include __DIR__ . '/../database/db_config.php';
 
-$sql = "SELECT * FROM submissions";
-$result = $mysqli->query($sql);
-$submissions = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+$submissions = getSub();
 
+function getSub(){
+    
+    $servername = "localhost";
+    $dbname = "miros";
+    $username = "root";
+    $password = "";
+
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if(!isset($_POST['search'])){
+
+        $stmt = $conn->prepare("SELECT * FROM submissions");
+        $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $submissions = $result;
+    }
+
+    else{
+        if($_POST['search'] != ''){
+            $search = $_POST['search'];
+            $stmt = $conn->prepare("SELECT * FROM submissions WHERE Title LIKE :search");
+            $stmt->bindvalue(':search', '%' . $search . '%');
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $submissions = $result;
+        }
+        else{
+            $stmt = $conn->prepare("SELECT * FROM submissions");
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $submissions = $result;
+        }
+    }
+
+    return $submissions;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +57,13 @@ $submissions = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 </head>
 
 <body>
+<div class="container" style="margin-top: 20px">
+        <form action="submissions.php" method="post">
+            <label class="sub-title">Search for submissions: </label><br>
+            <input type="text" id="search" name="search">
+            <button class="button" type="submit" value="submit" name="submit">Search</button><br>
+        </form>
+    </div>
     <div class="container" style="margin-top: 50px">
         <table class="table table-striped">
             <thead class="thead-dark">

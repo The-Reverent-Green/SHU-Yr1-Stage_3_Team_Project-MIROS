@@ -1,11 +1,46 @@
 <?php 
 session_start();
 include('../includes/nav_bar.php');
-include __DIR__ . '/../database/db_config.php';
 
-$sql = "SELECT * FROM user";
-$result = $mysqli->query($sql);
-$users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+$role = array("Select", "Research Officer", "Supervisor", "Top Manager");
+$users = getEmp();
+
+function getEmp(){
+    
+    $servername = "localhost";
+    $dbname = "miros";
+    $username = "root";
+    $password = "";
+
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if(!isset($_POST['filterEmp'])){
+
+        $stmt = $conn->prepare("SELECT * FROM user");
+        $stmt->execute();
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $users = $result;
+    }
+
+    else{
+        if($_POST['filterEmp'] != 'Select'){
+            $role = $_POST['filterEmp'];
+            $stmt = $conn->prepare("SELECT * FROM user WHERE Role = :role");
+            $stmt->bindvalue(':role', $role);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $users = $result;
+        }
+        else{
+            $stmt = $conn->prepare("SELECT * FROM user");
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $users = $result;
+        }
+    }
+    return $users;
+}
 
 ?>
 
@@ -23,6 +58,17 @@ $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 </head>
 
 <body>
+<div class="container" style="margin-top: 20px">
+        <form class="form" method="post">
+            <label class="sub-title">Filter Employee by Role: </label><br>
+                <select class="custom-select" type="text" name="filterEmp">
+                    <?php for ($i=0; $i<count($role); $i++): ?>
+                    <option <?php if (isset($_POST['filterEmp']) && ($role[$i]==$_POST['filterEmp'])) echo "selected"; ?>  ><?php echo $role[$i];?></option>
+                    <?php endfor; ?>
+                </select>
+            <button class="button" type="submit" value="filter" name="submit">Filter</button><br>
+        </form>
+    </div>
     <div class="container" style="margin-top: 30px">
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -46,7 +92,7 @@ $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                     <td><?php echo htmlspecialchars($user['Email']); ?></td>
                     <td><?php echo htmlspecialchars($user['Role']); ?></td>
                     <td><?php echo htmlspecialchars($user['Reports_To']); ?></td>
-                    <td><?php echo htmlspecialchars($user['Status']); ?></td>
+                    <td><?php echo htmlspecialchars($user['account_status']); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
