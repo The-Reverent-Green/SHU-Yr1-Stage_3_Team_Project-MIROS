@@ -73,3 +73,5 @@ INSERT INTO `targets`
 (18, 20, 'Pandemics, Paramedics and potholes', '2024/03/19', '2024/12/31', '', ''),
 (19, 24, 'Parking ticket price increase, cause for concern?', '2024/01/11', '2024/12/31', '', ''),
 (20, 23, 'A study of car horns and their decibel levels', '2024/02/17', '2024/12/31', '', '');
+
+ALTER TABLE `user` ADD `Last_Log_In` DATETIME;
