@@ -48,43 +48,48 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
    
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
 <body>
-    <div class="container mt-5">
-        <?php if(isset($successMessage)): ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $successMessage; ?>
+    <section class="vh-100">
+        <div class="container mt-5">
+            <?php if(isset($successMessage)): ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $successMessage; ?>
+                </div>
+            <?php endif; ?>
+            
+            <div class="wrapper">
+                <h2>Change User Role</h2>
+                <form method="post" action="">
+                    <label>Select User:</label><br>
+                    <!-- Dropdown menu for selecting the username -->
+                    <select name="username" required>
+                        <?php foreach($usernames as $username): ?>
+                            <option value="<?php echo $username; ?>"><?php echo $username; ?></option>
+                        <?php endforeach; ?>
+                    </select><br><br>
+                    
+                    <label>Select New Role:</label><br>
+                    <!-- Radio buttons for selecting the new role -->
+                    <input type="radio" id="role1" name="role" value="Research Officer" required>
+                    <label for="role1">Research Officer</label><br>
+                    
+                    <input type="radio" id="role2" name="role" value="Supervisor" required>
+                    <label for="role2">Supervisor</label><br>
+                    
+                    <input type="radio" id="role3" name="role" value="Top Manager" required>
+                    <label for="role3">Top Manager</label><br>
+                    
+                    <!-- Add more radio buttons for other roles as needed -->
+                    
+                    <br>
+                    <input type="submit" value="Change Role" name="submit" class="btn btn-primary">
+                </form>
             </div>
-        <?php endif; ?>
-        
-        <div class="wrapper">
-            <h2>Change User Role</h2>
-            <form method="post" action="">
-                <label>Select User:</label><br>
-                <!-- Dropdown menu for selecting the username -->
-                <select name="username" required>
-                    <?php foreach($usernames as $username): ?>
-                        <option value="<?php echo $username; ?>"><?php echo $username; ?></option>
-                    <?php endforeach; ?>
-                </select><br><br>
-                
-                <label>Select New Role:</label><br>
-                <!-- Radio buttons for selecting the new role -->
-                <input type="radio" id="role1" name="role" value="Research Officer" required>
-                <label for="role1">Research Officer</label><br>
-                
-                <input type="radio" id="role2" name="role" value="Supervisor" required>
-                <label for="role2">Supervisor</label><br>
-                
-                <input type="radio" id="role3" name="role" value="Top Manager" required>
-                <label for="role3">Top Manager</label><br>
-                
-                <!-- Add more radio buttons for other roles as needed -->
-                
-                <br>
-                <input type="submit" value="Change Role" name="submit" class="btn btn-primary">
-            </form>
         </div>
-    </div>
+    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

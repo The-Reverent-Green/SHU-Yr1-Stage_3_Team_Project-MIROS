@@ -107,8 +107,10 @@ if (isset($_POST["delete_account"])) {
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-<div class="container">
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <div class="container">
     <br>
     <h2>Profile</h2>
     <hr>
@@ -167,4 +169,5 @@ if (isset($_POST["delete_account"])) {
 </div>
 
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
