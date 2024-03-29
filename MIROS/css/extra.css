@@ -1,0 +1,9 @@
+.privacyStatement,.disclaimer {
+    color: black;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+.statement1, .statement2,.statement3,.statement4,.statement5,.statement6 {
+    margin-bottom: 3%;
+}

@@ -1,0 +1,43 @@
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #212625;
+    border-top: 2px solid gold;   
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+}
+
+.copyright {
+    color: #ccc;
+    font-size: 10px;
+    font-weight: lighter;
+    line-height: 0.9;
+    text-align: center;
+    margin-top: 1%;
+    margin: 0;
+}
+
+.links {
+    margin-left: 100px;
+    color: #ccc;
+    font-size: 10px;
+    font-weight: lighter;
+    margin-top: 5%;
+}
+
+.links a:link {
+    text-decoration: none;
+}
+
+.links a:visited {
+    color: #ccc;
+}
+
+.links a:hover {
+    color: blue;
+
+}
