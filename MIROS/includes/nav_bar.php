@@ -17,6 +17,20 @@
         <li class="nav-item">
             <a href="login.php" class="btn btn-warning">Login</a>
         </li>
+    <?php elseif (isset($_SESSION["role"]) && $_SESSION["role"] == "Top Manager"): ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo isCurrentPage('manager_dashboard.php') ? 'active' : ''; ?>" href="manager_dashboard.php">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo isCurrentPage('employees.php') ? 'active' : ''; ?>" href="employees.php">Employees</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo isCurrentPage('submissions.php') ? 'active' : ''; ?>" href="submissions.php">Submissions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo isCurrentPage('targets.php') ? 'active' : ''; ?>" href="targets.php">Targets</a>
+        </li>
+
     <?php else: ?>
         <li class="nav-item">
             <a class="nav-link <?php echo isCurrentPage('profile.php') ? 'active' : ''; ?>" href="profile.php">Profile</a>
