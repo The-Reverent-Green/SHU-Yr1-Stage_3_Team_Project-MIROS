@@ -1,6 +1,7 @@
 <?php 
-session_start();
-include('../includes/nav_bar.php');
+session_start();  
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; 
 
 $role = array("Select", "Research Officer", "Supervisor", "Top Manager");
 $users = getEmp();
@@ -58,6 +59,7 @@ function getEmp(){
 </head>
 
 <body>
+    <section class="vh-100">
 <div class="container" style="margin-top: 20px">
         <form class="form" method="post">
             <label class="sub-title">Filter Employee by Role: </label><br>
@@ -98,4 +100,7 @@ function getEmp(){
             </tbody>
         </table>
     </div>
+    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
+</html>

@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include('../includes/nav_bar.php');
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; 
 include __DIR__ . '/../database/db_config.php';
 
 $sql = "SELECT * FROM targets";
@@ -23,6 +24,7 @@ $targets = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 </head>
 
 <body>
+    <section class="vh-100">
     <div class="container" style="margin-top: 50px">
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -50,5 +52,7 @@ $targets = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
             </tbody>
         </table>
     </div>
+    </section>
 </body>
-</body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
+</html>

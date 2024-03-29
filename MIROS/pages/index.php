@@ -21,7 +21,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </head>
 <body>
 
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <section class ="vh-100">
 
 <div class="container mt-5">
     <div class="jumbotron">
@@ -42,5 +45,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </div>
 
 
+</section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

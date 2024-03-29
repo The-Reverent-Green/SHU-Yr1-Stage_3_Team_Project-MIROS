@@ -69,7 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <section class ="vh-100">
 
     <div class="container">
         <br>
@@ -161,5 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </form>
     </div>
     </div>
+    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

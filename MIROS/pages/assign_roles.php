@@ -48,8 +48,10 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
    
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-<body>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <section class ="vh-100">
     <div class="container mt-5">
         <?php if(isset($successMessage)): ?>
             <div class="alert alert-success" role="alert">
@@ -86,5 +88,7 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
             </form>
         </div>
     </div>
+    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

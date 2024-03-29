@@ -33,7 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
   <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
-<?php require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php   
+    require_once __DIR__ . '/../includes/header.php';
+    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <section class ="vh-100">
 
 <div class="container">
   <h2>Contact Form</h2>
@@ -56,5 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
   </form>
 </div>
 
+</section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
