@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php   
     require_once __DIR__ . '/../includes/header.php';
     require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-    <section class ="vh-100">
+<section class="vh-100">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12 col-md-6 mb-4 mb-md-0">
