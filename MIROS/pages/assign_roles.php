@@ -63,13 +63,13 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
             <div class="wrapper">
                 <h2>Change User Role</h2>
                 <form method="post" action="">
+                    <input type="text" id="searchBar" placeholder="Search usernames...">
+                    <div id="results"></div>
                     <label>Select User:</label><br>
                     <!-- Dropdown menu for selecting the username -->
-                    <select name="username" required>
-                        <?php foreach($usernames as $username): ?>
-                            <option value="<?php echo $username; ?>"><?php echo $username; ?></option>
-                        <?php endforeach; ?>
-                    </select><br><br>
+                    <select id="usernameSelect" name="username" required></select><br><br>
+                    <script src="../database/getUsernames.js"></script>
+
                     
                     <label>Select New Role:</label><br>
                     <!-- Radio buttons for selecting the new role -->
