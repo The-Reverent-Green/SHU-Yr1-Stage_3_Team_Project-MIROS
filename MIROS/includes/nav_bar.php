@@ -12,7 +12,7 @@
             <a class="nav-link <?php echo isCurrentPage('register_user.php') ? 'active' : ''; ?>" href="register_user.php">Create Account</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo isCurrentPage('contact.php') ? 'active' : ''; ?>" href="contact.php">Contact</a>
+            <a class="nav-link <?php echo isCurrentPage('contact_guest.php') ? 'active' : ''; ?>" href="contact_guest.php">Contact</a>
         </li>
         <li class="nav-item">
             <a href="login.php" class="btn btn-warning">Login</a>

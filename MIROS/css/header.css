@@ -1,15 +1,17 @@
 
 header {
     width: 100%;
-    height: 100px;
     display: table;
     background-color: #212625;
     border-bottom: 2px solid gold;
+    padding-bottom: 5px;
+    
 }
 
 .outer {
     display: flex;
     align-items: center;
+    
 }
 
 .headerLogo {
