@@ -6,12 +6,15 @@ date_default_timezone_set("Europe/London"); // Get correct timezone
 $passwordInput = $confirmationInput = "";
 $passwordError = $confirmationError = "";
 
+// Get token
 $token = $_POST["token"];
 
+// Get resetError (keeps the inputs disabled if not blank)
 $resetError = $_POST["resetError"];
 
-// No token found error
+// Check token isnt empty 
 if (!empty($token)) {
+
     $token_hash = hash("sha256", $token);
     $sql = "SELECT User_ID, reset_token_expires_at FROM user WHERE reset_token_hash = ?";
     
@@ -21,6 +24,7 @@ if (!empty($token)) {
 
     $stmt->store_result();
 
+    // Find the user with that token
     if ($stmt->num_rows == 1) {
         $stmt->bind_result($id, $reset_token_expires_at);
         $stmt->fetch();
@@ -45,9 +49,12 @@ if (!empty($token)) {
                     $confirmationError = "Passwords did not match.";
                 }
             }
-
+            
             if (empty($confirmationError) && empty($passwordError)) {
+                
                 $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
+                
+                // Set new password
                 $sql = "UPDATE user SET passwordHash = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE User_ID = ?";
                 $stmt = $mysqli->prepare($sql); 
                 $stmt->bind_param("ss", $passwordHash, $id); 
@@ -59,6 +66,8 @@ if (!empty($token)) {
         } else {
             $resetError = "Token has expired";
         }
+    } else {
+        $resetError = "Token does not exist.";
     }
 } else {
     

@@ -25,19 +25,14 @@
             // Check token hasn't expired
             if (strtotime($user["reset_token_expires_at"]) <= time()) {
                 $resetError = "Token has expired";
-                // Disable inputs
             }
         } else {
             $resetError = "Token not found.";
-            // Disable inputs
         }
 
     } else {
         $resetError = "Token not found.";
-        // Disable inputs
-    }
-
-    
+    }  
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +80,7 @@
 
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" name="password" class="form-control <?php echo (!empty($passwordError)) ? 'is-invalid' : ''; ?>" <?php echo (!empty($resetError)) ? 'disabled' : ''; ?>>
+                                <input type="password" name="password" class="form-control <?php echo (!empty($passwordError)) ? 'is-invalid' : ''; ?>" <?php echo (!empty($resetError)) ? 'disabled' : ''; ?>> 
                                 <span class="invalid-feedback"><?php echo $passwordError; ?></span>
                             </div>    
                             <div class="form-group">
