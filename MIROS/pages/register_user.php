@@ -156,7 +156,7 @@ $mysqli->close();
 <?php   
     require_once __DIR__ . '/../includes/header.php';
     require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-    <section class ="vh-100">
+    <section>
 
 <div class="wrapper">
         <h2>Sign Up</h2>
