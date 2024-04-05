@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 04:02 PM
+-- Generation Time: Apr 04, 2024 at 04:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `miros`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `calculatedscores`
---
-
-CREATE TABLE `calculatedscores` (
-  `CalculatedScoreID` int(11) NOT NULL,
-  `Submission_ID` int(11) DEFAULT NULL,
-  `Score` decimal(10,2) DEFAULT NULL,
-  `LastCalculated` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -147,21 +134,6 @@ INSERT INTO `items` (`Item_ID`, `Category_ID`, `Item_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `Token_ID` int(11) NOT NULL,
-  `User_ID` int(11) DEFAULT NULL,
-  `Reset_Token` varchar(256) DEFAULT NULL,
-  `Creation_Date` datetime DEFAULT NULL,
-  `Expiration_Date` datetime DEFAULT NULL,
-  `Is_Used` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `submissions`
 --
 
@@ -183,7 +155,7 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`Submission_ID`, `User_ID`, `Category_ID`, `Item_ID`, `Sub_Item_ID`, `Description`, `Date_Of_Submission`, `Verified`, `Evidence_attachment`, `score`) VALUES
-(1, 12, 5, 1, NULL, 'Test post', '2024-04-01 22:34:55', 'no', NULL, NULL);
+(1, 12, 1, 1, NULL, 'Test post', '2024-04-01 22:34:55', 'no', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -312,38 +284,40 @@ CREATE TABLE `user` (
   `ROLE` enum('Research Officer','Supervisor','Top Manager','admin') DEFAULT NULL,
   `Reports_To` int(11) DEFAULT NULL,
   `account_status` enum('active','deactivated') NOT NULL DEFAULT 'active',
-  `Last_Log_In` datetime DEFAULT NULL
+  `Last_Log_In` datetime DEFAULT NULL,
+  `reset_token_hash` varchar(64) DEFAULT NULL,
+  `reset_token_expires` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`) VALUES
-(5, 'test1', 'george', 'first', '1998-12-13', '', '$2y$10$csDMJMV2tLjSFMpFL8IiD.$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL),
-(12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL),
-(13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$7JjSeYzZQP61ZRLdBIA5mu9.2irx.sGhKVcWTjyyET5qSBJqkNRX2', 'Supervisor', 29, 'active', NULL),
-(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '1234', 'Research Officer', 31, 'active', NULL),
-(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '1234', 'Research Officer', 31, 'active', NULL),
-(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '1234', 'Research Officer', 32, 'active', NULL),
-(17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '1234', 'Research Officer', 31, 'active', NULL),
-(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '1234', 'Research Officer', 34, 'active', NULL),
-(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '1234', 'Research Officer', 32, 'active', NULL),
-(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '1234', 'Research Officer', 33, 'active', NULL),
-(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '1234', 'Research Officer', 33, 'active', NULL),
-(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '1234', 'Research Officer', 31, 'active', NULL),
-(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '1234', 'Research Officer', 32, 'active', NULL),
-(24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '1234', 'Research Officer', 33, 'active', NULL),
-(25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '1234', 'Research Officer', 34, 'active', NULL),
-(26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '1234', 'Research Officer', 34, 'active', NULL),
-(27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '1234', 'Research Officer', 32, 'active', NULL),
-(28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '1234', 'Research Officer', 32, 'active', NULL),
-(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$/gdXPyIsowJLmaRUclFXlOtbjUzrywErXopqBkw1Xoa1vshWIO0WK', 'Top Manager', NULL, 'active', '2024-04-01 16:23:02'),
-(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '1234', 'Supervisor', 29, 'active', NULL),
-(31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '1234', 'Supervisor', 29, 'active', NULL),
-(32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '1234', 'Supervisor', 29, 'active', NULL),
-(33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '1234', 'Supervisor', 29, 'active', NULL),
-(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '1234', 'Supervisor', 29, 'active', NULL);
+INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires`) VALUES
+(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$csDMJMV2tLjSFMpFL8IiD.$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL, NULL, NULL),
+(13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$7JjSeYzZQP61ZRLdBIA5mu9.2irx.sGhKVcWTjyyET5qSBJqkNRX2', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$/gdXPyIsowJLmaRUclFXlOtbjUzrywErXopqBkw1Xoa1vshWIO0WK', 'Top Manager', NULL, 'active', '2024-04-01 16:23:02', NULL, NULL),
+(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,15 +339,30 @@ CREATE TABLE `user_scores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `user_scores`
 --
 
+INSERT INTO `user_scores` (`UserScore_ID`, `User_ID`, `Score_A`, `Score_B`, `Score_C`, `Score_D`, `Score_E`, `Score_F`, `Score_G`, `Total_Score`) VALUES
+(2, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 14, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 15, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 16, 0, 0, 0, 0, 0, 0, 0, 0),
+(6, 17, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, 18, 0, 0, 0, 0, 0, 0, 0, 0),
+(8, 19, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 20, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 21, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 22, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 23, 0, 0, 0, 0, 0, 0, 0, 0),
+(13, 24, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 25, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 26, 0, 0, 0, 0, 0, 0, 0, 0),
+(16, 27, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 28, 0, 0, 0, 0, 0, 0, 0, 0);
+
 --
--- Indexes for table `calculatedscores`
+-- Indexes for dumped tables
 --
-ALTER TABLE `calculatedscores`
-  ADD PRIMARY KEY (`CalculatedScoreID`),
-  ADD KEY `Submission_ID` (`Submission_ID`);
 
 --
 -- Indexes for table `categories`
@@ -420,6 +409,7 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`User_ID`),
   ADD UNIQUE KEY `Username` (`Username`),
   ADD UNIQUE KEY `Email` (`Email`),
+  ADD UNIQUE KEY `reset_token_hash` (`reset_token_hash`),
   ADD KEY `Reports_To` (`Reports_To`);
 
 --
@@ -432,12 +422,6 @@ ALTER TABLE `user_scores`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `calculatedscores`
---
-ALTER TABLE `calculatedscores`
-  MODIFY `CalculatedScoreID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -473,23 +457,17 @@ ALTER TABLE `sub_items`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=512;
 
 --
 -- AUTO_INCREMENT for table `user_scores`
 --
 ALTER TABLE `user_scores`
-  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `calculatedscores`
---
-ALTER TABLE `calculatedscores`
-  ADD CONSTRAINT `calculatedscores_ibfk_1` FOREIGN KEY (`Submission_ID`) REFERENCES `submissions` (`Submission_ID`);
 
 --
 -- Constraints for table `items`

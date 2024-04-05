@@ -27,7 +27,7 @@ INSERT INTO `user`
 (32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '1234', 'Active', 'Supervisor', 'active'),
 (33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '1234', 'Active', 'Supervisor', 'active'),
 (34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '1234', 'Active', 'Supervisor', 'active');
-
+    
 INSERT INTO `submissions`
 (`Submission_ID`, `User_ID`, `Title`, `Date_Of_Submission`, `Deadline`, `Publication_URL`, `Evidence_attachment`) VALUES
 (1, 21, 'General road safety in Malaysia', '2024/03/21', '2024/12/31', '', ''),
