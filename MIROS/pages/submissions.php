@@ -5,6 +5,8 @@ session_start();
 
 $submissions = getSub();
 
+
+
 function getSub(){
     
     $servername = "localhost";
