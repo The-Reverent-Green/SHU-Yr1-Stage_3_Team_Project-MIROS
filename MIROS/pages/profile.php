@@ -110,7 +110,7 @@ if (isset($_POST["delete_account"])) {
 <?php   
     require_once __DIR__ . '/../includes/header.php';
     require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-    <section class ="vh-100">
+    <section>
 <div class="container">
     <br>
     <h2>Profile</h2>
