@@ -24,6 +24,18 @@
 
         <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Top Manager"): ?>
             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Supervisor Panel</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item <?php echo isCurrentPage('supervisor_dashboard.php') ? 'active' : ''; ?>" href="supervisor_dashboard.php">Dashboard</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('supervisor_team.php') ? 'active' : ''; ?>" href="supervisor_team.php">My team</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('preformance.php') ? 'active' : ''; ?>" href="officers_overview.php">Preformances</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('submission_overview.php') ? 'active' : ''; ?>" href="submission_overview.php">Submission Requests</a>
+                </div>
+            </li>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Supervisor"): ?>
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Management Panel</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item <?php echo isCurrentPage('management_dashboard.php') ? 'active' : ''; ?>" href="management_dashboard.php">Dashboard</a>
