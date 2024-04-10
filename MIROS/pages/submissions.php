@@ -5,8 +5,6 @@ session_start();
 
 $submissions = getSub();
 
-
-
 function getSub(){
     
     $servername = "localhost";
@@ -28,7 +26,7 @@ function getSub(){
     else{
         if($_POST['search'] != ''){
             $search = $_POST['search'];
-            $stmt = $conn->prepare("SELECT * FROM submissions WHERE Title LIKE :search");
+            $stmt = $conn->prepare("SELECT * FROM submissions WHERE Description LIKE :search");
             $stmt->bindvalue(':search', '%' . $search . '%');
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -68,16 +66,15 @@ function getSub(){
             <button class="button" type="submit" value="submit" name="submit">Search</button><br>
         </form>
     </div>
-    <div class="container" style="margin-top: 50px">
+    <div class="container" style="margin-top: 50px; padding-bottom: 75px;">
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Submission ID</th>
                     <th scope="col">User ID</th>
-                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Date of Submission</th>
-                    <th scope="col">Deadline</th>
-                    <th scope="col">Publication URL</th>
+                    <th scope="col">Verified</th>
                     <th scope="col">Evidence Attachment</th>
                 </tr>
             </thead>
@@ -85,17 +82,16 @@ function getSub(){
                 <tr>
                     <th><?php echo htmlspecialchars($submission['Submission_ID']); ?></th>
                     <td><?php echo htmlspecialchars($submission['User_ID']); ?></td>
-                    <td><?php echo htmlspecialchars($submission['Title']); ?></td>
+                    <td><?php echo htmlspecialchars($submission['Description']); ?></td>
                     <td><?php echo htmlspecialchars($submission['Date_Of_Submission']); ?></td>
-                    <td><?php echo htmlspecialchars($submission['Deadline']); ?></td>
-                    <td><?php echo htmlspecialchars($submission['Publication_URL']); ?></td>
+                    <td><?php echo htmlspecialchars($submission['Verified']); ?></td>
                     <td><?php echo htmlspecialchars($submission['Evidence_attachment']); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
     </section>
 </body>
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

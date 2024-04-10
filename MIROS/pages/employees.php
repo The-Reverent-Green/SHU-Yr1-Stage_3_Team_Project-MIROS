@@ -1,7 +1,7 @@
 <?php 
 session_start();  
-    require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php'; 
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/nav_bar.php'; 
 
 $role = array("Select", "Research Officer", "Supervisor", "Top Manager");
 $users = getEmp();
@@ -42,7 +42,6 @@ function getEmp(){
     }
     return $users;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +70,7 @@ function getEmp(){
             <button class="button" type="submit" value="filter" name="submit">Filter</button><br>
         </form>
     </div>
-    <div class="container" style="margin-top: 30px">
+    <div class="container" style="margin-top: 30px; padding-bottom: 75px;">
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -92,7 +91,7 @@ function getEmp(){
                     <td><?php echo htmlspecialchars($user['Last_Name']); ?></td>
                     <td><?php echo htmlspecialchars($user['Date_of_birth']); ?></td>
                     <td><?php echo htmlspecialchars($user['Email']); ?></td>
-                    <td><?php echo htmlspecialchars($user['Role']); ?></td>
+                    <td><?php echo htmlspecialchars($user['ROLE']); ?></td>
                     <td><?php echo htmlspecialchars($user['Reports_To']); ?></td>
                     <td><?php echo htmlspecialchars($user['account_status']); ?></td>
                 </tr>
@@ -100,7 +99,7 @@ function getEmp(){
             </tbody>
         </table>
     </div>
+    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
     </section>
 </body>
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
