@@ -2,7 +2,8 @@
 session_start();
 require_once __DIR__ . '/../database/db_config.php';
 require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+require_once __DIR__ . '/../includes/nav_bar.php'; 
+?>
 
 
 <!DOCTYPE html>
@@ -22,8 +23,8 @@ require_once __DIR__ . '/../includes/nav_bar.php'; ?>
     <section class="vh-100">
     <div class="container mt-5">
     <div class="jumbotron">
-        <h1 class="display-4">Welcome to your management dashboard, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1> 
-        <p class="lead">From here you can view employees, search for submissions and see KPI's/targets.</p>
+        <h1 class="display-4">Welcome to your supervisor dashboard, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1> 
+        <p class="lead">From here you can view your assigned research officers, view their performances and verify submissions.</p>
     </div>
     </section>
 </body>

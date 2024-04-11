@@ -3,9 +3,9 @@ session_start();
     require_once __DIR__ . '/../includes/header.php';
     require_once __DIR__ . '/../includes/nav_bar.php'; 
 
-$submissions = getSub();
+$submissions = mySub();
 
-function getSub(){
+function mySub(){
     
     $servername = "localhost";
     $dbname = "miros";
@@ -17,7 +17,9 @@ function getSub(){
 
     if(!isset($_POST['search'])){
 
-        $stmt = $conn->prepare("SELECT * FROM submissions");
+        $id = $_SESSION['id'];
+        $stmt = $conn->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no'");
+        $stmt->bindvalue(':id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $submissions = $result;
@@ -25,15 +27,19 @@ function getSub(){
 
     else{
         if($_POST['search'] != ''){
+            $id = $_SESSION['id'];
             $search = $_POST['search'];
-            $stmt = $conn->prepare("SELECT * FROM submissions WHERE Description LIKE :search");
+            $stmt = $conn->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no' AND Description LIKE :search");
             $stmt->bindvalue(':search', '%' . $search . '%');
+            $stmt->bindvalue(':id', $id);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             $submissions = $result;
         }
         else{
-            $stmt = $conn->prepare("SELECT * FROM submissions");
+            $id = $_SESSION['id'];
+            $stmt = $conn->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no'");
+            $stmt->bindvalue(':id', $id);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             $submissions = $result;
@@ -60,7 +66,7 @@ function getSub(){
 <body>
     <section class="vh-100">
 <div class="container" style="margin-top: 20px">
-        <form action="submissions.php" method="post">
+        <form action="submission_overview.php" method="post">
             <label class="sub-title">Search for submissions: </label><br>
             <input type="text" id="search" name="search">
             <button class="button" type="submit" value="submit" name="submit">Search</button><br>
@@ -74,8 +80,10 @@ function getSub(){
                     <th scope="col">User ID</th>
                     <th scope="col">Description</th>
                     <th scope="col">Date of Submission</th>
-                    <th scope="col">Verified</th>
                     <th scope="col">Evidence Attachment</th>
+                    <th scope="col">Verified</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">&#160;</th>
                 </tr>
             </thead>
             <?php foreach ($submissions as $submission): ?>
@@ -84,8 +92,10 @@ function getSub(){
                     <td><?php echo htmlspecialchars($submission['User_ID']); ?></td>
                     <td><?php echo htmlspecialchars($submission['Description']); ?></td>
                     <td><?php echo htmlspecialchars($submission['Date_Of_Submission']); ?></td>
-                    <td><?php echo htmlspecialchars($submission['Verified']); ?></td>
                     <td><?php echo htmlspecialchars($submission['Evidence_attachment']); ?></td>
+                    <td><?php echo htmlspecialchars($submission['Verified']); ?></td>
+                    <td><a href="submission_verification.php?Submission_ID=<?php echo htmlspecialchars($submission['Submission_ID']); ?>">Verify</a></td>
+                    <td><a href="delete_submission.php?Submission_ID=<?php echo htmlspecialchars($submission['Submission_ID']); ?>">Delete</a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
