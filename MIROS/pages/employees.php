@@ -3,13 +3,11 @@ session_start();
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/nav_bar.php'; 
 
-//Drop down menu for filtering employee by role
 $role = array("Select", "Research Officer", "Supervisor", "Top Manager");
 $users = getEmp();
 
 function getEmp(){
     
-    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -20,7 +18,6 @@ function getEmp(){
 
     if(!isset($_POST['filterEmp'])){
 
-        //If no filter is selected then information about all employees is displayed in the table
         $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID");
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -30,7 +27,6 @@ function getEmp(){
     else{
         if($_POST['filterEmp'] != 'Select'){
 
-            //If a filter is selected then information about employees that fulfil the selected job role is displayed in the table
             $role = $_POST['filterEmp'];
             $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID WHERE Role = :role");
             $stmt->bindvalue(':role', $role);

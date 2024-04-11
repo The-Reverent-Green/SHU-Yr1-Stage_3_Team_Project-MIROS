@@ -1,10 +1,9 @@
 <?php
 require_once __DIR__ . '/../database/db_config.php'; 
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
     foreach ($_POST['roles'] as $userId => $role) {
-        if (!empty($role)) { // Only update if a role was selected
+        if (!empty($role)) { 
             $stmt = $mysqli->prepare("UPDATE user SET role = ? WHERE user_id = ?");
             $stmt->bind_param("si", $role, $userId);
             $stmt->execute();
@@ -17,23 +16,19 @@ $sql = "SELECT user_id, username, first_name, last_name, last_log_in FROM user W
 $result = $mysqli->query($sql);
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
-// Fetch contact details
 $sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
 $resultContact = $mysqli->query($sqlContact);
 $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 
-// Check if the status update form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     $contactId = $_POST['Contact_ID'];
     $newStatus = $_POST['Status'];
 
-    // Prepare the update statement
     $stmt = $mysqli->prepare("UPDATE contact SET Status = ? WHERE Contact_ID = ?");
     $stmt->bind_param("si", $newStatus, $contactId);
     $stmt->execute();
     $stmt->close();
     
-    // Refresh the contact details to reflect the update
     $sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
     $resultContact = $mysqli->query($sqlContact);
     $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
@@ -99,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
             </form>
         </div>
 
-        <!-- Contact Details Section -->
         <div class="container">
             <h2>Contact Messages</h2>
             <div class="table-responsive">

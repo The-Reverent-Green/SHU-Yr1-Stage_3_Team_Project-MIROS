@@ -1,16 +1,13 @@
 <?php
 require_once __DIR__ . '/../database/db_config.php';
 
-// Check if the user is logged in, if not redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 
-// Initialize message variable
 $updateMessage = "";
 
-// Fetch user details
 $user_id = $_SESSION["id"];
 $sql = "SELECT * FROM user WHERE User_ID = ?";
 if ($stmt = $mysqli->prepare($sql)) {
@@ -18,12 +15,10 @@ if ($stmt = $mysqli->prepare($sql)) {
     if ($stmt->execute()) {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        // print_r($user); // Uncomment this line to print the $user array
     }
     $stmt->close();
 }
 
-// Process form data for account update
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
@@ -31,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_of_birth = $_POST["date_of_birth"];
     $email = $_POST["email"];
 
-    // Check if email is unique
     $sql_check_email = "SELECT User_ID FROM user WHERE Email = ? AND User_ID != ?";
     if ($stmt_check_email = $mysqli->prepare($sql_check_email)) {
         $stmt_check_email->bind_param("si", $email, $user_id);
@@ -40,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_check_email->num_rows > 0) {
             $updateMessage = "Email already exists.";
         } else {
-            // Check if username is unique
             $sql_check_username = "SELECT User_ID FROM user WHERE Username = ? AND User_ID != ?";
             if ($stmt_check_username = $mysqli->prepare($sql_check_username)) {
                 $stmt_check_username->bind_param("si", $username, $user_id);
@@ -49,14 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt_check_username->num_rows > 0) {
                     $updateMessage = "Username already exists.";
                 } else {
-                    // Update user details in the database
                     $sql_update_user = "UPDATE user SET First_Name=?, Last_Name=?, Username=?, Date_of_birth=?, Email=? WHERE User_ID=?";
                     if ($stmt_update_user = $mysqli->prepare($sql_update_user)) {
                         $stmt_update_user->bind_param("sssssi", $first_name, $last_name, $username, $date_of_birth, $email, $user_id);
                         if ($stmt_update_user->execute()) {
                             $updateMessage = "Changes saved successfully.";
 
-                            // Fetch updated user details
                             $sql_fetch_user = "SELECT * FROM user WHERE User_ID = ?";
                             if ($stmt_fetch_user = $mysqli->prepare($sql_fetch_user)) {
                                 $stmt_fetch_user->bind_param("i", $user_id);
@@ -79,9 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Process account deletion request
 if (isset($_POST["delete_account"])) {
-    // Change account status to "deleted"
     $sql_update_user = "UPDATE user SET Account_Status='Deleted' WHERE User_ID=?";
     if ($stmt_update_user = $mysqli->prepare($sql_update_user)) {
         $stmt_update_user->bind_param("i", $user_id);
@@ -89,7 +78,6 @@ if (isset($_POST["delete_account"])) {
         $stmt_update_user->close();
     }
 
-    // Log out the user and redirect to login page
     session_unset();
     session_destroy();
     header("location: login.php");

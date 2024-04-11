@@ -7,7 +7,6 @@ $submissions = Verify();
 
 function Verify(){
 
-    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -16,7 +15,6 @@ function Verify(){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //Displays all information about the selected submission
     $stmt = $conn->prepare("SELECT * FROM submissions WHERE Submission_ID = :sub_id");
     $stmt->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);
     $stmt->execute();
@@ -36,7 +34,6 @@ if (isset($_POST['verify'])){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //Updates submission to verified if suitable
     $stmt = "UPDATE submissions SET Verified = 'yes' WHERE Submission_ID = :sub_id";
     $sql = $conn->prepare($stmt);
     $sql->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);

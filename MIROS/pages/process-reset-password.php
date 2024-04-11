@@ -1,7 +1,7 @@
 <?php 
 include __DIR__ . '/../database/db_config.php';
 
-date_default_timezone_set("Europe/London"); // Get correct timezone
+date_default_timezone_set("Europe/London");
 
 $passwordInput = $confirmationInput = "";
 $passwordError = $confirmationError = "";
@@ -10,7 +10,6 @@ $token = $_POST["token"];
 
 $resetError = $_POST["resetError"];
 
-// Check token isnt empty 
 if (!empty($token)) {
 
     $token_hash = hash("sha256", $token);
@@ -22,14 +21,11 @@ if (!empty($token)) {
 
     $stmt->store_result();
 
-    // Find the user with that token
     if ($stmt->num_rows == 1) {
         $stmt->bind_result($id, $reset_token_expires_at);
         $stmt->fetch();
 
-        // Check token hasn't expired
         if (!strtotime($reset_token_expires_at) <= time()) {
-            // Validate password
             if (empty(trim($_POST["password"]))) {
                 $passwordError = "Please enter a password.";
             } elseif (strlen(trim($_POST["password"])) < 6) {
@@ -38,7 +34,6 @@ if (!empty($token)) {
                 $passwordInput = trim($_POST["password"]);
             }
 
-            // Validate confirm password
             if (empty(trim($_POST["confirmPassword"]))) {
                 $confirmationError = "Please confirm the password.";
             } else {
@@ -52,7 +47,6 @@ if (!empty($token)) {
                 
                 $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
                 
-                // Set new password
                 $sql = "UPDATE user SET passwordHash = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE User_ID = ?";
                 $stmt = $mysqli->prepare($sql); 
                 $stmt->bind_param("ss", $passwordHash, $id); 

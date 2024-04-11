@@ -4,32 +4,24 @@
     $usernameInput = $emailInput = "";
     $usernameError = $emailError = $resetError = "";
 
-    // When button is clicked
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // check username isnt blank
         if (empty(trim($_POST["username"]))) {
-            // Produce error if blank
             $usernameError = "Please enter your username.";
         }
         else {
-            // Assign to variable
             $usernameInput = trim($_POST["username"]);
         }
 
-        // check email isnt blank 
         if (empty(trim($_POST["email"]))) {
-            // Produce error if blank
             $emailError = "Please enter your email.";
         }
         else {
-            // Assign to variable
             $emailInput = trim($_POST["email"]);
         }
 
         if (empty($usernameError) && empty($emailError)) {
 
-            // Prepare a select statement
             $sql = "SELECT * FROM user WHERE username = ? AND email = ?";
             
             if ($stmt = $mysqli->prepare($sql)) {
@@ -38,21 +30,19 @@
                 if ($stmt->execute()) {
                     $stmt->store_result();
                     
-                    // check username and email match those in database
                     if ($stmt->num_rows == 1) {
 
-                        $token = bin2hex(random_bytes(16)); // Gets a random string that can be used in a URL
-                        $token_hash = hash("sha256", $token); // Creates hash of token
-                        date_default_timezone_set("Europe/London"); // Get correct timezone
-                        $expiry = date("Y-m-d H:i:s", time()+ 60 * 30); // token is valid for 30min 
+                        $token = bin2hex(random_bytes(16));
+                        $token_hash = hash("sha256", $token);
+                        date_default_timezone_set("Europe/London");
+                        $expiry = date("Y-m-d H:i:s", time()+ 60 * 30);
 
                         $sql = "UPDATE user SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?";
 
                         $stmt = $mysqli->prepare($sql);
                         $stmt->bind_param("sss", $token_hash, $expiry, $emailInput); 
-                        $stmt->execute(); // Set token and expiry to the email
+                        $stmt->execute();
 
-                        // get required PHPMailer
                         require_once __DIR__ . '/../PHPMailer/src/Exception.php';
                         require_once __DIR__ . '/../PHPMailer/src/PHPMailer.php';
                         require_once __DIR__ . '/../PHPMailer/src/SMTP.php';
@@ -61,26 +51,24 @@
                         $mail -> isSMTP();
                         $mail -> Host = 'smtp.gmail.com';
                         $mail -> SMTPAuth = true;
-                        $mail -> Username = 'mirostest24@gmail.com'; // Email it is sent from
-                        $mail -> Password = 'aeir nyuj xehm xwod'; // App password
+                        $mail -> Username = 'mirostest24@gmail.com';
+                        $mail -> Password = 'aeir nyuj xehm xwod';
                         $mail -> SMTPSecure = 'ssl';
                         $mail -> Port = 465;
 
                         $mail->setFrom('mirostest24@gmail.com', 'MIROS');
 
-                        $mail -> addAddress($emailInput); // Get users email
+                        $mail -> addAddress($emailInput);
 
-                        $mail -> isHTML(true); // Allow HTML content
-                        $mail -> Subject = "Password Reset"; // Email subject lime
+                        $mail -> isHTML(true);
+                        $mail -> Subject = "Password Reset";
                         $mail->Body = "Click <a href='http://localhost/MIROS/pages/reset_password.php?token=$token'>here</a> to reset your password.";
                                                 
-                        $mail -> send(); // Send email to reset password
+                        $mail -> send();
 
-                        // success message
                         $_SESSION['success_message'] = "Email sent!";
                     }
                     else {
-                    // Error message if no results
                     $resetError = 'Account not found. You can create an account <a href="register_user.php">here</a>';
                     }
                 }

@@ -1,9 +1,8 @@
 <?php
-session_start(); // Make sure to start the session
+session_start();
 require_once __DIR__ . '/../database/db_config.php';
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    // If not logged in, redirect to the login page
     header('Location: /path/to/login.php');
     exit;
 }
@@ -12,7 +11,6 @@ $loggedInUserId = $_SESSION['id'] ?? null;
 $userScores = [];
 $reportsToData = [];
 
-// Fetch user scores
 if ($loggedInUserId) {
     $sqlScores = "SELECT * FROM user_scores WHERE User_ID = ?";
     
@@ -30,7 +28,6 @@ if ($loggedInUserId) {
         error_log("Error preparing user scores statement: " . $mysqli->error, 3, "/path/to/your/error.log");
     }
 
-    // Calculate score messages
     $minimumRequiredScore = 42;
     $maximumScore = 55;
     $totalScore = $userScores['Total_Score'] ?? 0; 
@@ -40,7 +37,6 @@ if ($loggedInUserId) {
     $scoreToMaxText = $scoreToMax > 0 ? "You need {$scoreToMax} more to reach the maximum of {$maximumScore}." : "You have reached the maximum score.";
 }
 
-// Fetch reports to data
 if ($loggedInUserId) {
     $sqlReportsTo = "SELECT 
                         u1.Username AS OfficerUsername, 
@@ -131,12 +127,10 @@ if ($loggedInUserId) {
     <h1>Your Score Summary</h1>
     <?php if ($totalScore > 0): ?>
         <?php
-            // Calculate the number of days until the end of the year
             $endOfYear = new DateTime('December 31');
             $today = new DateTime();
             $daysUntilEndOfYear = $today->diff($endOfYear)->days;
 
-            // Check for categories with less than one point
             $categories = ['Cat_A', 'Cat_B', 'Cat_C', 'Cat_D', 'Cat_E', 'Cat_F', 'Cat_G'];
             $missingCategories = [];
 

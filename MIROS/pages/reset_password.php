@@ -1,16 +1,15 @@
 <?php 
     include __DIR__ . '/../database/db_config.php';
     
-    date_default_timezone_set("Europe/London"); // Get correct timezone
+    date_default_timezone_set("Europe/London");
 
     $passwordInput = $confirmationInput = "";
     $passwordError = $confirmationError = $resetError = "";
 
-    // Check token got passed through URL
     if (isset($_GET["token"]) || !empty($_GET["token"])) {
         
-        $token = $_GET["token"]; // Get token
-        $token_hash = hash("sha256", $token); // Hash token
+        $token = $_GET["token"];
+        $token_hash = hash("sha256", $token);
         $sql = "SELECT * FROM user WHERE reset_token_hash = ?";
     
         $stmt = $mysqli -> prepare($sql);
@@ -20,9 +19,7 @@
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
 
-        // If no record is found, stop
         if (!empty($user)) {
-            // Check token hasn't expired
             if (strtotime($user["reset_token_expires_at"]) <= time()) {
                 $resetError = "Token has expired";
             }

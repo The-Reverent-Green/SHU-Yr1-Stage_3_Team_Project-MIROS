@@ -7,7 +7,6 @@ $submissions = Delete();
 
 function Delete(){
     
-    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -16,7 +15,6 @@ function Delete(){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    //Displays all information about the selected submission
     $stmt = $conn->prepare("SELECT * FROM submissions WHERE Submission_ID = :sub_id");
     $stmt->bindParam(':sub_id', $_GET['Submission_ID']);
     $stmt->execute();
@@ -36,7 +34,6 @@ if (isset($_POST['delete'])){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //Deletes the submission from the database
     $stmt = "DELETE FROM submissions WHERE Submission_ID = :sub_id";
     $sql = $conn->prepare($stmt);
     $sql->bindParam(':sub_id', $_GET['Submission_ID']);

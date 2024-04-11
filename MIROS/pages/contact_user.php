@@ -2,15 +2,13 @@
 require_once __DIR__ . '/../database/db_config.php';
 
 
-$id = $_SESSION['id']; // You may need to adjust this based on how you retrieve the User_ID
+$id = $_SESSION['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $contact_message = $_POST['contact_message'];
 
-    // Set the status to "Opened" by default
     $status = "Opened";
 
-    // Prepare and execute SQL statement to insert data into the contact table
     $stmt = $mysqli->prepare("INSERT INTO contact (User_ID, contact_message, Status) VALUES (?, ?, ?)");
     $stmt->bind_param("iss", $id, $contact_message, $status);
 

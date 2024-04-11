@@ -1,36 +1,28 @@
 <?php
-include __DIR__ . '/../database/db_config.php'; // Include db_config.php file
+include __DIR__ . '/../database/db_config.php'; 
 
-// Check if the database connection object is set and not null
 if(isset($mysqli) && $mysqli instanceof mysqli) {
     try {
-        // Fetch usernames from the database
         $usernames = [];
         $stmt = $mysqli->query("SELECT username FROM user");
         while ($row = $stmt->fetch_assoc()) {
             $usernames[] = $row['username'];
         }
 
-        // Handle form submission
         if(isset($_POST['submit'])) {
-            // Get the selected username and new role from the form submission
             $selectedUsername = $_POST['username'];
-            $newRole = $_POST['role']; // Assuming you have a form field named 'role' for selecting the new role
+            $newRole = $_POST['role']; 
             
-            // Update the user's role in the database
             $updateStmt = $mysqli->prepare("UPDATE user SET role = ? WHERE username = ?");
             $updateStmt->bind_param("ss", $newRole, $selectedUsername);
             $updateStmt->execute();
             
-            // Display a success message
             $successMessage = "User role updated successfully!";
         }
     } catch(Exception $e) {
-        // Handle database connection errors
         echo "Error: " . $e->getMessage();
     }
 } else {
-    // Handle case where $mysqli is not set or not an instance of mysqli
     echo "Database connection not established.";
 }
 ?>
@@ -66,13 +58,11 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
                     <input type="text" id="searchBar" placeholder="Search usernames...">
                     <div id="results"></div>
                     <label>Select User:</label><br>
-                    <!-- Dropdown menu for selecting the username -->
                     <select id="usernameSelect" name="username" required></select><br><br>
                     <script src="../database/getUsernames.js"></script>
 
                     
                     <label>Select New Role:</label><br>
-                    <!-- Radio buttons for selecting the new role -->
                     <input type="radio" id="role1" name="role" value="Research Officer" required>
                     <label for="role1">Research Officer</label><br>
                     
@@ -82,7 +72,6 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
                     <input type="radio" id="role3" name="role" value="Top Manager" required>
                     <label for="role3">Top Manager</label><br>
                     
-                    <!-- Add more radio buttons for other roles as needed -->
                     
                     <br>
                     <input type="submit" value="Change Role" name="submit" class="btn btn-primary">

@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadCategories(); // Initial load of categories
+    loadCategories();
 
     document.getElementById('categorySelect').addEventListener('change', function() {
         var categoryId = this.value;
-        loadItems(categoryId); // Load items based on selected category
+        loadItems(categoryId);
     });
 
     document.getElementById('itemSelect').addEventListener('change', function() {
         var itemId = this.value;
-        loadSubItems(itemId); // Load sub-items based on selected item
+        loadSubItems(itemId);
     });
 });
 
@@ -62,7 +62,7 @@ function loadSubItems(itemId) {
 
 function populateDropdown(elementId, options) {
     var dropdown = document.getElementById(elementId);
-    dropdown.innerHTML = ''; // Clear existing options
+    dropdown.innerHTML = '';
     options.forEach(function(option) {
         var optionElement = document.createElement('option');
         optionElement.value = option.id;

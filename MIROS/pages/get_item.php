@@ -16,5 +16,4 @@ if(isset($_POST['category_id'])) {
     }
 }
 
-// Assuming $db is your database connection variable from db_config.php
 ?>
