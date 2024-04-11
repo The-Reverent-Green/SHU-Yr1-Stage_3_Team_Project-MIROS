@@ -1,7 +1,14 @@
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../css/nav_bar.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="../css/nav_bar.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    .nav-item .dropdown-menu {
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+</style>
 
 <ul class="nav nav-pills nav-fill <?php echo isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'admin-mode' : ''; ?>">
     <li class="nav-item">
@@ -44,6 +51,17 @@
             </li>
         <?php endif; ?>
 
+        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Research Officer"): ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Research Officer Panel</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item <?php echo isCurrentPage('officer_dashboard.php') ? 'active' : ''; ?>" href="officer_dashboard.php">Dashboard</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('research_projects.php') ? 'active' : ''; ?>" href="research_projects.php">My Projects</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('research_data.php') ? 'active' : ''; ?>" href="research_data.php">Research Data</a>
+                </div>
+            </li>
+        <?php endif; ?>
+
         <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "admin"): ?>
             <li class="nav-item">
             <a class="nav-link <?php echo isCurrentPage('create_submission.php') ? 'active' : ''; ?>" href="create_submission.php">Make Submission</a>
@@ -72,4 +90,3 @@ function isCurrentPage($page) {
     return $currentPage === $page;
 }
 ?>
-
