@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 09:23 PM
+-- Generation Time: Apr 11, 2024 at 08:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -146,7 +146,7 @@ CREATE TABLE `submissions` (
   `Description` varchar(256) DEFAULT NULL,
   `Date_Of_Submission` datetime DEFAULT NULL,
   `Verified` enum('yes','no','in-progress') NOT NULL DEFAULT 'no',
-  `Evidence_attachment` blob DEFAULT NULL
+  `Evidence_attachment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -193,11 +193,23 @@ INSERT INTO `submissions` (`Submission_ID`, `User_ID`, `Category_ID`, `Item_ID`,
 (56, 16, 2, 2, NULL, 'Effectiveness of speed bumps in residential areas', '2024-04-17 00:00:00', 'no', NULL),
 (57, 17, 2, 2, NULL, 'Cross-border traffic issues and management', '2024-04-18 00:00:00', 'no', NULL),
 (58, 18, 2, 2, NULL, 'Challenges faced by road maintenance crews', '2024-04-19 00:00:00', 'no', NULL),
-(59, NULL, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'in-progress', NULL),
+(59, 14, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'in-progress', NULL),
 (61, 12, 4, 36, NULL, 'wow', '2024-04-05 10:17:36', 'no', NULL),
 (62, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:18:28', 'no', NULL),
 (63, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:09', 'no', NULL),
-(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'no', NULL);
+(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'no', NULL),
+(65, 12, 5, 14, 32, 'How fast can a car really drive?', '2024-04-05 20:28:15', 'no', NULL),
+(66, 12, 2, 3, NULL, 'Worked for another company for a week', '2024-04-05 20:38:48', 'no', NULL),
+(67, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:44:23', 'no', NULL),
+(68, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:46:08', 'no', NULL),
+(69, 1, 5, 10, 19, 'Co-edited a book about fast roads and where to find them', '2024-04-05 20:46:36', 'no', NULL),
+(70, 1, 3, 6, 3, 'Cat 3 ,sub c2 lead external', '2024-04-05 20:47:18', 'no', NULL),
+(71, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:18', 'no', NULL),
+(72, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:42', 'no', NULL),
+(73, 1, 4, 8, NULL, 'a picture of tintin', '2024-04-11 17:33:17', 'no', NULL),
+(74, 1, 2, 2, 1, 'asdfgh', '2024-04-11 18:10:24', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
+(75, 1, 5, 10, 17, 'asdfghjkhgfdsa', '2024-04-11 18:16:25', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
+(76, 1, 6, 37, 52, 'Storage test', '2024-04-11 18:16:51', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/samuel-c-zYzBIcFuumQ-unsplash.jpg');
 
 -- --------------------------------------------------------
 
@@ -336,7 +348,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires`) VALUES
-(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$csDMJMV2tLjSFMpFL8IiD.$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-05 21:43:20', NULL, NULL),
 (12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL, NULL, NULL),
 (13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$7JjSeYzZQP61ZRLdBIA5mu9.2irx.sGhKVcWTjyyET5qSBJqkNRX2', 'Supervisor', 29, 'active', NULL, NULL, NULL),
 (14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
@@ -385,37 +397,38 @@ CREATE TABLE `user_scores` (
 --
 
 INSERT INTO `user_scores` (`UserScore_ID`, `User_ID`, `Cat_A`, `Cat_B`, `Cat_C`, `Cat_D`, `Cat_E`, `Cat_F`, `Cat_G`, `Total_Score`) VALUES
-(2, 1, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(3, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(4, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(5, 16, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
+(2, 1, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
+(3, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 5.00, 16.33),
+(4, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(5, 16, 1.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 8.33),
 (6, 17, 3.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(7, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(8, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(9, 20, 5.00, 6.67, 0.00, 0.00, 4.00, 0.00, 0.00, 12.00),
+(7, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(8, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(9, 20, 5.00, 6.67, 0.00, 0.00, 4.00, 0.00, 0.00, 15.67),
 (10, 21, 6.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
 (11, 22, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (12, 23, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(13, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
+(13, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
 (14, 25, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (15, 26, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (16, 27, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (17, 28, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(18, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(19, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(20, 16, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
+(18, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 5.00, 16.33),
+(19, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(20, 16, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
 (21, 17, 3.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(22, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(23, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(24, 20, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
+(22, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(23, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
+(24, 20, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
 (25, 21, 6.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
-(26, 22, 3.00, 3.00, 0.00, 0.00, 0.00, 0.50, 0.00, 7.00),
+(26, 22, 3.00, 3.00, 0.00, 0.00, 0.00, 0.50, 0.00, 6.50),
 (27, 23, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(28, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
+(28, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
 (29, 25, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (30, 26, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
 (31, 27, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(32, 28, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00);
+(32, 28, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
+(33, 12, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00);
 
 --
 -- Triggers `user_scores`
@@ -524,7 +537,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `sub_items`
@@ -536,13 +549,13 @@ ALTER TABLE `sub_items`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=512;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
 
 --
 -- AUTO_INCREMENT for table `user_scores`
 --
 ALTER TABLE `user_scores`
-  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
@@ -585,6 +598,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/* Run the following line of SQL to allow top-managers to set targets*/
-ALTER TABLE user_scores ADD Target_Score int DEFAULT 0 NOT NULL;
