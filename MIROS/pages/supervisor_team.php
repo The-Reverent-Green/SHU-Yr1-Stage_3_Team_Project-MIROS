@@ -7,6 +7,7 @@ $users = myEmp();
 
 function myEmp(){
     
+    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -15,6 +16,7 @@ function myEmp(){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
+    //Displays information about research officers that are assigned to the supervisor currently logged in
     $id = $_SESSION['id'];
     $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID WHERE Reports_To = :id ORDER BY Total_Score DESC");
     $stmt->bindvalue(':id', $id);
@@ -46,7 +48,7 @@ function myEmp(){
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">User_ID</th>
+                    <th scope="col">User ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Date of Birth</th>
@@ -65,7 +67,7 @@ function myEmp(){
                     <td><?php echo htmlspecialchars($user['Email']); ?></td>
                     <td><?php echo htmlspecialchars($user['ROLE']); ?></td>
                     <td><?php echo htmlspecialchars($user['account_status']); ?></td>
-                    <td><?php echo htmlspecialchars($user['Total_Score']); ?></td>
+                    <td><?php echo htmlspecialchars($user['Total_Score'] . "/" . $user['Target_Score']); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

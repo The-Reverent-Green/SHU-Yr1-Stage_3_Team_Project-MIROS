@@ -1,4 +1,6 @@
 <?php 
+
+//Defunct Page
 session_start();
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/nav_bar.php'; 
@@ -9,6 +11,7 @@ $result = $mysqli->query($sql);
 $targets = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

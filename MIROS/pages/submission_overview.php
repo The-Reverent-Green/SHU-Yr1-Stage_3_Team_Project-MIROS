@@ -6,7 +6,8 @@ session_start();
 $submissions = mySub();
 
 function mySub(){
-    
+
+    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -17,6 +18,7 @@ function mySub(){
 
     if(!isset($_POST['search'])){
 
+        //Displays all unverified submissions from research officers assigned to whichever supervisor is logged in
         $id = $_SESSION['id'];
         $stmt = $conn->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no'");
         $stmt->bindvalue(':id', $id);
@@ -27,6 +29,8 @@ function mySub(){
 
     else{
         if($_POST['search'] != ''){
+
+            //Search function that allows the supervisor to refine table information based on keywords
             $id = $_SESSION['id'];
             $search = $_POST['search'];
             $stmt = $conn->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no' AND Description LIKE :search");

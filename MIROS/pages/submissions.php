@@ -7,6 +7,7 @@ $submissions = getSub();
 
 function getSub(){
     
+    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -17,6 +18,7 @@ function getSub(){
 
     if(!isset($_POST['search'])){
 
+        //Displays all submission information for the top manager to overview
         $stmt = $conn->prepare("SELECT * FROM submissions");
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -25,6 +27,8 @@ function getSub(){
 
     else{
         if($_POST['search'] != ''){
+
+            //Search function that allows the top manager to refine table information based on keywords
             $search = $_POST['search'];
             $stmt = $conn->prepare("SELECT * FROM submissions WHERE Description LIKE :search");
             $stmt->bindvalue(':search', '%' . $search . '%');

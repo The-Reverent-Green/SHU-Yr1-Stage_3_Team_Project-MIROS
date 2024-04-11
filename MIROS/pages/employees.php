@@ -3,11 +3,13 @@ session_start();
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/nav_bar.php'; 
 
+//Drop down menu for filtering employee by role
 $role = array("Select", "Research Officer", "Supervisor", "Top Manager");
 $users = getEmp();
 
 function getEmp(){
     
+    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -18,7 +20,8 @@ function getEmp(){
 
     if(!isset($_POST['filterEmp'])){
 
-        $stmt = $conn->prepare("SELECT * FROM user");
+        //If no filter is selected then information about all employees is displayed in the table
+        $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID");
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $users = $result;
@@ -26,15 +29,18 @@ function getEmp(){
 
     else{
         if($_POST['filterEmp'] != 'Select'){
+
+            //If a filter is selected then information about employees that fulfil the selected job role is displayed in the table
             $role = $_POST['filterEmp'];
-            $stmt = $conn->prepare("SELECT * FROM user WHERE Role = :role");
+            $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID WHERE Role = :role");
             $stmt->bindvalue(':role', $role);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             $users = $result;
         }
         else{
-            $stmt = $conn->prepare("SELECT * FROM user");
+
+            $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID");
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             $users = $result;
@@ -82,6 +88,8 @@ function getEmp(){
                     <th scope="col">Role</th>
                     <th scope="col">Reports To</th>
                     <th scope="col">Status</th>
+                    <th scope="col">User Score</th>
+                    <th scope="col">Targets</th>
                 </tr>
             </thead>
             <?php foreach ($users as $user): ?>
@@ -94,6 +102,8 @@ function getEmp(){
                     <td><?php echo htmlspecialchars($user['ROLE']); ?></td>
                     <td><?php echo htmlspecialchars($user['Reports_To']); ?></td>
                     <td><?php echo htmlspecialchars($user['account_status']); ?></td>
+                    <td><?php echo htmlspecialchars($user['Total_Score']) . "/" . ($user['Target_Score']); ?></td>
+                    <td><a href="set_targets.php?User_ID=<?php echo htmlspecialchars($user['User_ID']); ?>">Set</a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
