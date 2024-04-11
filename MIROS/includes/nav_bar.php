@@ -56,8 +56,9 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Research Officer Panel</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item <?php echo isCurrentPage('officer_dashboard.php') ? 'active' : ''; ?>" href="officer_dashboard.php">Dashboard</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('research_projects.php') ? 'active' : ''; ?>" href="research_projects.php">My Projects</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('research_data.php') ? 'active' : ''; ?>" href="research_data.php">Research Data</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('create_submissions.php') ? 'active' : ''; ?>" href="create_submission.php">Create Submission</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('officer_overview.php') ? 'active' : ''; ?>" href="officer_overview.php">Officer Overview</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('officer_view_submissions.php') ? 'active' : ''; ?>" href="officer_view_submissions.php">View Previous Submissions</a>
                 </div>
             </li>
         <?php endif; ?>
