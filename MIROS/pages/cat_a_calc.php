@@ -11,22 +11,21 @@ $score_min = $category['score_min'];
 $score_max = $category['score_max'];
 
 // Get the highest count of occurrences for Category_ID in the submissions table
-$stmt = $pdo->prepare("SELECT MAX(submission_count) as max_submissions FROM (SELECT COUNT(*) as submission_count FROM submissions WHERE Category_ID = 1 GROUP BY User_ID) as counts");
+// where the 'Verified' column is 'yes'
+$stmt = $pdo->prepare("SELECT MAX(submission_count) as max_submissions FROM (SELECT COUNT(*) as submission_count FROM submissions WHERE Category_ID = 1 AND Verified = 'yes' GROUP BY User_ID) as counts");
 $stmt->execute();
 $max_submissions = $stmt->fetchColumn();
 
 // Get the count of submissions for each user for Category_ID 1
-$stmt = $pdo->prepare("SELECT User_ID, COUNT(*) as submission_count FROM submissions WHERE Category_ID = 1 GROUP BY User_ID");
+// where the 'Verified' column is 'yes'
+$stmt = $pdo->prepare("SELECT User_ID, COUNT(*) as submission_count FROM submissions WHERE Category_ID = 1 AND Verified = 'yes' GROUP BY User_ID");
 $stmt->execute();
 $users_submissions = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 
-// Step 2: Implement the scoring algorithm in PHP
-
+// Implement the scoring algorithm in PHP
 $user_scores = [];
 foreach ($users_submissions as $user_id => $submission_count) {
-    if ($submission_count == 0) {
-        $score = 0;
-    } elseif ($submission_count < $target) {
+    if ($submission_count < $target) {
         $score = $score_min / 2;
     } elseif ($submission_count == $target) {
         $score = $score_min;
@@ -37,8 +36,7 @@ foreach ($users_submissions as $user_id => $submission_count) {
     $user_scores[$user_id] = $score;
 }
 
-// Step 3: Update the user_scores table with the calculated scores
-
+// Update the user_scores table with the calculated scores
 foreach ($user_scores as $user_id => $score) {
     // Assuming 'Cat_A' is the column where you want to store the score
     // Check if the user already has a score record

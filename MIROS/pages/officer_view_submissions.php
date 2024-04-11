@@ -44,7 +44,7 @@ require_once __DIR__ . '/../includes/nav_bar.php';
                 <tr>
                     <th>Description</th>
                     <th>Date of Submission</th>
-                    <th>Status</th>
+                    <th>Verified Status</th>
                 </tr>
             </thead>
             <tbody>
