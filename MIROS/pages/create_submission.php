@@ -1,13 +1,10 @@
 <?php
-session_start(); // Start the session at the very beginning
 require_once __DIR__ . '/../database/db_config.php';
 
-// Enable error reporting for debugging purposes
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Fetch categories for the dropdown
 $categories = [];
 try {
     $stmt = $pdo->prepare("SELECT Category_ID, Category_Name FROM categories");
@@ -24,24 +21,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $itemId = $_POST['item_id'] ?? null;
     $subItemId = $_POST['sub_item_id'] ?? null;
     $description = $_POST['description'] ?? '';
-
-    if ($userId === null || $categoryId === null || $itemId === null || $description === '') {
-        $_SESSION['message'] = "Please make sure all required fields are filled out.";
-        $_SESSION['message_type'] = 'danger'; // Use Bootstrap class for error messages
-    } else {
-        $insertQuery = "INSERT INTO submissions (User_ID, Category_ID, Item_ID, Sub_Item_ID, Description, Date_Of_Submission, Verified) VALUES (?, ?, ?, ?, ?, NOW(), 'no')";
-        $insertStmt = $pdo->prepare($insertQuery);
-        try {
-            $insertStmt->execute([$userId, $categoryId, $itemId, $subItemId, $description]);
-            $_SESSION['message'] = "Submission added successfully!";
-            $_SESSION['message_type'] = 'success'; // Use Bootstrap class for success messages
-        } catch (PDOException $e) {
-            $_SESSION['message'] = "Error inserting submission: " . $e->getMessage();
-            $_SESSION['message_type'] = 'danger'; // Use Bootstrap class for error messages
+    $evidenceAttachmentPath = ''; 
+    
+    if (isset($_FILES['evidenceAttachment']) && $_FILES['evidenceAttachment']['error'] === UPLOAD_ERR_OK) {
+        $uploadDirectory = __DIR__ . "/../database/uploads/";
+        $file = $_FILES['evidenceAttachment'];
+        $filePath = $uploadDirectory . basename($file['name']);
+        $fileType = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        $allowedTypes = ['jpg', 'png', 'jpeg', 'gif'];
+        
+        if (in_array($fileType, $allowedTypes)) {
+            if (move_uploaded_file($file['tmp_name'], $filePath)) {
+                $evidenceAttachmentPath = $filePath;
+            } else {
+                $_SESSION['message'] = "Error uploading file.";
+                $_SESSION['message_type'] = 'danger';
+            }
+        } else {
+            $_SESSION['message'] = "Invalid file type.";
+            $_SESSION['message_type'] = 'danger';
         }
     }
+
+    // Ensure $_SESSION['message'] is initialized before appending
+    if (!isset($_SESSION['message'])) {
+        $_SESSION['message'] = "";
+    }
+
+    if ($userId && $categoryId && $itemId && $description && $evidenceAttachmentPath !== '') {
+        $insertQuery = "INSERT INTO submissions (User_ID, Category_ID, Item_ID, Sub_Item_ID, Description, Evidence_attachment, Date_Of_Submission, Verified) VALUES (?, ?, ?, ?, ?, ?, NOW(), 'no')";
+        $insertStmt = $pdo->prepare($insertQuery);
+        try {
+            $insertStmt->execute([$userId, $categoryId, $itemId, $subItemId, $description, $evidenceAttachmentPath]);
+            $_SESSION['message'] .= "Submission added successfully!"; // Appending message
+            $_SESSION['message_type'] = 'success';
+        } catch (PDOException $e) {
+            $_SESSION['message'] .= "Error inserting submission: " . $e->getMessage(); // Appending message
+            $_SESSION['message_type'] = 'danger';
+        }
+    } else {
+        $_SESSION['message'] .= " Please make sure all required fields are filled out correctly and an evidence file is uploaded."; // Appending message
+        $_SESSION['message_type'] = 'danger';
+    }
+    
+    // Redirect to the same page to avoid form resubmission on refresh
+    header("Location: " . $_SERVER["PHP_SELF"]);
+    exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 });
             });
+            
         });
     </script>
 </head>
@@ -102,19 +131,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/nav_bar.php'; 
 ?>
+<?php if (isset($_SESSION['message']) && isset($_SESSION['message_type'])): ?>
+    <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
+        <?= $_SESSION['message']; ?>
+    </div>
+    <?php
+        unset($_SESSION['message']);
+        unset($_SESSION['message_type']);
+    ?>
+<?php endif; ?>
 
 <div class="wrapper">
-    <?php if (isset($_SESSION['message'])): ?>
-    <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
-      <?= $_SESSION['message']; ?>
-    </div>
-    <?php 
-      unset($_SESSION['message']);
-      unset($_SESSION['message_type']);
-    endif; 
-    ?>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <label for="category">Category:</label>
         <br>
         <select name="category_id" id="category" required>
@@ -140,8 +168,23 @@ require_once __DIR__ . '/../includes/nav_bar.php';
         <br>
         <textarea name="description" id="description" required></textarea>
         <br>
+
+        <div class="custom-file">
+  <input type="file" class="custom-file-input" id="evidenceAttachment" name="evidenceAttachment">
+  <label class="custom-file-label" for="evidenceAttachment">Attach Evidence</label>
+</div>
+
         <input type="submit" value="Submit" style="margin: 10px;">
     </form>
 </div>
+<script>
+// This basically just updates the evidence div when you add something and then puts the file name in the blank space
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+  var fileName = document.getElementById("evidenceAttachment").files[0].name;
+  var nextSibling = e.target.nextElementSibling;
+  nextSibling.innerText = fileName;
+});
+</script>
+
 </body>
 </html>
