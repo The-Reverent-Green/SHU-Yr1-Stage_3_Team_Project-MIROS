@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start the session at the very beginning
 require_once __DIR__ . '/../database/db_config.php';
 
 // Enable error reporting for debugging purposes
@@ -17,32 +18,26 @@ try {
     exit;
 }
 
-// Placeholder for items and sub_items arrays
-$items = [];
-$subItems = [];
-
-// If the form is submitted, process the input
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Extract submitted data, using null coalescing to avoid warnings
-    $userId = $_SESSION["id"] ?? null; // Use the correct session key
+    $userId = $_SESSION["id"] ?? null;
     $categoryId = $_POST['category_id'] ?? null;
     $itemId = $_POST['item_id'] ?? null;
-    $subItemId = $_POST['sub_item_id'] ?? null; // It's okay if this is null, provided your database allows it
+    $subItemId = $_POST['sub_item_id'] ?? null;
     $description = $_POST['description'] ?? '';
 
-    // Check if all required values are present
     if ($userId === null || $categoryId === null || $itemId === null || $description === '') {
-        // Handle error, e.g., show a message to the user
-        echo "Please make sure all required fields are filled out.";
+        $_SESSION['message'] = "Please make sure all required fields are filled out.";
+        $_SESSION['message_type'] = 'danger'; // Use Bootstrap class for error messages
     } else {
-        // Insert data into submissions table, allowing Sub_Item_ID to be null
         $insertQuery = "INSERT INTO submissions (User_ID, Category_ID, Item_ID, Sub_Item_ID, Description, Date_Of_Submission, Verified) VALUES (?, ?, ?, ?, ?, NOW(), 'no')";
         $insertStmt = $pdo->prepare($insertQuery);
         try {
             $insertStmt->execute([$userId, $categoryId, $itemId, $subItemId, $description]);
-            echo "Submission added successfully!";
+            $_SESSION['message'] = "Submission added successfully!";
+            $_SESSION['message_type'] = 'success'; // Use Bootstrap class for success messages
         } catch (PDOException $e) {
-            echo "Error inserting submission: " . $e->getMessage();
+            $_SESSION['message'] = "Error inserting submission: " . $e->getMessage();
+            $_SESSION['message_type'] = 'danger'; // Use Bootstrap class for error messages
         }
     }
 }
@@ -54,66 +49,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Submit to Submissions</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script>
- $(document).ready(function(){
-    // When the category is changed, fetch the items related to the selected category
-    $('#category').change(function(){
-        var categoryId = $(this).val();
-        // Make an AJAX call to fetch_items.php
-        $.ajax({
-            url: 'fetch_items.php',
-            type: 'post',
-            data: {category_id: categoryId},
-            dataType: 'json',
-            success: function(response){
-                var itemsSelect = $('#item');
-                itemsSelect.empty();
-                itemsSelect.append('<option value="">Select an item</option>');
-                response.forEach(function(item){
-                    itemsSelect.append('<option value="'+item.Item_ID+'">'+item.Item_Name+'</option>');
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var categoryId = $(this).val();
+                $.ajax({
+                    url: 'fetch_items.php',
+                    type: 'post',
+                    data: {category_id: categoryId},
+                    dataType: 'json',
+                    success: function(response){
+                        var itemsSelect = $('#item');
+                        itemsSelect.empty();
+                        itemsSelect.append('<option value="">Select an item</option>');
+                        response.forEach(function(item){
+                            itemsSelect.append('<option value="'+item.Item_ID+'">'+item.Item_Name+'</option>');
+                        });
+                    }
                 });
-            }
-        });
-        // Clear sub-items when category changes
-        $('#sub_item').empty().append('<option value="">Select a sub-item</option>');
-    });
+                $('#sub_item').empty().append('<option value="">Select a sub-item</option>');
+            });
 
-    // When the item is changed, fetch the sub-items related to the selected item
-    $('#item').change(function(){
-        var itemId = $(this).val();
-        // Make an AJAX call to fetch_sub_items.php
-        $.ajax({
-            url: 'fetch_sub_items.php',
-            type: 'post',
-            data: {item_id: itemId},
-            dataType: 'json',
-            success: function(response){
-                var subItemsSelect = $('#sub_item');
-                subItemsSelect.empty();
-                if (response.length === 0) {
-                    // If there are no sub-items, add a disabled option informing the user
-                    subItemsSelect.append('<option value="">No sub-items available</option>');
-                    subItemsSelect.prop('disabled', true); // Disable the select if no sub-items
-                } else {
-                    subItemsSelect.append('<option value="">Select a sub-item</option>');
-                    response.forEach(function(subItem){
-                        subItemsSelect.append('<option value="'+subItem.Sub_Item_ID+'">'+subItem.Sub_Item_Name+'</option>');
-                    });
-                    subItemsSelect.prop('disabled', false); // Ensure select is enabled
-                }
-            }
+            $('#item').change(function(){
+                var itemId = $(this).val();
+                $.ajax({
+                    url: 'fetch_sub_items.php',
+                    type: 'post',
+                    data: {item_id: itemId},
+                    dataType: 'json',
+                    success: function(response){
+                        var subItemsSelect = $('#sub_item');
+                        subItemsSelect.empty();
+                        if (response.length === 0) {
+                            subItemsSelect.append('<option value="">No sub-items available</option>');
+                            subItemsSelect.prop('disabled', true);
+                        } else {
+                            subItemsSelect.append('<option value="">Select a sub-item</option>');
+                            response.forEach(function(subItem){
+                                subItemsSelect.append('<option value="'+subItem.Sub_Item_ID+'">'+subItem.Sub_Item_Name+'</option>');
+                            });
+                            subItemsSelect.prop('disabled', false);
+                        }
+                    }
+                });
+            });
         });
-    });
-});
-
     </script>
-     <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
 <?php   
-    require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-            <div class="wrapper">
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/nav_bar.php'; 
+?>
+
+<div class="wrapper">
+    <?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
+      <?= $_SESSION['message']; ?>
+    </div>
+    <?php 
+      unset($_SESSION['message']);
+      unset($_SESSION['message_type']);
+    endif; 
+    ?>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="category">Category:</label>
@@ -131,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="">Select an item</option>
             <!-- Items will be dynamically loaded based on the selected category -->
         </select>
-<br>
+        <br>
         <label for="sub_item">Sub-Item:</label>
         <br>
         <select name="sub_item_id" id="sub_item" required>
@@ -145,6 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <input type="submit" value="Submit">
     </form>
-            </div>
+</div>
 </body>
 </html>
