@@ -128,21 +128,19 @@ require_once __DIR__ . '/../includes/nav_bar.php';
         <br>
         <select name="item_id" id="item" required>
             <option value="">Select an item</option>
-            <!-- Items will be dynamically loaded based on the selected category -->
         </select>
         <br>
         <label for="sub_item">Sub-Item:</label>
         <br>
         <select name="sub_item_id" id="sub_item" required>
             <option value="">Select a sub-item</option>
-            <!-- Sub-items will be dynamically loaded based on the selected item -->
         </select>
         <br>
         <label for="description">Description:</label>
         <br>
         <textarea name="description" id="description" required></textarea>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" style="margin: 10px;">
     </form>
 </div>
 </body>
