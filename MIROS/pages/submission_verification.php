@@ -6,7 +6,8 @@ require_once __DIR__ . '/../includes/nav_bar.php';
 $submissions = Verify();
 
 function Verify(){
-    
+
+    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -14,7 +15,8 @@ function Verify(){
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
+    //Displays all information about the selected submission
     $stmt = $conn->prepare("SELECT * FROM submissions WHERE Submission_ID = :sub_id");
     $stmt->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);
     $stmt->execute();
@@ -34,6 +36,7 @@ if (isset($_POST['verify'])){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    //Updates submission to verified if suitable
     $stmt = "UPDATE submissions SET Verified = 'yes' WHERE Submission_ID = :sub_id";
     $sql = $conn->prepare($stmt);
     $sql->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);
@@ -88,6 +91,7 @@ if (isset($_POST['verify'])){
                 <input type="hidden" name="pat_id" value="<?php echo $_GET['Submission_ID']?>"><br>
                 <p class="sub-title" style="color:red">Would you like verify this submission?</p>
                 <button class="button" type="submit" value="verify" name="verify">Verify</button><br>
+                <br><a href="submission_overview.php">Back</a>
             </form>
         </div>
     </section>
