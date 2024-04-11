@@ -6,10 +6,8 @@ date_default_timezone_set("Europe/London"); // Get correct timezone
 $passwordInput = $confirmationInput = "";
 $passwordError = $confirmationError = "";
 
-// Get token
 $token = $_POST["token"];
 
-// Get resetError (keeps the inputs disabled if not blank)
 $resetError = $_POST["resetError"];
 
 // Check token isnt empty 

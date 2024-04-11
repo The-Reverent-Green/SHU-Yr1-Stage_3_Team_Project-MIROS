@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 08:21 PM
+-- Generation Time: Apr 11, 2024 at 08:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -348,30 +348,30 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires`) VALUES
-(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-05 21:43:20', NULL, NULL),
+(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-11 20:30:59', NULL, NULL),
 (12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL, NULL, NULL),
-(13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$7JjSeYzZQP61ZRLdBIA5mu9.2irx.sGhKVcWTjyyET5qSBJqkNRX2', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
-(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
-(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
-(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '1234', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '1234', 'Research Officer', 33, 'active', NULL, NULL, NULL),
-(25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
-(26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '1234', 'Research Officer', 34, 'active', NULL, NULL, NULL),
-(27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '1234', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$/gdXPyIsowJLmaRUclFXlOtbjUzrywErXopqBkw1Xoa1vshWIO0WK', 'Top Manager', NULL, 'active', '2024-04-01 16:23:02', NULL, NULL),
-(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '1234', 'Supervisor', 29, 'active', NULL, NULL, NULL);
+(13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
+(25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
+(27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Top Manager', NULL, 'active', '2024-04-01 16:23:02', NULL, NULL),
+(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,7 +397,7 @@ CREATE TABLE `user_scores` (
 --
 
 INSERT INTO `user_scores` (`UserScore_ID`, `User_ID`, `Cat_A`, `Cat_B`, `Cat_C`, `Cat_D`, `Cat_E`, `Cat_F`, `Cat_G`, `Total_Score`) VALUES
-(2, 1, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
+(2, 1, 1.00, 6.67, 1.00, 1.00, 0.00, 0.00, 0.00, 9.67),
 (3, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 5.00, 16.33),
 (4, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
 (5, 16, 1.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 8.33),
