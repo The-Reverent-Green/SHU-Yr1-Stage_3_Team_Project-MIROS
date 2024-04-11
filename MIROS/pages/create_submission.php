@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subItemId = $_POST['sub_item_id'] ?? null;
     $description = $_POST['description'] ?? '';
     $evidenceAttachmentPath = ''; 
-    
+
     if (isset($_FILES['evidenceAttachment']) && $_FILES['evidenceAttachment']['error'] === UPLOAD_ERR_OK) {
         $uploadDirectory = __DIR__ . "/../database/uploads/";
         $file = $_FILES['evidenceAttachment'];
@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Ensure $_SESSION['message'] is initialized before appending
     if (!isset($_SESSION['message'])) {
         $_SESSION['message'] = "";
     }
