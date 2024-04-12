@@ -61,7 +61,7 @@ function appendLink(ul, key, value) {
   
 async function makeNavBar() {
     try {
-        const response = await fetch('../includes/new_nav.php?action=getNav');
+        const response = await fetch('../includes/nav_bar.php?action=getNav');
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
@@ -74,7 +74,10 @@ async function makeNavBar() {
         });
         
         // Append the ul to the navbar
-        document.getElementById('navBar').appendChild(ul);
+
+        const navbar = document.getElementById('navbar');
+        navbar.innerHTML = '';
+        navbar.appendChild(ul);
     } catch (error) {
         console.error('There was a problem with the fetch operation: ', error);
     }
