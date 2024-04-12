@@ -39,14 +39,16 @@ if ($loggedInUserId) {
 
 if ($loggedInUserId) {
     $sqlReportsTo = "SELECT 
-                        u1.Username AS OfficerUsername, 
-                        u2.Username AS ReportsToUsername
-                    FROM 
-                        user u1
-                    LEFT JOIN 
-                        user u2 ON u1.Reports_To = u2.User_ID
-                    WHERE 
-                        u1.User_ID = ?";
+                    u1.Username AS OfficerUsername, 
+                    u2.Username AS ReportsToUsername,
+                    u2.First_Name AS SupervisorFirstName
+                FROM 
+                    user u1
+                LEFT JOIN 
+                    user u2 ON u1.Reports_To = u2.User_ID
+                WHERE 
+                    u1.User_ID = ?";
+
     
     if ($stmt = $mysqli->prepare($sqlReportsTo)) {
         $stmt->bind_param("i", $loggedInUserId);
@@ -166,13 +168,15 @@ if ($loggedInUserId) {
 
 
 
-            <?php if ($reportsToData): ?>
-                <div class="wrapper">
-                    <h2>Reporting Information</h2>
-                    <p>Hello<strong><?= htmlspecialchars($_SESSION['username']); ?></strong>, you currently report to <strong><?= htmlspecialchars($reportsToData['ReportsToUsername'] ?? 'N/A'); ?></strong></p>
-                </div>
-            <?php endif; ?>
+<?php if ($reportsToData): ?>
+    <div class="wrapper">
+        <h2>Reporting Information</h2>
+        <p>Hello <strong><?= htmlspecialchars($_SESSION['firstname']); ?></strong>, you currently report to <strong><?= htmlspecialchars($reportsToData['SupervisorFirstName'] ?? 'N/A'); ?></strong></p>
+    </div>
+<?php endif; ?>
+
         </div>
+        <br>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
