@@ -16,6 +16,10 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+
     $userId = $_SESSION["id"] ?? null;
     $categoryId = $_POST['category_id'] ?? null;
     $itemId = $_POST['item_id'] ?? null;
