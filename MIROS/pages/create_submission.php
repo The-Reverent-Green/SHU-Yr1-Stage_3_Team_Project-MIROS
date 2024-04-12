@@ -56,18 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insertStmt = $pdo->prepare($insertQuery);
         try {
             $insertStmt->execute([$userId, $categoryId, $itemId, $subItemId, $description, $evidenceAttachmentPath]);
-            $_SESSION['message'] .= "Submission added successfully!"; // Appending message
+            $_SESSION['message'] .= "Submission added successfully!"; 
             $_SESSION['message_type'] = 'success';
         } catch (PDOException $e) {
-            $_SESSION['message'] .= "Error inserting submission: " . $e->getMessage(); // Appending message
-            $_SESSION['message_type'] = 'danger';
+            $_SESSION['message'] .= "Error inserting submission: " . $e->getMessage(); 
         }
     } else {
-        $_SESSION['message'] .= " Please make sure all required fields are filled out correctly and an evidence file is uploaded."; // Appending message
+        $_SESSION['message'] .= " Please make sure all required fields are filled out correctly and an evidence file is uploaded."; 
         $_SESSION['message_type'] = 'danger';
     }
     
-    // Redirect to the same page to avoid form resubmission on refresh
     header("Location: " . $_SERVER["PHP_SELF"]);
     exit;
 }
