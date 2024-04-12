@@ -32,8 +32,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file = $_FILES['evidenceAttachment'];
         $filePath = $uploadDirectory . basename($file['name']);
         $fileType = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
-        $allowedTypes = ['jpg', 'png', 'jpeg', 'gif'];
-        
+        $allowedTypes = [
+            'jpg', 'png', 'jpeg', 'gif', // Images
+            'pdf', // PDFs
+            'doc', 'docx', // Word Documents
+            'ppt', 'pptx', // PowerPoint Presentations
+            'xls', 'xlsx', // Excel Spreadsheets
+            'txt', // Text Files
+            'md', // Markdown Files
+            'eml', // Email Files
+            'psd', // Photoshop Files
+            'dwg', // Technical Drawing Files
+            'bmp', // Bitmap Images
+            'key', // Keynote Presentations
+            'mp3', 'wav', 'm4a', // Audio Files
+            'mp4', 'mov', 'wmv', 'avi', 'm4v', 'flv', // Video Files
+        ];
+                
         if (in_array($fileType, $allowedTypes)) {
             if (move_uploaded_file($file['tmp_name'], $filePath)) {
                 $evidenceAttachmentPath = $filePath;
