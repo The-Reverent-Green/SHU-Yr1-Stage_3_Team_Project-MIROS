@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 08:50 PM
+-- Generation Time: Apr 12, 2024 at 10:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,13 +40,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`Category_ID`, `Category_Name`, `Target`, `score_min`, `score_max`) VALUES
-(1, 'A: Personal Particulars', 21, 1, 2),
+(1, 'A: Personal Particulars', 2, 1, 2),
 (2, 'B: Professional Achievements', 2, 6, 8),
-(3, 'C: Research and Development', 0, 14, 16),
-(4, 'D: Professional Consulatations', 0, 5, 7),
-(5, 'E: Research Outcomes', 0, 8, 10),
-(6, 'F: Professional Recognition', 0, 5, 7),
-(7, 'G: Services To Community', 0, 3, 5);
+(3, 'C: Research and Development', 2, 14, 16),
+(4, 'D: Professional Consulatations', 2, 5, 7),
+(5, 'E: Research Outcomes', 2, 8, 10),
+(6, 'F: Professional Recognition', 2, 5, 7),
+(7, 'G: Services To Community', 2, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -145,7 +145,7 @@ CREATE TABLE `submissions` (
   `Sub_Item_ID` int(11) DEFAULT NULL,
   `Description` varchar(256) DEFAULT NULL,
   `Date_Of_Submission` datetime DEFAULT NULL,
-  `Verified` enum('yes','no','in-progress') NOT NULL DEFAULT 'no',
+  `Verified` enum('yes','no','in-progress','denied') NOT NULL DEFAULT 'no',
   `Evidence_attachment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -154,62 +154,66 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`Submission_ID`, `User_ID`, `Category_ID`, `Item_ID`, `Sub_Item_ID`, `Description`, `Date_Of_Submission`, `Verified`, `Evidence_attachment`) VALUES
-(1, 21, 2, 2, NULL, 'General road safety in Malaysia', '2024-03-21 00:00:00', 'no', NULL),
-(2, 25, 2, 2, NULL, 'Keeping roads clear going forward ', '2024-02-02 00:00:00', 'no', NULL),
-(3, 17, 2, 2, NULL, 'Road safety: A reflective account', '2024-02-22 00:00:00', 'no', NULL),
-(4, 14, 2, 2, NULL, 'A quantitative survey of potholes', '2024-01-26 00:00:00', 'no', NULL),
-(5, 17, 2, 2, NULL, 'Specific road safety in Malaysia', '2024-01-11 00:00:00', 'no', NULL),
-(6, 28, 2, 2, NULL, 'Integration of different road types', '2024-03-06 00:00:00', 'no', NULL),
-(7, 26, 2, 2, NULL, 'Are road crossings truly effective?', '2024-03-08 00:00:00', 'no', NULL),
-(8, 22, 2, 2, NULL, 'Increasing road size despite government cutbacks', '2024-02-24 00:00:00', 'no', NULL),
-(9, 19, 2, 2, NULL, 'Motoring in the age of electricity', '2024-03-21 00:00:00', 'no', NULL),
-(10, 18, 2, 2, NULL, 'Rising cost of concrete', '2024-03-17 00:00:00', 'no', NULL),
-(11, 24, 2, 2, NULL, 'Malaysian madness: are roads really necessary?', '2024-01-29 00:00:00', 'no', NULL),
-(12, 24, 2, 2, NULL, 'Speed-zones in proximity to schools', '2024-01-04 00:00:00', 'no', NULL),
-(13, 27, 2, 2, NULL, 'Wild weather and even wilder roads', '2024-02-25 00:00:00', 'no', NULL),
-(14, 19, 2, 2, NULL, 'Hill gradients and possible problems that may arise', '2024-02-02 00:00:00', 'no', NULL),
-(15, 15, 2, 2, NULL, 'Brakes breaks bones', '2024-01-07 00:00:00', 'no', NULL),
-(16, 16, 2, 2, NULL, 'Are Malaysian road layouts the most efficient?', '2024-01-19 00:00:00', 'no', NULL),
-(17, 21, 2, 2, NULL, 'Driving us all mad: A Paramedics story', '2024-03-05 00:00:00', 'no', NULL),
-(18, 20, 2, 2, NULL, 'Pandemics, Paramedics and potholes', '2024-03-19 00:00:00', 'no', NULL),
-(19, 24, 2, 2, NULL, 'Parking ticket price increase, cause for concern?', '2024-01-11 00:00:00', 'no', NULL),
-(20, 23, 2, 2, NULL, 'A study of car horns and their decibel levels', '2024-02-17 00:00:00', 'no', NULL),
-(40, 14, 2, 2, NULL, 'Efficiency of traffic light systems in Kuala Lumpur', '2024-04-01 00:00:00', 'no', NULL),
-(41, 15, 2, 2, NULL, 'Impact of roadworks on commuter stress levels', '2024-04-02 00:00:00', 'no', NULL),
-(42, 16, 2, 2, NULL, 'The role of street lighting in road safety in Penang', '2024-04-03 00:00:00', 'no', NULL),
-(43, 17, 2, 2, NULL, 'Sustainability practices in Malaysian highway construction', '2024-04-04 00:00:00', 'no', NULL),
-(44, 18, 2, 2, NULL, 'Analysis of pedestrian bridge usage in urban areas', '2024-04-05 00:00:00', 'no', NULL),
-(45, 19, 2, 2, NULL, 'Adoption rates of electric vehicles and infrastructure in Malaysia', '2024-04-06 00:00:00', 'no', NULL),
-(46, 20, 2, 2, NULL, 'Evaluating the condition of rural roads in East Malaysia', '2024-04-07 00:00:00', 'no', NULL),
-(47, 14, 2, 2, NULL, 'Urban planning and road safety correlations in Malaysian cities', '2024-04-08 00:00:00', 'no', NULL),
-(48, 15, 2, 2, NULL, 'The effects of seasonal weather on road integrity', '2024-04-09 00:00:00', 'no', NULL),
-(49, 16, 2, 2, NULL, 'Traffic congestion patterns during festive seasons', '2024-04-10 00:00:00', 'no', NULL),
-(50, 17, 2, 2, NULL, 'Road signage visibility and language inclusivity', '2024-04-11 00:00:00', 'no', NULL),
-(51, 18, 2, 2, NULL, 'Exploring the usage of roundabouts for better traffic flow', '2024-04-12 00:00:00', 'no', NULL),
-(52, 19, 2, 2, NULL, 'Impact of toll booths on traffic dispersion', '2024-04-13 00:00:00', 'no', NULL),
-(53, 20, 2, 2, NULL, 'Smart city initiatives and the future of road transport', '2024-04-14 00:00:00', 'no', NULL),
-(54, 14, 2, 2, NULL, 'Motorcycle safety on Malaysian expressways', '2024-04-15 00:00:00', 'no', NULL),
-(55, 15, 2, 2, NULL, 'The prevalence of road rage incidents and their causes', '2024-04-16 00:00:00', 'no', NULL),
-(56, 16, 2, 2, NULL, 'Effectiveness of speed bumps in residential areas', '2024-04-17 00:00:00', 'no', NULL),
-(57, 17, 2, 2, NULL, 'Cross-border traffic issues and management', '2024-04-18 00:00:00', 'no', NULL),
-(58, 18, 2, 2, NULL, 'Challenges faced by road maintenance crews', '2024-04-19 00:00:00', 'no', NULL),
-(59, 14, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'in-progress', NULL),
-(61, 12, 4, 36, NULL, 'wow', '2024-04-05 10:17:36', 'no', NULL),
-(62, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:18:28', 'no', NULL),
-(63, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:09', 'no', NULL),
-(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'no', NULL),
-(65, 12, 5, 14, 32, 'How fast can a car really drive?', '2024-04-05 20:28:15', 'no', NULL),
-(66, 12, 2, 3, NULL, 'Worked for another company for a week', '2024-04-05 20:38:48', 'no', NULL),
-(67, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:44:23', 'no', NULL),
-(68, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:46:08', 'no', NULL),
-(69, 1, 5, 10, 19, 'Co-edited a book about fast roads and where to find them', '2024-04-05 20:46:36', 'no', NULL),
-(70, 1, 3, 6, 3, 'Cat 3 ,sub c2 lead external', '2024-04-05 20:47:18', 'no', NULL),
-(71, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:18', 'no', NULL),
-(72, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:42', 'no', NULL),
-(73, 1, 4, 8, NULL, 'a picture of tintin', '2024-04-11 17:33:17', 'no', NULL),
-(74, 1, 2, 2, 1, 'asdfgh', '2024-04-11 18:10:24', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
-(75, 1, 5, 10, 17, 'asdfghjkhgfdsa', '2024-04-11 18:16:25', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
-(76, 1, 6, 37, 52, 'Storage test', '2024-04-11 18:16:51', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/samuel-c-zYzBIcFuumQ-unsplash.jpg');
+(1, 21, 2, 2, NULL, 'General road safety in Malaysia', '2024-03-21 00:00:00', 'yes', NULL),
+(2, 25, 2, 2, NULL, 'Keeping roads clear going forward ', '2024-02-02 00:00:00', 'yes', NULL),
+(3, 17, 2, 2, NULL, 'Road safety: A reflective account', '2024-02-22 00:00:00', 'yes', NULL),
+(4, 14, 2, 2, NULL, 'A quantitative survey of potholes', '2024-01-26 00:00:00', 'yes', NULL),
+(5, 17, 2, 2, NULL, 'Specific road safety in Malaysia', '2024-01-11 00:00:00', 'yes', NULL),
+(6, 28, 2, 2, NULL, 'Integration of different road types', '2024-03-06 00:00:00', 'yes', NULL),
+(7, 26, 2, 2, NULL, 'Are road crossings truly effective?', '2024-03-08 00:00:00', 'yes', NULL),
+(8, 22, 2, 2, NULL, 'Increasing road size despite government cutbacks', '2024-02-24 00:00:00', 'yes', NULL),
+(9, 19, 2, 2, NULL, 'Motoring in the age of electricity', '2024-03-21 00:00:00', 'yes', NULL),
+(10, 18, 2, 2, NULL, 'Rising cost of concrete', '2024-03-17 00:00:00', 'yes', NULL),
+(11, 24, 2, 2, NULL, 'Malaysian madness: are roads really necessary?', '2024-01-29 00:00:00', 'yes', NULL),
+(12, 24, 2, 2, NULL, 'Speed-zones in proximity to schools', '2024-01-04 00:00:00', 'yes', NULL),
+(13, 27, 2, 2, NULL, 'Wild weather and even wilder roads', '2024-02-25 00:00:00', 'yes', NULL),
+(14, 19, 2, 2, NULL, 'Hill gradients and possible problems that may arise', '2024-02-02 00:00:00', 'yes', NULL),
+(15, 15, 2, 2, NULL, 'Brakes breaks bones', '2024-01-07 00:00:00', 'yes', NULL),
+(16, 16, 2, 2, NULL, 'Are Malaysian road layouts the most efficient?', '2024-01-19 00:00:00', 'yes', NULL),
+(17, 21, 2, 2, NULL, 'Driving us all mad: A Paramedics story', '2024-03-05 00:00:00', 'yes', NULL),
+(18, 20, 2, 2, NULL, 'Pandemics, Paramedics and potholes', '2024-03-19 00:00:00', 'yes', NULL),
+(19, 24, 2, 2, NULL, 'Parking ticket price increase, cause for concern?', '2024-01-11 00:00:00', 'yes', NULL),
+(20, 23, 2, 2, NULL, 'A study of car horns and their decibel levels', '2024-02-17 00:00:00', 'yes', NULL),
+(40, 14, 2, 2, NULL, 'Efficiency of traffic light systems in Kuala Lumpur', '2024-04-01 00:00:00', 'yes', NULL),
+(41, 15, 2, 2, NULL, 'Impact of roadworks on commuter stress levels', '2024-04-02 00:00:00', 'yes', NULL),
+(42, 16, 2, 2, NULL, 'The role of street lighting in road safety in Penang', '2024-04-03 00:00:00', 'yes', NULL),
+(43, 17, 2, 2, NULL, 'Sustainability practices in Malaysian highway construction', '2024-04-04 00:00:00', 'yes', NULL),
+(44, 18, 2, 2, NULL, 'Analysis of pedestrian bridge usage in urban areas', '2024-04-05 00:00:00', 'yes', NULL),
+(45, 19, 2, 2, NULL, 'Adoption rates of electric vehicles and infrastructure in Malaysia', '2024-04-06 00:00:00', 'yes', NULL),
+(46, 20, 2, 2, NULL, 'Evaluating the condition of rural roads in East Malaysia', '2024-04-07 00:00:00', 'yes', NULL),
+(47, 14, 2, 2, NULL, 'Urban planning and road safety correlations in Malaysian cities', '2024-04-08 00:00:00', 'yes', NULL),
+(48, 15, 2, 2, NULL, 'The effects of seasonal weather on road integrity', '2024-04-09 00:00:00', 'yes', NULL),
+(49, 16, 2, 2, NULL, 'Traffic congestion patterns during festive seasons', '2024-04-10 00:00:00', 'yes', NULL),
+(50, 17, 2, 2, NULL, 'Road signage visibility and language inclusivity', '2024-04-11 00:00:00', 'yes', NULL),
+(51, 18, 2, 2, NULL, 'Exploring the usage of roundabouts for better traffic flow', '2024-04-12 00:00:00', 'yes', NULL),
+(52, 19, 2, 2, NULL, 'Impact of toll booths on traffic dispersion', '2024-04-13 00:00:00', 'yes', NULL),
+(53, 20, 2, 2, NULL, 'Smart city initiatives and the future of road transport', '2024-04-14 00:00:00', 'yes', NULL),
+(54, 14, 2, 2, NULL, 'Motorcycle safety on Malaysian expressways', '2024-04-15 00:00:00', 'yes', NULL),
+(55, 15, 2, 2, NULL, 'The prevalence of road rage incidents and their causes', '2024-04-16 00:00:00', 'yes', NULL),
+(56, 16, 2, 2, NULL, 'Effectiveness of speed bumps in residential areas', '2024-04-17 00:00:00', 'yes', NULL),
+(57, 17, 2, 2, NULL, 'Cross-border traffic issues and management', '2024-04-18 00:00:00', 'yes', NULL),
+(58, 18, 2, 2, NULL, 'Challenges faced by road maintenance crews', '2024-04-19 00:00:00', 'yes', NULL),
+(59, 14, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'yes', NULL),
+(61, 12, 4, 36, NULL, 'wow', '2024-04-05 10:17:36', 'yes', NULL),
+(62, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:18:28', 'yes', NULL),
+(63, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:09', 'yes', NULL),
+(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'yes', NULL),
+(65, 12, 5, 14, 32, 'How fast can a car really drive?', '2024-04-05 20:28:15', 'yes', NULL),
+(66, 12, 2, 3, NULL, 'Worked for another company for a week', '2024-04-05 20:38:48', 'yes', NULL),
+(67, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:44:23', 'yes', NULL),
+(68, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:46:08', 'yes', NULL),
+(69, 1, 5, 10, 19, 'Co-edited a book about fast roads and where to find them', '2024-04-05 20:46:36', 'yes', NULL),
+(70, 1, 3, 6, 3, 'Cat 3 ,sub c2 lead external', '2024-04-05 20:47:18', 'yes', NULL),
+(71, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:18', 'yes', NULL),
+(72, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:42', 'yes', NULL),
+(73, 1, 4, 8, NULL, 'a picture of tintin', '2024-04-11 17:33:17', 'yes', NULL),
+(74, 1, 2, 2, 1, 'asdfgh', '2024-04-11 18:10:24', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
+(75, 1, 5, 10, 17, 'asdfghjkhgfdsa', '2024-04-11 18:16:25', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
+(76, 1, 6, 37, 52, 'Storage test', '2024-04-11 18:16:51', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/samuel-c-zYzBIcFuumQ-unsplash.jpg'),
+(77, 1, 1, 1, NULL, 'test', '2024-04-11 20:57:16', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/lesson_1_database.png'),
+(78, 1, 1, 1, NULL, 'test 2 ', '2024-04-11 20:58:40', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png'),
+(79, 1, 1, 1, NULL, 'test 3', '2024-04-11 20:59:27', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
+(80, 1, 5, 10, 19, 'I was a co-editor on this piece', '2024-04-12 09:16:28', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png');
 
 -- --------------------------------------------------------
 
@@ -340,15 +344,15 @@ CREATE TABLE `user` (
   `account_status` enum('active','deactivated') NOT NULL DEFAULT 'active',
   `Last_Log_In` datetime DEFAULT NULL,
   `reset_token_hash` varchar(64) DEFAULT NULL,
-  `reset_token_expires` date DEFAULT NULL
+  `reset_token_expires_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires`) VALUES
-(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-11 20:30:59', NULL, NULL),
+INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires_at`) VALUES
+(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-11 21:40:36', NULL, NULL),
 (12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL, NULL, NULL),
 (13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
 (14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
@@ -397,38 +401,38 @@ CREATE TABLE `user_scores` (
 --
 
 INSERT INTO `user_scores` (`UserScore_ID`, `User_ID`, `Cat_A`, `Cat_B`, `Cat_C`, `Cat_D`, `Cat_E`, `Cat_F`, `Cat_G`, `Total_Score`) VALUES
-(2, 1, 1.00, 6.67, 1.00, 1.00, 0.00, 0.00, 0.00, 9.67),
-(3, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 5.00, 16.33),
-(4, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(5, 16, 1.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 8.33),
-(6, 17, 3.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(7, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(8, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(9, 20, 5.00, 6.67, 0.00, 0.00, 4.00, 0.00, 0.00, 15.67),
-(10, 21, 6.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
-(11, 22, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(12, 23, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(13, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
-(14, 25, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(15, 26, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(16, 27, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(17, 28, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(18, 14, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 5.00, 16.33),
-(19, 15, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(20, 16, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(21, 17, 3.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 11.00),
-(22, 18, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(23, 19, 4.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 11.33),
-(24, 20, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
-(25, 21, 6.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00),
-(26, 22, 3.00, 3.00, 0.00, 0.00, 0.00, 0.50, 0.00, 6.50),
-(27, 23, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(28, 24, 5.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 11.67),
-(29, 25, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(30, 26, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(31, 27, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(32, 28, 3.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(33, 12, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00);
+(2, 1, 2.00, 6.67, 7.00, 2.50, 8.00, 7.00, 0.00, 33.17),
+(3, 14, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 1.50, 8.83),
+(4, 15, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(5, 16, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(6, 17, 0.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 8.00),
+(7, 18, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(8, 19, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(9, 20, 0.00, 6.67, 0.00, 0.00, 4.00, 0.00, 0.00, 10.67),
+(10, 21, 0.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
+(11, 22, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(12, 23, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(13, 24, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
+(14, 25, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(15, 26, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(16, 27, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(17, 28, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(18, 14, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 1.50, 8.83),
+(19, 15, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(20, 16, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(21, 17, 0.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 8.00),
+(22, 18, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(23, 19, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
+(24, 20, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
+(25, 21, 0.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
+(26, 22, 0.00, 3.00, 0.00, 0.00, 0.00, 0.50, 0.00, 3.50),
+(27, 23, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(28, 24, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
+(29, 25, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(30, 26, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(31, 27, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(32, 28, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
+(33, 12, 0.00, 3.00, NULL, 7.00, 4.00, NULL, NULL, 14.00);
 
 --
 -- Triggers `user_scores`
@@ -537,7 +541,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `sub_items`
