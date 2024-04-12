@@ -1,15 +1,12 @@
 <?php
-// Check if the user is logged in
 require_once __DIR__ . '/../database/db_config.php';
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
     exit;
 }
 
-// Check if the user has the required role to access the page
-$required_role = "admin"; // Set the required role for the page
+$required_role = "admin"; 
 if ($_SESSION["role"] !== $required_role) {
-    // User doesn't have the required role, redirect or display an error message
     header("Location: access_denied.php");
     exit;
 }
