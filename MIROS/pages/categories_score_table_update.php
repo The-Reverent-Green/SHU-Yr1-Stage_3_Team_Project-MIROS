@@ -58,6 +58,5 @@ foreach ($categoryScores as $category => $user_scores) {
     }
 }
 
-echo "Scores for all categories have been updated successfully.";
 
 ?>
