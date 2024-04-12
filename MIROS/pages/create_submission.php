@@ -144,6 +144,7 @@ require_once __DIR__ . '/../includes/nav_bar.php';
     ?>
 <?php endif; ?>
 
+<section class="vh-100">
 <div class="wrapper">
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <label for="category">Category:</label>
@@ -188,6 +189,8 @@ document.querySelector('.custom-file-input').addEventListener('change', function
   nextSibling.innerText = fileName;
 });
 </script>
+</section>
 
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
