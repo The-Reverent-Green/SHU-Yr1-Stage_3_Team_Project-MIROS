@@ -47,8 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
 <body>
     <?php   
         require_once __DIR__ . '/../includes/header.php';
-        require_once __DIR__ . '/../includes/nav_bar.php'; 
+        //require_once __DIR__ . '/../includes/nav_bar.php'; 
     ?>
+    
     <section class ="vh-100">
         <div class="container">
             <h2>Manage User Roles</h2>

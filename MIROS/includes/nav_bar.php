@@ -1,91 +1,56 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/nav_bar.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<style>
-    .nav-item .dropdown-menu {
-        left: 50%;
-        transform: translateX(-50%);
-        position: absolute;
-    }
-</style>
+<?php //nav_bar.php
 
-<ul class="nav nav-pills nav-fill <?php echo isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'admin-mode' : ''; ?>">
-    <li class="nav-item">
-        <a class="nav-link <?php echo isCurrentPage('index.php') ? 'active' : ''; ?>" href="index.php">Home</a>
-    </li>
-    <?php if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true): ?>
-        <li class="nav-item">
-            <a class="nav-link <?php echo isCurrentPage('register_user.php') ? 'active' : ''; ?>" href="register_user.php">Create Account</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?php echo isCurrentPage('contact_guest.php') ? 'active' : ''; ?>" href="contact_guest.php">Contact</a>
-        </li>
-        <li class="nav-item">
-            <a href="login.php" class="btn btn-warning">Login</a>
-        </li>
-    <?php else: ?>
-        <li class="nav-item">
-            <a class="nav-link <?php echo isCurrentPage('profile.php') ? 'active' : ''; ?>" href="profile.php">Profile</a>
-        </li>
-
-        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Top Manager"): ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Management Panel</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item <?php echo isCurrentPage('manager_dashboard.php') ? 'active' : ''; ?>" href="manager_dashboard.php">Dashboard</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('submissions.php') ? 'active' : ''; ?>" href="submissions.php">Published Research</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('employees.php') ? 'active' : ''; ?>" href="employees.php">Performance</a>
-                </div>
-            </li>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Supervisor"): ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Supervisor Panel</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item <?php echo isCurrentPage('supervisor_dashboard.php') ? 'active' : ''; ?>" href="supervisor_dashboard.php">Dashboard</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('supervisor_team.php') ? 'active' : ''; ?>" href="supervisor_team.php">My team</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('submission_overview.php') ? 'active' : ''; ?>" href="submission_overview.php">Submission Requests</a>
-                </div>
-            </li>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "Research Officer"): ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Research Officer Panel</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item <?php echo isCurrentPage('officer_dashboard.php') ? 'active' : ''; ?>" href="officer_dashboard.php">Dashboard</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('create_submission.php') ? 'active' : ''; ?>" href="create_submission.php">Create Submission</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('officer_view_submissions.php') ? 'active' : ''; ?>" href="officer_view_submissions.php">View Previous Submissions</a>
-                </div>
-            </li>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "admin"): ?>
-            <li class="nav-item">
-            <a class="nav-link <?php echo isCurrentPage('create_submission.php') ? 'active' : ''; ?>" href="create_submission.php">Make Submission</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item <?php echo isCurrentPage('employees.php') ? 'active' : ''; ?>" href="employees.php">All Users</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('assign_roles.php') ? 'active' : ''; ?>" href="assign_roles.php">Assign</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('admin_dashboard.php') ? 'active' : ''; ?>" href="admin_dashboard.php">Admin Dashboard</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('admin_shutdown.php') ? 'active' : ''; ?>" href="admin_shutdown.php">Shutdown</a>
-                </div>
-            </li>
-        <?php endif; ?>
-        <li class="nav-item">
-            <a href="logout.php" class="btn btn-outline-warning">Logout</a>
-        </li>
-    <?php endif; ?>
-</ul>
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/nav_bar.css">
-<?php
-function isCurrentPage($page) {
-    $currentPage = basename($_SERVER['PHP_SELF']);
-    return $currentPage === $page;
+if (session_status() == PHP_SESSION_NONE) {
+session_start();
 }
-?>
+function return_Nav_Array(){
+    $role = [
+        'research officer' => [//Research Officer
+            'Dashboard'       =>'officer_dashboard.php',
+            'Submit research' =>'create_submission.php'
+        ],
+        'supervisor' => [//Supervisor
+            'Dashboard'         =>'management_dashboard.php',
+            'Published research'=>'management_dashboard.php',
+            'Preformance'       =>'officers_overview.php'
+        ],
+        'top manager' => [//Top Manager
+            'Dashboard'         =>'management_dashboard.php',
+            'Published Research'=>'research.php',
+            'Preformance'       =>'officers_overview.php'
+        ],
+        'admin' => [//Admin
+            'Dashboard'         =>'admin_dashboard.php',
+            'All users'         =>'all_users.php',
+            'Assign'            =>'assign_roles.php',
+            'Contact enquires'  =>'contact_admin_open.php',
+            'Shutdown'          =>'admin_shutdown.php'
+        ]
+    ];
+    
+    $notLoggedInLinks = [
+        'Create Account'=>'register_user.php',
+        'Contact'       =>'contact_guest.php',
+        'Login'         =>'login.php'
+    ];
+    
+    if (isset($_SESSION["role"])){
+        return array_merge(
+            ['Home' => 'index.php', 'Profile' => 'profile.php'],
+            [strtolower($_SESSION["role"])=>$role[ strtolower($_SESSION["role"]) ]],
+            ['Log out' => 'logout.php']
+        );
+    } else {
+        return $notLoggedInLinks;
+    }
+};
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getNav') {
+    header('Content-Type: application/json');
+    print(json_encode(
+            ['role' => strtolower($_SESSION["role"]),
+            'links'=>return_Nav_Array()
+            ]
+        )
+    );
+    exit;
+}
