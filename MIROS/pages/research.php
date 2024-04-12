@@ -6,12 +6,12 @@
     <title>Security & Privacy Policy</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../includes/render_nav.js"></script>
    
 </head>
 <body>
-<?php   
-    require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+<?php require_once __DIR__ . '/../includes/header.php';?>
+<nav id="navbar">Loading Navigation bar...</nav>
 <section class="vh-100">
 </section>
 </body>

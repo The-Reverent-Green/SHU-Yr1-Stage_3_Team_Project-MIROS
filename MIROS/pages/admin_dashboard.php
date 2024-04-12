@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
@@ -43,13 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">    
+    <script src="../includes/render_nav.js"></script>
 </head>
 <body>
     <?php   
         require_once __DIR__ . '/../includes/header.php';
         //require_once __DIR__ . '/../includes/nav_bar.php'; 
     ?>
-    
+    <nav id="navbar">Loading Navigation bar...</nav>
     <section class ="vh-100">
         <div class="container">
             <h2>Manage User Roles</h2>

@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php';
 
 ini_set('display_errors', 1);
@@ -47,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Submit to Submissions</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../includes/render_nav.js"></script>
     <script>
         $(document).ready(function() {
             $('#category').change(function() {
@@ -69,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
                 $('#sub_item').empty().append('<option value="">Select a sub-item</option>');
             });
-
+            
             $('#item').change(function() {
                 var itemId = $(this).val();
                 $.ajax({
@@ -95,10 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
             });
         });
-    </script>
+        </script>
 </head>
 
 <body>
+    <nav id="navbar">Loading Navigation bar...</nav>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="category">Category:</label>
         <select name="category_id" id="category" required>

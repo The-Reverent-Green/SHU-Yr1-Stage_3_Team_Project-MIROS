@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php';
 
 
@@ -90,6 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../includes/render_nav.js"></script>
+
     <style>
 @media (max-width: 768px) {
     .wrapper {
@@ -99,10 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 </head>
 <body>
-<?php   
-    require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php'; ?>
-    <nav id="navbar">Loading Navigation bar...</nav>
+<?php require_once __DIR__ . '/../includes/header.php';?>
+<nav id="navbar">Loading Navigation bar...</nav>
 <section class="vh-100">
     <div class="container h-100">
         <div class="row h-100 align-items-center">

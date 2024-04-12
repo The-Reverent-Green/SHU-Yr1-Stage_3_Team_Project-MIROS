@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php';
 
 ini_set('display_errors', 1);
@@ -94,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Submit to Submissions</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../includes/render_nav.js"></script>
     <script>
         $(document).ready(function(){
             $('#category').change(function(){
@@ -114,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });
                 $('#sub_item').empty().append('<option value="">Select a sub-item</option>');
             });
-
+            
             $('#item').change(function(){
                 var itemId = $(this).val();
                 $.ajax({
@@ -140,13 +144,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
             
         });
-    </script>
+        </script>
 </head>
 <body>
-<?php   
-require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../includes/nav_bar.php'; 
-?>
+<?php require_once __DIR__ . '/../includes/header.php';?>
+<nav id="navbar">Loading Navigation bar...</nav>
+
 <?php if (isset($_SESSION['message']) && isset($_SESSION['message_type'])): ?>
     <div class="alert alert-<?= $_SESSION['message_type']; ?>" role="alert">
         <?= $_SESSION['message']; ?>

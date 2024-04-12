@@ -1,4 +1,8 @@
-<?php require_once __DIR__ . '/../database/db_config.php'; ?>
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/../database/db_config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,12 +12,12 @@
         <link rel="stylesheet" href="bootstrap.css">
         <link rel="stylesheet" href="../css/extra.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="../includes/render_nav.js"></script>
     
     </head>
     <body>
-        <?php   
-            require_once __DIR__ . '/../includes/header.php';
-            require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+        <?php require_once __DIR__ . '/../includes/header.php';?>
+        <nav id="navbar">Loading Navigation bar...</nav>
         <section class="vh-100">
             <div class ="disclaimer">
                 <h3>Disclaimer</h3>

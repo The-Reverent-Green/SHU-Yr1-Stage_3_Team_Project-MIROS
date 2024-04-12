@@ -1,4 +1,8 @@
-<?php require_once __DIR__ . '/../database/db_config.php'; 
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/../database/db_config.php'; 
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     echo "Please log in to access the website.";
@@ -23,10 +27,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </style>
 </head>
 <body>
-<?php   
-    require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php'; 
-?>
+<?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
 <section>
     <div class="container mt-5">

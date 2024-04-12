@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php';
 
 // Check if the user is logged in, and there's a user id in the session
@@ -28,12 +30,11 @@ try {
     <meta charset="UTF-8">
     <title>Your Submissions</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../includes/render_nav.js"></script>
 </head>
 <body>
-<?php   
-require_once __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../includes/nav_bar.php'; 
-?>
+<?php require_once __DIR__ . '/../includes/header.php';?>
+<nav id="navbar">Loading Navigation bar...</nav>
 <section class="vh-100">
     <div class="wrapper">
         <h1>Your Submissions</h1>

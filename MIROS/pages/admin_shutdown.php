@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../database/db_config.php';
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
@@ -19,12 +22,12 @@ if ($_SESSION["role"] !== $required_role) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shutdown MySQL Server</title>
     <link rel="stylesheet" href="bootstrap.css">
+    <script src="../includes/render_nav.js"></script>
 </head>
 <body>
 
-<?php   require_once __DIR__ . '/../includes/header.php';
-    require_once __DIR__ . '/../includes/nav_bar.php';  ?>
-
+<?php   require_once __DIR__ . '/../includes/header.php';?>
+<nav id="navbar">Loading Navigation bar...</nav>
 <div class="container">
     <br>
     <h2>Shutdown MySQL Server</h2>

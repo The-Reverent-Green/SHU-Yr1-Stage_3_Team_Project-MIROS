@@ -8,12 +8,12 @@
         <link rel="stylesheet" href="bootstrap.css">
         <link rel="stylesheet" href="../css/extra.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="../includes/render_nav.js"></script>
     
     </head>
     <body>
-    <?php   
-        require_once __DIR__ . '/../includes/header.php';
-        require_once __DIR__ . '/../includes/nav_bar.php'; ?>
+    <?php require_once __DIR__ . '/../includes/header.php';?>
+    <nav id="navbar">Loading Navigation bar...</nav>
         <section>
             <div class="privacyStatement">
                 <div class="statement1">
