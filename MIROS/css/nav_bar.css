@@ -44,3 +44,13 @@
 .admin-mode {
   background-color: yellow; /* Sets the background color to yellow for admin mode */
 }
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: none;
+}

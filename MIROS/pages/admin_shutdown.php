@@ -25,28 +25,25 @@ if ($_SESSION["role"] !== $required_role) {
     <script src="../includes/render_nav.js"></script>
 </head>
 <body>
-
-<?php   require_once __DIR__ . '/../includes/header.php';?>
-<nav id="navbar">Loading Navigation bar...</nav>
-<div class="container">
-    <br>
-    <h2>Shutdown MySQL Server</h2>
-
-    <form method="post">
-        <button type="submit" name="shutdown" class="btn btn-danger">Shutdown MySQL</button>
-    </form>
-
-    <?php
-    if(isset($_POST['shutdown'])) {
-        exec("net stop MySQL", $output, $return);
-        if($return == 0) {
-            echo '<div class="alert alert-success" role="alert">MySQL server shutdown successfully.</div>';
-        } else {
-            echo '<div class="alert alert-danger" role="alert">Failed to shutdown MySQL server.</div>';
+    <?php require_once __DIR__ . '/../includes/header.php';?>
+    <nav id="navbar">Loading Navigation bar...</nav>
+    <div class="container">
+        <br>
+        <h2>Shutdown MySQL Server</h2>
+        <form method="post">
+            <button type="submit" name="shutdown" class="btn btn-danger">Shutdown MySQL</button>
+        </form>
+        <?php
+        if(isset($_POST['shutdown'])) {
+            exec("net stop MySQL", $output, $return);
+            if($return == 0) {
+                echo '<div class="alert alert-success" role="alert">MySQL server shutdown successfully.</div>';
+            } else {
+                echo '<div class="alert alert-danger" role="alert">Failed to shutdown MySQL server.</div>';
+            }
         }
-    }
-    ?>
-</div>
+        ?>
+    </div>
 
 </body>
 </html>

@@ -2,12 +2,13 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include __DIR__ . '/../database/db_config.php'; 
+require_once __DIR__ . '/../database/db_config.php'; 
 
 if(isset($mysqli) && $mysqli instanceof mysqli) {
     try {
         $usernames = [];
-        $stmt = $mysqli->query("SELECT username FROM user");
+        $getUsername = "SELECT username FROM user";
+        $stmt = $mysqli->query($getUsername);
         while ($row = $stmt->fetch_assoc()) {
             $usernames[] = $row['username'];
         }
@@ -15,8 +16,8 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
         if(isset($_POST['submit'])) {
             $selectedUsername = $_POST['username'];
             $newRole = $_POST['role']; 
-            
-            $updateStmt = $mysqli->prepare("UPDATE user SET role = ? WHERE username = ?");
+            $updateUsersRole = "UPDATE user SET role = ? WHERE username = ?";
+            $updateStmt = $mysqli->prepare($updateUsersRole);
             $updateStmt->bind_param("ss", $newRole, $selectedUsername);
             $updateStmt->execute();
             
