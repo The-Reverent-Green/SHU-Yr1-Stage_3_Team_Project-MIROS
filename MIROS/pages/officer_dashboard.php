@@ -39,15 +39,16 @@ if ($loggedInUserId) {
 
 if ($loggedInUserId) {
     $sqlReportsTo = "SELECT 
-                    u1.Username AS OfficerUsername, 
-                    u2.Username AS ReportsToUsername,
-                    u2.First_Name AS SupervisorFirstName
-                FROM 
-                    user u1
-                LEFT JOIN 
-                    user u2 ON u1.Reports_To = u2.User_ID
-                WHERE 
-                    u1.User_ID = ?";
+    u1.Username AS OfficerUsername, 
+    u2.Username AS ReportsToUsername,
+    u2.First_Name AS SupervisorFirstName
+FROM 
+    user u1
+LEFT JOIN 
+    user u2 ON u1.Reports_To = u2.User_ID
+WHERE 
+    u1.User_ID = ?";
+
 
     
     if ($stmt = $mysqli->prepare($sqlReportsTo)) {
