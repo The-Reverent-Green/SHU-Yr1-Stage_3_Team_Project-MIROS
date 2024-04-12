@@ -1,17 +1,32 @@
-footer {
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    flex: 1 0 auto;
+  }
+  
+  footer {
+    flex-shrink: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     background-color: #212625;
-    border-top: 2px solid gold;   
-}
-
-.inner {
+    border-top: 2px solid gold;
+  }
+  
+  .inner {
     display: flex;
     align-items: center;
-}
-
-.copyright {
+  }
+  
+  .copyright {
     color: #ccc;
     font-size: 10px;
     font-weight: lighter;
@@ -19,25 +34,25 @@ footer {
     text-align: center;
     margin-top: 1%;
     margin: 0;
-}
-
-.links {
+  }
+  
+  .links {
     margin-left: 100px;
     color: #ccc;
     font-size: 10px;
     font-weight: lighter;
     margin-top: 5%;
-}
-
-.links a:link {
+  }
+  
+  .links a:link {
     text-decoration: none;
-}
-
-.links a:visited {
     color: #ccc;
-}
-
-.links a:hover {
+  }
+  
+  .links a:visited {
+    color: #ccc;
+  }
+  
+  .links a:hover {
     color: blue;
-
-}
+  }
