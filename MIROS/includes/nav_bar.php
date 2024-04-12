@@ -69,9 +69,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item <?php echo isCurrentPage('all_users.php') ? 'active' : ''; ?>" href="all_users.php">All Users</a>
+                    <a class="dropdown-item <?php echo isCurrentPage('employees.php') ? 'active' : ''; ?>" href="employees.php">All Users</a>
                     <a class="dropdown-item <?php echo isCurrentPage('assign_roles.php') ? 'active' : ''; ?>" href="assign_roles.php">Assign</a>
-                    <a class="dropdown-item <?php echo isCurrentPage('contact_admin_open.php') ? 'active' : ''; ?>" href="contact_admin_open.php">Contact Inquiries</a>
                     <a class="dropdown-item <?php echo isCurrentPage('admin_dashboard.php') ? 'active' : ''; ?>" href="admin_dashboard.php">Admin Dashboard</a>
                     <a class="dropdown-item <?php echo isCurrentPage('admin_shutdown.php') ? 'active' : ''; ?>" href="admin_shutdown.php">Shutdown</a>
                 </div>

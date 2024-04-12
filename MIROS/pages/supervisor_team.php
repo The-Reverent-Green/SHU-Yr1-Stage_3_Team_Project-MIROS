@@ -7,7 +7,6 @@ $users = myEmp();
 
 function myEmp(){
     
-    //Connects to database using PDO
     $servername = "localhost";
     $dbname = "miros";
     $username = "root";
@@ -16,7 +15,6 @@ function myEmp(){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    //Displays information about research officers that are assigned to the supervisor currently logged in
     $id = $_SESSION['id'];
     $stmt = $conn->prepare("SELECT * FROM user INNER JOIN user_scores on user.User_ID = user_scores.User_ID WHERE Reports_To = :id ORDER BY Total_Score DESC");
     $stmt->bindvalue(':id', $id);
