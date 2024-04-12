@@ -1,8 +1,6 @@
 footer {
     width: 100%;
     display: flex;
-    position: fixed;
-    bottom: 0;
     justify-content: center;
     background-color: #212625;
     border-top: 2px solid gold;   
@@ -33,7 +31,6 @@ footer {
 
 .links a:link {
     text-decoration: none;
-    color: #ccc;
 }
 
 .links a:visited {

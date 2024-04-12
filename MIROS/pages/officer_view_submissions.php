@@ -34,30 +34,33 @@ try {
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/nav_bar.php'; 
 ?>
-<div class="wrapper">
-    <h1>Your Submissions</h1>
-    <?php if (empty($submissions)): ?>
-        <p>You have no submissions.</p>
-    <?php else: ?>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Date of Submission</th>
-                    <th>Verified Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($submissions as $submission): ?>
+<section class="vh-100">
+    <div class="wrapper">
+        <h1>Your Submissions</h1>
+        <?php if (empty($submissions)): ?>
+            <p>You have no submissions.</p>
+        <?php else: ?>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?= htmlspecialchars($submission['Description']); ?></td>
-                        <td><?= htmlspecialchars($submission['Date_Of_Submission']); ?></td>
-                        <td><?= htmlspecialchars($submission['Verified']); ?></td>
+                        <th>Description</th>
+                        <th>Date of Submission</th>
+                        <th>Verified Status</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
-</div>
+                </thead>
+                <tbody>
+                    <?php foreach ($submissions as $submission): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($submission['Description']); ?></td>
+                            <td><?= htmlspecialchars($submission['Date_Of_Submission']); ?></td>
+                            <td><?= htmlspecialchars($submission['Verified']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

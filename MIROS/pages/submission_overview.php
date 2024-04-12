@@ -102,7 +102,7 @@ function mySub(){
             </tbody>
         </table>
     </div>
-    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
     </section>
+    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>

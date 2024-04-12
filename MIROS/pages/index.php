@@ -26,7 +26,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     require_once __DIR__ . '/../includes/header.php';
     require_once __DIR__ . '/../includes/nav_bar.php'; 
 ?>
-<section class="vh-100">
+<section>
     <div class="container mt-5">
         <div class="jumbotron">
             <h1 class="display-4">Hello, <?= htmlspecialchars($_SESSION["username"]); ?>!</h1>
