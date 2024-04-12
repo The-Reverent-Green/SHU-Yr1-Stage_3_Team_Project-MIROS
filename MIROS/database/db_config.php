@@ -16,12 +16,12 @@ try {
     exit;
 }
 
-
 $mysqli = new mysqli($host, $username, $password, $dbname);
 
 if ($mysqli->connect_error) {
     error_log("Connection failed: " . $mysqli->connect_error);
     echo "Sorry, we're experiencing some technical difficulties. Please try again later.";
-    exit; 
-    
+    exit;
 }
+
+require_once 'categories_score_table_update.php';
