@@ -32,29 +32,28 @@ function return_Nav_Array(){
         'research officer' => [//Research Officer
             'Dashboard'       =>'officer_dashboard.php',
             'Submit research' =>'create_submission.php',
-            //'View Submissions'=>'officer_view_submissions.php',
-            'Create Submission'=>'create_submission.php',
-            'Delete Submission'=>'delete_submission.php',
+            'View Submissions'=>'officer_view_submissions.php',
+            'Contact User'=>'contact_user.php',
+
         ],
         'supervisor' => [//Supervisor
-            'Dashboard'         =>'management_dashboard.php',
-            'Published research'=>'management_dashboard.php',
-            'Preformance'       =>'officers_overview.php',
-            'View Submissions'=>'officer_view_submissions.php',
+            'Dashboard'         =>'supervisor_dashboard.php',
+            'Supervisor Team'=>'supervisor_team.php',
+            'Awaiting Verification' => 'submission_overview.php',
+            'Contact User'=>'contact_user.php',
+
         ],
         'top manager' => [//Top Manager
             'Dashboard'         =>'management_dashboard.php',
-            'Published Research'=>'research.php',
-            'Preformance'       =>'officers_overview.php',
-            'View Submissions'=>'officer_view_submissions.php',
+            'Submission Search'=>'research.php',
+            'Assign'            =>'assign_roles.php',
+            'Contact User'=>'contact_user.php',
+
         ],
         'admin' => [//Admin
             'Dashboard'         =>'admin_dashboard.php',
-            'All users'         =>'all_users.php',
             'Assign'            =>'assign_roles.php',
             'Shutdown'          =>'admin_shutdown.php',
-            'Contact Guest'=>'contact_guest.php',
-            'Contact User'=>'contact_user.php',
         ]
     ];
     return array_merge(
@@ -89,3 +88,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
     }
     exit;
 }
+?>
+

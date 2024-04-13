@@ -53,7 +53,10 @@ WHERE
 
 
 
+$role = $_SESSION['role'] ?? null;  
 
+if ($role === 'research officer') {
+}
 }
 
 
@@ -66,7 +69,10 @@ WHERE
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/nav_bar.css">
+
     <script src="../includes/render_nav.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -80,16 +86,20 @@ WHERE
 <?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
 <section>
-<div class="container mt-5">
-<?php if ($totalScore >= 42): ?>
-    <div class="alert alert-success" role="alert" style="text-align: center;">
-        CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
-    </div>
-<?php else: ?>
-    <div class="alert alert-warning" role="alert" style="text-align: center;">
-        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
+<?php if ($role === 'research officer'): ?>
+    <div class="container mt-5">
+        <?php if ($totalScore >= 42): ?>
+            <div class="alert alert-success" role="alert" style="text-align: center;">
+                CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
+            </div>
+        <?php else: ?>
+            <div class="alert alert-warning" role="alert" style="text-align: center;">
+                WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
+            </div>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
+
 
     <div class="container mt-5">
         <div class="jumbotron">

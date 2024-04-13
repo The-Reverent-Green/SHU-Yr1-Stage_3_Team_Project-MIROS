@@ -107,6 +107,7 @@ WHERE
         </div>
         
         <div class="container">
+            <div class="wrapper">
             <h1>Your Scores</h1>
             <?php if (!$userScores): ?>
                 <p>You have no scores to display.</p>
@@ -138,7 +139,7 @@ WHERE
                     </tbody>
                 </table>
             <?php endif; ?>
-            
+            </div>
             <div class="wrapper">
     <h1>Your Score Summary</h1>
     <?php if ($totalScore > 0): ?>

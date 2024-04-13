@@ -6,6 +6,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../database/db_config.php';
 
+
+
 if (!isset($_SESSION['id'])) {
     echo "Please log in to view your submissions.";
     exit; 
@@ -20,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
         $deleteStmt->bindParam(':deleteId', $deleteId, PDO::PARAM_INT);
         $deleteStmt->bindParam(':userId', $userId, PDO::PARAM_INT);
         $deleteStmt->execute();
-        // Redirect or refresh the page to see changes
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     } catch (PDOException $e) {
@@ -50,10 +51,16 @@ try {
     <script src="../includes/render_nav.js"></script>
 </head>
 <body>
+    
 <?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
+<?php if (isset($_SESSION['message'])) {
+    echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
+    unset($_SESSION['message']); // Clear the message so it doesn't reappear on refresh
+}
+?>
 <section class="vh-100">
-    <div class="container">
+    <div class="wrapper">
         <br>
         <h1>Your Submissions</h1>
         <?php if (empty($submissions)): ?>
@@ -75,15 +82,21 @@ try {
                 <td><?= htmlspecialchars($submission['Date_Of_Submission']); ?></td>
                 <td><?= htmlspecialchars($submission['Verified']); ?></td>
                 <td>
-                    <?php if (isset($submission['Submission_ID'])): ?>
-                        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this submission?');">
-                            <input type="hidden" name="delete_id" value="<?= htmlspecialchars($submission['Submission_ID']); ?>">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    <?php else: ?>
-                        <span>Error: Submission ID missing</span>
-                    <?php endif; ?>
-                </td>
+    <?php if (isset($submission['Submission_ID'])): ?>
+        <form action="edit_submission.php" method="GET" style="display: inline;">
+            <input type="hidden" name="edit_id" value="<?= htmlspecialchars($submission['Submission_ID']); ?>">
+            <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+        </form>
+        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this submission?');" style="display: inline;">
+            <input type="hidden" name="delete_id" value="<?= htmlspecialchars($submission['Submission_ID']); ?>">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    <?php else: ?>
+        <span>Error: Submission ID missing</span>
+    <?php endif; ?>
+</td>
+
+                
             </tr>
         <?php endforeach; ?>
     </tbody>

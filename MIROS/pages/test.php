@@ -1,17 +1,13 @@
 <?php
 require_once __DIR__ . '/../database/db_config.php';
 
-// Function to get categories for the form dropdown
 function getCategories($pdo) {
-    // Replace with the actual query to fetch categories
     $stmt = $pdo->query('SELECT Category_ID, Category_Name FROM categories');
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Function to get verified submissions per category
 function getVerifiedSubmissionsPerCategory($pdo, $categoryId = null) {
-    // Replace with the actual query to fetch submissions per category
-    // This placeholder query assumes you have a 'verified' column that can be filtered
+
     $params = [];
     $query = "SELECT c.Category_Name, COUNT(*) AS VerifiedCount
               FROM submissions s
@@ -30,15 +26,14 @@ function getVerifiedSubmissionsPerCategory($pdo, $categoryId = null) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// This checks if the form was submitted with a specific category selected
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category'])) {
     header('Content-Type: application/json');
     echo json_encode(getVerifiedSubmissionsPerCategory($pdo, $_POST['category']));
-    exit; // Stop further PHP execution since we only want to return the JSON data
+    exit; 
 }
 
 $categories = getCategories($pdo);
-$defaultChartData = getVerifiedSubmissionsPerCategory($pdo); // Get default chart data for initial load
+$defaultChartData = getVerifiedSubmissionsPerCategory($pdo); 
 $encodedData = json_encode($defaultChartData);
 ?>
 

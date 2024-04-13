@@ -67,14 +67,14 @@ function mySub(){
 <body>
     <nav id="navbar">Loading Navigation bar...</nav>
     <section class="vh-100">
-<div class="container" style="margin-top: 20px">
+<div class="wrapper" style="margin-top: 20px">
         <form action="submission_overview.php" method="post">
             <label class="sub-title">Search for submissions: </label><br>
             <input type="text" id="search" name="search">
             <button class="button" type="submit" value="submit" name="submit">Search</button><br>
         </form>
     </div>
-    <div class="container" style="margin-top: 50px; padding-bottom: 75px;">
+    <div class = wrapper>
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -102,6 +102,7 @@ function mySub(){
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
     </div>
     </section>
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>

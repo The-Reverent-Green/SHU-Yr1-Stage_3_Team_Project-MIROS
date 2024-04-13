@@ -3,8 +3,9 @@
   background-size: auto;
   background-repeat: repeat;
   border-bottom: 1px solid #ccc;
-  padding: 5px;
-  padding-top: 10px;
+  padding: 1%;
+  
+
 }
 
 .nav-link {
@@ -20,18 +21,16 @@
 
 .nav-item {
   position: relative;
-  display: inline-block;
-  padding: 8px 40px;
-  margin: 5px 40px;
-  background-color: #212625;
-  color: white;
+  background-color: #dde6e4;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 12px;
   cursor: pointer;
   text-align: center;
+  margin: 1%;
 }
 .nav-item:hover {
-  background-color: #212625;
+  background-color: #ffffff;
 }
 .nav-item.current-page {
   background-color: gold;

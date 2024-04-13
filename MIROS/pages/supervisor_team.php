@@ -42,6 +42,7 @@ function myEmp(){
 
 <body>
     <nav id="navbar">Loading Navigation bar...</nav>
+    <div class="container">
     <section class="vh-100">
     <div class="container" style="margin-top: 30px; padding-bottom: 75px;">
         <table class="table table-striped">
@@ -72,7 +73,9 @@ function myEmp(){
             </tbody>
         </table>
     </div>
+    </div>
     </section>
+    
 </body>
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

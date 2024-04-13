@@ -1878,7 +1878,8 @@ progress {
   --bs-table-hover-color: var(--bs-emphasis-color);
   --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
+  padding-bottom: 10% !important;
   vertical-align: top;
   border-color: var(--bs-table-border-color);
 }
@@ -11967,9 +11968,11 @@ th {
 }
 
 .wrapper {
-  margin: 50px auto 0; 
+  margin: 5% ; 
+  margin-bottom: 20px; /* Adjust the value as needed */
+
   padding: 20px; 
-  max-width: 800px; 
+  max-width: 90%; 
   border-radius: 8px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   background-color: #fff; 
