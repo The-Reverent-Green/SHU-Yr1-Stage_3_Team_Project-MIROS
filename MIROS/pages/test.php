@@ -48,8 +48,12 @@ $encodedData = json_encode($defaultChartData);
     <meta charset="UTF-8">
     <title>Interactive Chart</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body>
+    <div class="wrapper">
     <form id="categoryForm">
         <label for="categorySelect">Select a category:</label>
         <select id="categorySelect" name="category">
@@ -95,12 +99,10 @@ $encodedData = json_encode($defaultChartData);
             }
         });
 
-        // Handle the form submission
         document.getElementById('categoryForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const category = document.getElementById('categorySelect').value;
-            // The URL to which we send the POST request
-            const url = ''; // You might need to adjust this URL depending on your setup
+            const url = '';
 
             fetch(url, {
                 method: 'POST',
@@ -118,5 +120,6 @@ $encodedData = json_encode($defaultChartData);
             .catch(error => console.error('Error:', error));
         });
     </script>
+    </div>
 </body>
 </html>

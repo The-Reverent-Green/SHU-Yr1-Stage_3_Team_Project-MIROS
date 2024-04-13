@@ -9,7 +9,7 @@ document.getElementById('searchBar').addEventListener('input', function () {
         })
         .then(response => response.json())
         .then(usernames => {
-            selectElement.innerHTML = ''; // Clear previous options
+            selectElement.innerHTML = ''; 
             if (usernames.length > 0) {
                 usernames.forEach(username => {
                     const option = document.createElement('option');
@@ -18,7 +18,6 @@ document.getElementById('searchBar').addEventListener('input', function () {
                     selectElement.appendChild(option);
                 });
             } else {
-                // Add a placeholder or indication that no usernames were found
                 const option = document.createElement('option');
                 option.textContent = 'No usernames found';
                 option.disabled = true;
@@ -27,6 +26,6 @@ document.getElementById('searchBar').addEventListener('input', function () {
         })
         .catch(error => console.error('Error:', error));
     } else {
-        selectElement.innerHTML = ''; // Clear options when searchTerm is less than 3 characters
+        selectElement.innerHTML = '';
     }
 });
