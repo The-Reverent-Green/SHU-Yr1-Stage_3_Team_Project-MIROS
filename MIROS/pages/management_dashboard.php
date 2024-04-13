@@ -3,8 +3,6 @@
 require_once __DIR__ . '/../database/db_config.php';
 require_once __DIR__ . '/../includes/header.php';
 
-
-
 function getResearchOfficerCountPerSupervisorWithSubmissions($pdo) {
     $supervisorCounts = [];
     try {
@@ -27,7 +25,6 @@ function getResearchOfficerCountPerSupervisorWithSubmissions($pdo) {
         $supervisorCounts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('PDOException - ' . $e->getMessage(), 0);
-        // Optionally, add error handling here for the end user
     }
     return $supervisorCounts;
 }
@@ -61,11 +58,6 @@ function getTopPerformingOfficersWithScores($pdo) {
 }
 
 $topOfficers = getTopPerformingOfficersWithScores($pdo);
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +69,7 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
-    <style>
-        body{ font: 14px sans-serif; text-align: center; }
-        </style>
+
 </head>
 
 <body>
@@ -90,6 +80,8 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
         <h1 class="display-4">Welcome to your management dashboard, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1> 
         <p class="lead">From here you can view employees, search for submissions and see KPI's/targets.</p>
     </div>
+
+    <div class="container">
     <div class="mt-4">
     <h2>Research Officer Count per Supervisor</h2>
     <table class="table">
@@ -121,7 +113,6 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
         </tbody>
     </table>
 </div>
-
 
 <div class="mt-4">
     <h2>Top Performing Officers</h2>

@@ -2,13 +2,61 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-require_once __DIR__ . '/../database/db_config.php'; 
+require_once __DIR__ . '/../database/db_config.php';
 
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    echo "Please log in to access the website.";
-    header("location: login.php");
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: /path/to/login.php');
     exit;
 }
+
+$loggedInUserId = $_SESSION['id'] ?? null;
+$userScores = [];
+$reportsToData = [];
+
+if ($loggedInUserId) {
+    $sqlScores = "SELECT * FROM user_scores WHERE User_ID = ?";
+    
+    if ($stmt = $mysqli->prepare($sqlScores)) {
+        $stmt->bind_param("i", $loggedInUserId);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $userScores = $result->fetch_assoc();
+        } else {
+            error_log("Error executing user scores statement: " . $stmt->error, 3, "/path/to/your/error.log");
+        }
+        $stmt->close();
+    } else {
+        error_log("Error preparing user scores statement: " . $mysqli->error, 3, "/path/to/your/error.log");
+    }
+
+    $minimumRequiredScore = 42;
+    $maximumScore = 55;
+    $totalScore = $userScores['Total_Score'] ?? 0; 
+    $scoreToMin = $minimumRequiredScore - $totalScore;
+    $scoreToMax = $maximumScore - $totalScore;
+    $scoreToMinText = $scoreToMin > 0 ? "You need at least {$scoreToMin} more to reach the minimum of {$minimumRequiredScore}." : "You have reached the minimum score.";
+    $scoreToMaxText = $scoreToMax > 0 ? "You need {$scoreToMax} more to reach the maximum of {$maximumScore}." : "You have reached the maximum score.";
+}
+
+if ($loggedInUserId) {
+    $sqlReportsTo = "SELECT 
+    u1.Username AS OfficerUsername, 
+    u2.Username AS ReportsToUsername,
+    u2.First_Name AS SupervisorFirstName
+FROM 
+    user u1
+LEFT JOIN 
+    user u2 ON u1.Reports_To = u2.User_ID
+WHERE 
+    u1.User_ID = ?";
+
+
+
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +80,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
 <section>
+<div class="container mt-5">
+<?php if ($totalScore >= 42): ?>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
+    </div>
+<?php else: ?>
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
+    </div>
+<?php endif; ?>
+
     <div class="container mt-5">
         <div class="jumbotron">
             <h1 class="display-4">Hello, <?= htmlspecialchars($_SESSION["username"]); ?>!</h1>
@@ -55,55 +114,57 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
         
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Submissions Over the Last 7 Days</h5>
-          <canvas id="submissionsChart" width="400" height="200"></canvas>
+        <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Submissions Over the Last 7 Days</h5>
+            <canvas id="submissionsChart"></canvas>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-// This data should come from your database
-const submissionsData = [
-    { date: '2024-04-06', count: 10 },
-    { date: '2024-04-07', count: 7 },
-    { date: '2024-04-08', count: 14 },
-    { date: '2024-04-09', count: 5 },
-    { date: '2024-04-10', count: 8 },
-    { date: '2024-04-11', count: 15 },
-    { date: '2024-04-12', count: 11 }
-];
+  <!-- Your script to fetch the data and render the chart -->
+  <script>
+    // Fetch the data from your PHP endpoint
+    fetch('get_submissions.php')
+    .then(response => response.json())
+    .then(data => {
+  console.log(data); // Check the data format in the console
+      // Convert the returned data into a format that Chart.js can understand
+      const labels = data.map(entry => entry.SubmissionDate);
+      const submissionCounts = data.map(entry => entry.SubmissionCount);
 
-const labels = submissionsData.map(entry => entry.date);
-const data = submissionsData.map(entry => entry.count);
-
-const chartData = {
-    labels: labels,
-    datasets: [{
-        label: 'Submissions Over the Last 7 Days',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: data,
-    }]
-};
-
-const config = {
-    type: 'line',
-    data: chartData,
-    options: {}
-};
-
-const submissionsChart = new Chart(
-    document.getElementById('submissionsChart'),
-    config
-);
-</script>
+      // Render the chart
+      const ctx = document.getElementById('submissionsChart').getContext('2d');
+      const submissionsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Submissions',
+            data: submissionCounts,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  </script>
 </div>
 
         <div class="row justify-content-center my-5">

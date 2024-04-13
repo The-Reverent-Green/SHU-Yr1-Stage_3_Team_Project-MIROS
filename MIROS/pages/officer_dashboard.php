@@ -60,11 +60,11 @@ WHERE
             $result = $stmt->get_result();
             $reportsToData = $result->fetch_assoc();
         } else {
-            error_log("Error executing reports to statement: " . $stmt->error, 3, "/path/to/your/error.log");
+            error_log("Error executing reports to statement: " . $stmt->error, 3,);
         }
         $stmt->close();
     } else {
-        error_log("Error preparing reports to statement: " . $mysqli->error, 3, "/path/to/your/error.log");
+        error_log("Error preparing reports to statement: " . $mysqli->error, 3,);
     }
 }
 
@@ -88,6 +88,18 @@ WHERE
     <?php require_once __DIR__ . '/../includes/header.php';?>
         <nav id="navbar">Loading Navigation bar...</nav>
     <section>
+    <div class="container mt-5">
+    <?php if ($totalScore >= 42): ?>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
+    </div>
+<?php else: ?>
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
+    </div>
+<?php endif; ?>
+
+       
         <div class="container mt-5">
             <div class="jumbotron">
                 <h1 class="display-4" style="text-align: center;">Dashboard for <?= htmlspecialchars($_SESSION["username"]); ?></h1>
@@ -139,7 +151,7 @@ WHERE
             $missingCategories = [];
 
             foreach ($categories as $category) {
-                if (empty($userScores[$category]) || $userScores[$category] < 1) {
+                if (empty($userScores[$category]) || $userScores[$category] <0.1) {
                     $missingCategories[] = $category;
                 }
             }
@@ -156,7 +168,7 @@ WHERE
                     Time remaining this year to reach goals: <strong><?= $daysUntilEndOfYear ?> days</strong>.<br>
                     <?php if (!empty($missingCategories)): ?>
                         <br>
-                        Missing minimum points in the following categories: <strong><?= htmlspecialchars($missingCategoriesList) ?></strong>.
+                        Missing a verified submission in the following categories: <strong><?= htmlspecialchars($missingCategoriesList) ?></strong>.
                     <?php else: ?>
                         You have scored at least one point in every category.
                     <?php endif; ?>
