@@ -27,29 +27,35 @@ function return_Nav_Array(){
             'Shutdown'          =>'admin_shutdown.php'
         ]
     ];
-    
-    $notLoggedInLinks = [
+    return array_merge(
+        ['Home' => 'index.php', 'Profile' => 'profile.php'],
+        [strtolower($_SESSION["role"])=>$role[ strtolower($_SESSION["role"]) ]],
+        ['Log out' => 'logout.php']
+    );
+};
+
+function notLoggedIn(){
+    return [
         'Create Account'=>'register_user.php',
         'Contact'       =>'contact_guest.php',
         'Login'         =>'login.php'
     ];
-    if (isset($_SESSION["role"])){
-        return array_merge(
-            ['Home' => 'index.php', 'Profile' => 'profile.php'],
-            [strtolower($_SESSION["role"])=>$role[ strtolower($_SESSION["role"]) ]],
-            ['Log out' => 'logout.php']
-        );
-    } else {
-        return $notLoggedInLinks;
-    }
-};
+}
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getNav') {
     header('Content-Type: application/json');
-    print(json_encode(
-            ['role' => strtolower($_SESSION["role"]),
-            'links'=>return_Nav_Array()
+    if (isset($_SESSION["role"])){
+        print(json_encode(
+                ['role' => strtolower($_SESSION["role"]),
+                'links'=>return_Nav_Array()
+                ]
+            )
+        );
+    } else {
+        print(json_encode(
+            ['role' => 'logged out',
+            'links'=> notLoggedIn()
             ]
-        )
-    );
+        ));
+    }
     exit;
 }
