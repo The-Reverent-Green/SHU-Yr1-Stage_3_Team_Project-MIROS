@@ -20,8 +20,8 @@ header {
     display: flex;
     justify-content: left;
     float: left;
-    width: 19%; /* Adjusted to make the logo smaller */
-    max-width: 200px; /* You can set a max-width if necessary */
+    width: 19%; 
+    max-width: 200px; 
 
 
 }
