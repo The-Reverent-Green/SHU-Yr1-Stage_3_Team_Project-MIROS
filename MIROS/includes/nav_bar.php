@@ -23,7 +23,6 @@ function return_Nav_Array(){
             'Dashboard'         =>'admin_dashboard.php',
             'All users'         =>'all_users.php',
             'Assign'            =>'assign_roles.php',
-            'Contact enquires'  =>'contact_admin_open.php',
             'Shutdown'          =>'admin_shutdown.php'
         ]
     ];
