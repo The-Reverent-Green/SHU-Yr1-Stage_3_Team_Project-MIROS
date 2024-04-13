@@ -160,7 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <section class="vh-100">
+    
 <div class="wrapper">
+<h1>Upload Submissions</h1>
+
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <label for="category">Category:</label>
         <br>

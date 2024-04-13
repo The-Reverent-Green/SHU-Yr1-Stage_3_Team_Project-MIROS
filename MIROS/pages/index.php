@@ -114,58 +114,6 @@ WHERE
             </div>
         </div>
         
-        <div class="container mt-5">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Submissions Over the Last 7 Days</h5>
-            <canvas id="submissionsChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Your script to fetch the data and render the chart -->
-  <script>
-    // Fetch the data from your PHP endpoint
-    fetch('get_submissions.php')
-    .then(response => response.json())
-    .then(data => {
-  console.log(data); // Check the data format in the console
-      // Convert the returned data into a format that Chart.js can understand
-      const labels = data.map(entry => entry.SubmissionDate);
-      const submissionCounts = data.map(entry => entry.SubmissionCount);
-
-      // Render the chart
-      const ctx = document.getElementById('submissionsChart').getContext('2d');
-      const submissionsChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Submissions',
-            data: submissionCounts,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-  </script>
-</div>
 
         <div class="row justify-content-center my-5">
             <div class="col-md-6">
@@ -179,14 +127,6 @@ WHERE
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
