@@ -1,6 +1,6 @@
 <?php // getUsernames.php
 
-include 'db_config.php'; 
+require_once 'db_config.php'; 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['searchTerm'])){
     // Use the search term from the query parameters
     $searchTerm = $_GET['searchTerm'] . '%';
@@ -21,4 +21,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['searchTerm'])){
     // Encode and return the usernames as a JSON array
     echo json_encode($usernames);
 }
-?>

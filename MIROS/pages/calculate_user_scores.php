@@ -14,7 +14,8 @@ function calculateAndPopulateUserScores($pdo, $userId) {
     ];
 
     for ($category = 'A'; $category <= 'G'; $category++) {
-        $stmt = $pdo->prepare("SELECT SUM(score) FROM submissions WHERE User_ID = :userId AND Category_ID = (SELECT Category_ID FROM categories WHERE Category_Name = :categoryName)");
+        $getUsersPerformanceScore = "SELECT SUM(score) FROM submissions WHERE User_ID = :userId AND Category_ID = (SELECT Category_ID FROM categories WHERE Category_Name = :categoryName)";
+        $stmt = $pdo->prepare($getUsersPerformanceScore);
         $stmt->execute([':userId' => $userId, ':categoryName' => 'Category ' . $category]);
         $scores['Score_' . $category] = (int) $stmt->fetchColumn();
         $scores['Total_Score'] += $scores['Score_' . $category];

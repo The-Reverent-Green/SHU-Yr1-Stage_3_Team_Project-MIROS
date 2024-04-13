@@ -5,25 +5,18 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once __DIR__ . '/../database/db_config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-
-    $stmt = $mysqli->prepare("INSERT INTO contact (First_Name, Last_Name, contact_email, contact_message) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $first_name, $last_name, $email, $message);
+    $insert_new_message_from_guest_user = "INSERT INTO contact (First_Name, Last_Name, contact_email, contact_message) VALUES (?, ?, ?, ?)";  
+    $stmt = $mysqli->prepare($insert_new_message_from_guest_user);
+    $stmt->bind_param("ssss", $_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['message']);
 
     if ($stmt->execute()) {
         echo "<script>alert('Contact information submitted successfully.');</script>";
     } else {
         echo "<script>alert('Error: " . $stmt->error . "');</script>";
     }
-
     $stmt->close();
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>

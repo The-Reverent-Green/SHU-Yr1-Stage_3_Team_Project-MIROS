@@ -32,7 +32,6 @@ function return_Nav_Array(){
         'Contact'       =>'contact_guest.php',
         'Login'         =>'login.php'
     ];
-    
     if (isset($_SESSION["role"])){
         return array_merge(
             ['Home' => 'index.php', 'Profile' => 'profile.php'],

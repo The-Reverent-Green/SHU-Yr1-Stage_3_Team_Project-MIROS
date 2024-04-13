@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-
 <html lang = "en"> 
-    
-    <head> 
+    <head>
         <link rel="stylesheet" href="../css/header.css" />
-    </head> 
-     
+    </head>
     <header>
         <div class = "outer">
             <img class="headerLogo"src="../images/transparent-logo.png" alt="MIROS logo">
@@ -14,5 +11,4 @@
                 <p>The Official Performance Tracking & Management System of <span><br>Malaysian Institute of Road Safety Research</span><br>Institut Penyelidikan Keselamatan Jalan Raya Malaysia</p>
             </div>
         </div>
-
     </header>

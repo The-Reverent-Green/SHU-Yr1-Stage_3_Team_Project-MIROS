@@ -4,27 +4,20 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../database/db_config.php';
 
-
-$id = $_SESSION['id'];
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $contact_message = $_POST['contact_message'];
-
     $status = "Opened";
-
-    $stmt = $mysqli->prepare("INSERT INTO contact (User_ID, contact_message, Status) VALUES (?, ?, ?)");
-    $stmt->bind_param("iss", $id, $contact_message, $status);
+    $save_new_message = "INSERT INTO contact (User_ID, contact_message, Status) VALUES (?, ?, ?)";
+    $stmt = $mysqli->prepare($save_new_message);
+    $stmt->bind_param("iss", $_SESSION['id'], $_POST['contact_message'], $status);
 
     if ($stmt->execute()) {
         $success_message = "Contact information submitted successfully.";
     } else {
         $error_message = "Error: " . $stmt->error;
     }
-
     $stmt->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

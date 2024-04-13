@@ -14,26 +14,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
         }
     }
 }
-
 $sql = "SELECT user_id, username, first_name, last_name, last_log_in FROM user WHERE role IS NULL";
 $result = $mysqli->query($sql);
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
-$sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
-$resultContact = $mysqli->query($sqlContact);
+$getOpenedContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
+$resultContact = $mysqli->query($getOpenedContact);
 $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     $contactId = $_POST['Contact_ID'];
     $newStatus = $_POST['Status'];
-
-    $stmt = $mysqli->prepare("UPDATE contact SET Status = ? WHERE Contact_ID = ?");
+    $updateContactMsg = "UPDATE contact SET Status = ? WHERE Contact_ID = ?";
+    $stmt = $mysqli->prepare($updateContactMsg);
     $stmt->bind_param("si", $newStatus, $contactId);
     $stmt->execute();
     $stmt->close();
     
-    $sqlContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
-    $resultContact = $mysqli->query($sqlContact);
+    $getClosedContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status != 'Closed'";
+    $resultContact = $mysqli->query($getClosedContact);
     $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 }
 ?>

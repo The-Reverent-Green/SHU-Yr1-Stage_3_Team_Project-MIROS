@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jpg', 'png', 'jpeg', 'gif', // Images
             'pdf', // PDFs
             'doc', 'docx', // Word Documents
-            'ppt', 'pptx', // PowerPoint Presentations
+            'ppt', 'pptx','key', // PowerPoint/Keynote Presentations
             'xls', 'xlsx', // Excel Spreadsheets
             'txt', // Text Files
             'md', // Markdown Files
@@ -47,8 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'psd', // Photoshop Files
             'dwg', // Technical Drawing Files
             'bmp', // Bitmap Images
-            'key', // Keynote Presentations
-            'mp3', 'wav', 'm4a', // Audio Files
+            'mp3', 'wav', 'm4a','flac', // Audio Files
             'mp4', 'mov', 'wmv', 'avi', 'm4v', 'flv', // Video Files
         ];
                 

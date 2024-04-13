@@ -57,6 +57,3 @@ foreach ($categoryScores as $category => $user_scores) {
         }
     }
 }
-
-
-?>
