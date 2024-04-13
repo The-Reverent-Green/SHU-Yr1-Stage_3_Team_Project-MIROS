@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['roles'])) {
         }
     }
 }
-$sql = "SELECT user_id, username, first_name, last_name, last_log_in FROM user WHERE role IS NULL";
-$result = $mysqli->query($sql);
+$any_users_rithout_roles = "SELECT user_id, username, first_name, last_name, last_log_in FROM user WHERE role IS NULL";
+$result = $mysqli->query($any_users_rithout_roles);
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
-$getOpenedContact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
-$resultContact = $mysqli->query($getOpenedContact);
+$opened_contact = "SELECT Contact_ID, User_ID, contact_message, contact_email, First_Name, Last_Name, Status FROM contact WHERE Status = 'Opened'";
+$resultContact = $mysqli->query($opened_contact);
 $contactDetails = $resultContact ? $resultContact->fetch_all(MYSQLI_ASSOC) : [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {

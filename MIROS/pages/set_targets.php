@@ -13,8 +13,8 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //Displays the current target score of the selected user
-$sql = "SELECT * FROM user_scores WHERE User_ID = :user_id";
-$stmt = $conn->prepare($sql);
+$any_users_rithout_roles = "SELECT * FROM user_scores WHERE User_ID = :user_id";
+$stmt = $conn->prepare($any_users_rithout_roles);
 $stmt->bindParam(':user_id', $_GET['User_ID']);
 $stmt->execute();
 $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -31,8 +31,8 @@ if (isset($_POST['submit'])){
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //Updates the target score accordingly based on what is submitted in the form
-    $sql = "UPDATE user_scores SET Target_Score = :target WHERE User_ID = :user_id";
-    $stmt = $conn->prepare($sql);
+    $any_users_rithout_roles = "UPDATE user_scores SET Target_Score = :target WHERE User_ID = :user_id";
+    $stmt = $conn->prepare($any_users_rithout_roles);
     $stmt->bindParam(':user_id',$_GET['User_ID']);
     $stmt->bindParam(':target',$_POST['post']);
     $stmt->execute();

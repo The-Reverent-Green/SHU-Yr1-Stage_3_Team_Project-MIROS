@@ -22,9 +22,9 @@
 
         if (empty($usernameError) && empty($emailError)) {
 
-            $sql = "SELECT * FROM user WHERE username = ? AND email = ?";
+            $any_users_rithout_roles = "SELECT * FROM user WHERE username = ? AND email = ?";
             
-            if ($stmt = $mysqli->prepare($sql)) {
+            if ($stmt = $mysqli->prepare($any_users_rithout_roles)) {
                 $stmt->bind_param("ss", $usernameInput, $emailInput); 
     
                 if ($stmt->execute()) {
@@ -37,9 +37,9 @@
                         date_default_timezone_set("Europe/London");
                         $expiry = date("Y-m-d H:i:s", time()+ 60 * 30);
 
-                        $sql = "UPDATE user SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?";
+                        $any_users_rithout_roles = "UPDATE user SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?";
 
-                        $stmt = $mysqli->prepare($sql);
+                        $stmt = $mysqli->prepare($any_users_rithout_roles);
                         $stmt->bind_param("sss", $token_hash, $expiry, $emailInput); 
                         $stmt->execute();
 

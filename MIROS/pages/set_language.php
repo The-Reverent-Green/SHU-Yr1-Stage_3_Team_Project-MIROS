@@ -6,4 +6,3 @@ if (isset($_POST['lang'])) {
 } else {
     echo 'No language provided';
 }
-?>

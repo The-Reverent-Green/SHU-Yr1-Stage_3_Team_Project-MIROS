@@ -35,10 +35,10 @@ if (isset($_POST['verify'])){
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = "UPDATE submissions SET Verified = 'yes' WHERE Submission_ID = :sub_id";
-    $sql = $conn->prepare($stmt);
-    $sql->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);
+    $any_users_rithout_roles = $conn->prepare($stmt);
+    $any_users_rithout_roles->bindParam(':sub_id', $_GET['Submission_ID'], SQLITE3_TEXT);
 
-    $sql->execute();
+    $any_users_rithout_roles->execute();
     header("Location:submission_overview.php");
 }
 ?>

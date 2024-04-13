@@ -9,8 +9,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 $updateMessage = "";
 
 $user_id = $_SESSION["id"];
-$sql = "SELECT * FROM user WHERE User_ID = ?";
-if ($stmt = $mysqli->prepare($sql)) {
+$any_users_rithout_roles = "SELECT * FROM user WHERE User_ID = ?";
+if ($stmt = $mysqli->prepare($any_users_rithout_roles)) {
     $stmt->bind_param("i", $user_id);
     if ($stmt->execute()) {
         $result = $stmt->get_result();

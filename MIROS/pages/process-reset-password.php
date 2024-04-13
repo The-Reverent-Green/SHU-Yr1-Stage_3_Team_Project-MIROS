@@ -13,9 +13,9 @@ $resetError = $_POST["resetError"];
 if (!empty($token)) {
 
     $token_hash = hash("sha256", $token);
-    $sql = "SELECT User_ID, reset_token_expires_at FROM user WHERE reset_token_hash = ?";
+    $any_users_rithout_roles = "SELECT User_ID, reset_token_expires_at FROM user WHERE reset_token_hash = ?";
     
-    $stmt = $mysqli->prepare($sql);
+    $stmt = $mysqli->prepare($any_users_rithout_roles);
     $stmt->bind_param("s", $token_hash);
     $stmt->execute();
 
@@ -47,8 +47,8 @@ if (!empty($token)) {
                 
                 $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
                 
-                $sql = "UPDATE user SET passwordHash = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE User_ID = ?";
-                $stmt = $mysqli->prepare($sql); 
+                $any_users_rithout_roles = "UPDATE user SET passwordHash = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE User_ID = ?";
+                $stmt = $mysqli->prepare($any_users_rithout_roles); 
                 $stmt->bind_param("ss", $passwordHash, $id); 
                 $stmt->execute();
 
