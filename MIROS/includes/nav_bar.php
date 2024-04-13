@@ -5,26 +5,56 @@ session_start();
 }
 
 function return_Nav_Array(){
+    [
+    'R_Dashboard'       =>'officer_dashboard.php',
+    'R_Submit research'   =>'create_submission.php',
+    
+    'S_Dashboard'       =>'management_dashboard.php',
+    'S_Published research'=>'management_dashboard.php',
+    'S_Preformance'       =>'officers_overview.php',
+    
+    'M_Dashboard'         =>'management_dashboard.php',
+    'M_Published Research'=>'research.php',
+    'M_Preformance'       =>'officers_overview.php',
+        
+    'A_Dashboard'         =>'admin_dashboard.php',
+    'A_All users'         =>'all_users.php',
+    'A_Assign'            =>'assign_roles.php',
+    'A_Shutdown'          =>'admin_shutdown.php',
+    
+    
+    
+    'Create Submission'=>'create_submission.php',
+    'Delete Submission'=>'delete_submission.php',
+    'View Submissions'=>'officer_view_submissions.php',
+];
     $role = [
         'research officer' => [//Research Officer
             'Dashboard'       =>'officer_dashboard.php',
-            'Submit research' =>'create_submission.php'
+            'Submit research' =>'create_submission.php',
+            //'View Submissions'=>'officer_view_submissions.php',
+            'Create Submission'=>'create_submission.php',
+            'Delete Submission'=>'delete_submission.php',
         ],
         'supervisor' => [//Supervisor
             'Dashboard'         =>'management_dashboard.php',
             'Published research'=>'management_dashboard.php',
-            'Preformance'       =>'officers_overview.php'
+            'Preformance'       =>'officers_overview.php',
+            'View Submissions'=>'officer_view_submissions.php',
         ],
         'top manager' => [//Top Manager
             'Dashboard'         =>'management_dashboard.php',
             'Published Research'=>'research.php',
-            'Preformance'       =>'officers_overview.php'
+            'Preformance'       =>'officers_overview.php',
+            'View Submissions'=>'officer_view_submissions.php',
         ],
         'admin' => [//Admin
             'Dashboard'         =>'admin_dashboard.php',
             'All users'         =>'all_users.php',
             'Assign'            =>'assign_roles.php',
-            'Shutdown'          =>'admin_shutdown.php'
+            'Shutdown'          =>'admin_shutdown.php',
+            'Contact Guest'=>'contact_guest.php',
+            'Contact User'=>'contact_user.php',
         ]
     ];
     return array_merge(

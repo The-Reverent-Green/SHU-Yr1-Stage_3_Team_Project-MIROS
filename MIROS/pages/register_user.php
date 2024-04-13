@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter a username.";
     } else {
-        $sql = "SELECT User_ID FROM user WHERE Username = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
+        $any_users_rithout_roles = "SELECT User_ID FROM user WHERE Username = ?";
+        if ($stmt = $mysqli->prepare($any_users_rithout_roles)) {
             $stmt->bind_param("s", $param_username);
             $param_username = trim($_POST["username"]);
             if ($stmt->execute()) {
@@ -53,8 +53,8 @@ if(empty($email_input)){
 } else {
     $param_email = strtolower($email_input);
     
-    $sql = "SELECT User_ID FROM user WHERE Email = ?";
-    if($stmt = $mysqli->prepare($sql)){
+    $any_users_rithout_roles = "SELECT User_ID FROM user WHERE Email = ?";
+    if($stmt = $mysqli->prepare($any_users_rithout_roles)){
         $stmt->bind_param("s", $param_email);
         
         if($stmt->execute()){
@@ -92,8 +92,8 @@ if(empty($email_input)){
 
    if (empty($first_name_err) && empty($last_name_err) && empty($username_err) && empty($date_of_birth_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
         
-    $sql = "INSERT INTO user (First_name, Last_Name, Username, Date_of_birth, Email, PasswordHash) VALUES (?, ?, ?, ?, ?, ?)";
-    if ($stmt = $mysqli->prepare($sql)) {
+    $any_users_rithout_roles = "INSERT INTO user (First_name, Last_Name, Username, Date_of_birth, Email, PasswordHash) VALUES (?, ?, ?, ?, ?, ?)";
+    if ($stmt = $mysqli->prepare($any_users_rithout_roles)) {
         $stmt->bind_param("ssssss", $param_first_name, $param_last_name, $param_username, $param_date_of_birth, $param_email, $param_password_hash);
 
         $param_first_name = $first_name;

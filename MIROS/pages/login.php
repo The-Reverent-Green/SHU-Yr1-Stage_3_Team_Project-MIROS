@@ -31,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT User_ID, Username, PasswordHash, Role, Account_Status, First_name FROM user WHERE Username = ?";
+        $any_users_rithout_roles = "SELECT User_ID, Username, PasswordHash, Role, Account_Status, First_name FROM user WHERE Username = ?";
         
-        if ($stmt = $mysqli->prepare($sql)) {
+        if ($stmt = $mysqli->prepare($any_users_rithout_roles)) {
             $stmt->bind_param("s", $param_username);
             $param_username = $username;
 

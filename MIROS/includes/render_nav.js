@@ -21,7 +21,9 @@ function appendLink(ul, key, value) {
     const li = document.createElement('li');
     li.textContent = key;
     li.classList.add('nav-item');
-    
+    /*if (thisPage() === value){
+        li.classList.add('current-page');
+    }*/
     if (typeof value === 'string') {
         li.addEventListener('click', () => {
             window.location.href = value;
@@ -88,14 +90,14 @@ function thisPage(inputUrl){
     const pathname = url.pathname;
     const filename = pathname.substring(pathname.lastIndexOf('/') + 1);// Extract the last segment of the path, which is the file name
     // Remove the extension and get the base file name
-    const baseName = filename.split('.')[0]; // Split on the dot and take the first element
-    console.log(baseName);
+    const basename = filename.split('.')[0]; // Split on the dot and take the first element
+    console.log(basename);
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('render_nav.js was called from:', window.location);
-    thisPage(window.location)
+    thisPage(window.location);
     addStylesheet('../css/nav_bar.css');
     addStylesheet('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css', 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'anonymous');
     addStylesheet('../css/bootstrap.css');

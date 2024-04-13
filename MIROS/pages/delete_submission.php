@@ -37,10 +37,10 @@ if (isset($_POST['delete'])){
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = "DELETE FROM submissions WHERE Submission_ID = :sub_id";
-    $sql = $conn->prepare($stmt);
-    $sql->bindParam(':sub_id', $_GET['Submission_ID']);
+    $any_users_rithout_roles = $conn->prepare($stmt);
+    $any_users_rithout_roles->bindParam(':sub_id', $_GET['Submission_ID']);
 
-    $sql->execute();
+    $any_users_rithout_roles->execute();
     header("Location:submission_overview.php");
 }
 ?>

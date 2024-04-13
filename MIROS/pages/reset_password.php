@@ -10,9 +10,9 @@
         
         $token = $_GET["token"];
         $token_hash = hash("sha256", $token);
-        $sql = "SELECT * FROM user WHERE reset_token_hash = ?";
+        $any_users_rithout_roles = "SELECT * FROM user WHERE reset_token_hash = ?";
     
-        $stmt = $mysqli -> prepare($sql);
+        $stmt = $mysqli -> prepare($any_users_rithout_roles);
         $stmt->bind_param("s", $token_hash);
         $stmt->execute();
 
