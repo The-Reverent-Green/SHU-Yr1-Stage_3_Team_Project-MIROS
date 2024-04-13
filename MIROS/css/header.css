@@ -16,12 +16,22 @@ header {
 
 .headerLogo {
     margin-left: 5%;
-    margin-top: 1%;
+    margin: 1%;
     display: flex;
     justify-content: left;
     float: left;
-    width: 19%;
+    width: 19%; /* Adjusted to make the logo smaller */
+    max-width: 200px; /* You can set a max-width if necessary */
+
+
 }
+
+.headerLogo img {
+    max-width: 100%;
+    height: auto;
+
+}
+
 
 .headerText {
     position: absolute;
@@ -34,6 +44,7 @@ header {
 }
 
 .headerText p span {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
+    
 }
