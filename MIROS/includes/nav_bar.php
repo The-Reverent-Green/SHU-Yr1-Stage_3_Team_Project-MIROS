@@ -3,6 +3,7 @@
 if (session_status() == PHP_SESSION_NONE) {
 session_start();
 }
+
 function return_Nav_Array(){
     $role = [
         'research officer' => [//Research Officer
