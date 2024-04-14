@@ -23,11 +23,11 @@ if ($loggedInUserId) {
             $result = $stmt->get_result();
             $userScores = $result->fetch_assoc();
         } else {
-            error_log("Error executing user scores statement: " . $stmt->error, 3, "/path/to/your/error.log");
+            error_log("Error executing user scores statement: " . $stmt->error, 3,);
         }
         $stmt->close();
     } else {
-        error_log("Error preparing user scores statement: " . $mysqli->error, 3, "/path/to/your/error.log");
+        error_log("Error preparing user scores statement: " . $mysqli->error, 3,);
     }
 
     $minimumRequiredScore = 42;
@@ -68,6 +68,16 @@ WHERE
     }
 }
 
+$categories = ['Cat_A', 'Cat_B', 'Cat_C', 'Cat_D', 'Cat_E', 'Cat_F', 'Cat_G'];
+$hasMinimumInEachCategory = true; // Assume the user has minimum points in each category
+
+foreach ($categories as $category) {
+    if (empty($userScores[$category]) || $userScores[$category] < 0.1) {
+        $hasMinimumInEachCategory = false;
+        break; // Exit the loop as soon as one category doesn't meet the criteria
+    }
+}
+
 ?>
 
 
@@ -89,15 +99,20 @@ WHERE
         <nav id="navbar">Loading Navigation bar...</nav>
     <section>
     <div class="container mt-5">
-    <?php if ($totalScore >= 42): ?>
+    <?php if ($totalScore >= 42 && $hasMinimumInEachCategory): ?>
     <div class="alert alert-success" role="alert" style="text-align: center;">
-        CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
+        CONGRATULATIONS! You've achieved the minimum score requirement and have points in every category for an end-of-year review.
     </div>
-<?php else: ?>
+    <?php elseif ($totalScore >= 42): ?>
     <div class="alert alert-warning" role="alert" style="text-align: center;">
-        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
+        You've reached the minimum score of 42 but are missing points in some categories.
     </div>
-<?php endif; ?>
+    <?php else: ?>
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end-of-year review. Additionally, ensure you have at least one point in each category.
+    </div>
+    <?php endif; ?>
+</div>
 
        
         <div class="container mt-5">

@@ -52,11 +52,11 @@ WHERE
     u1.User_ID = ?";
 
 
-
 $role = $_SESSION['role'] ?? null;  
 
 if ($role === 'research officer') {
 }
+
 }
 
 
@@ -86,19 +86,24 @@ if ($role === 'research officer') {
 <?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
 <section>
-<?php if ($role === 'research officer'): ?>
-    <div class="container mt-5">
-        <?php if ($totalScore >= 42): ?>
-            <div class="alert alert-success" role="alert" style="text-align: center;">
-                CONGRATULATIONS YOU'VE ACHIEVED THE MINIMUM SCORE REQUIREMENT FOR AN END OF YEAR REVIEW
-            </div>
-        <?php else: ?>
-            <div class="alert alert-warning" role="alert" style="text-align: center;">
-                WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end of year review.
-            </div>
-        <?php endif; ?>
+<?php if ($role === 'Research Officer'): ?>
+<div class="container mt-5">
+    <?php if ($totalScore >= 42 && $hasMinimumInEachCategory): ?>
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        CONGRATULATIONS! You've achieved the minimum score requirement and have points in every category for an end-of-year review.
     </div>
+    <?php elseif ($totalScore >= 42): ?>
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        You've reached the minimum score of 42 but are missing points in some categories.
+    </div>
+    <?php else: ?>
+    <div class="alert alert-warning" role="alert" style="text-align: center;">
+        WARNING: You need <?= 42 - $totalScore ?> more points to reach the minimum score of 42 required for an end-of-year review. Additionally, ensure you have at least one point in each category.
+    </div>
+    <?php endif; ?>
+</div>
 <?php endif; ?>
+
 
 
     <div class="container mt-5">

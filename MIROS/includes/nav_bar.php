@@ -33,21 +33,22 @@ function return_Nav_Array(){
             'Dashboard'       =>'officer_dashboard.php',
             'Submit research' =>'create_submission.php',
             'View Submissions'=>'officer_view_submissions.php',
-            'Contact User'=>'contact_user.php',
+            'Contact Admin'=>'contact_user.php',
 
         ],
         'supervisor' => [//Supervisor
-            'Dashboard'         =>'supervisor_dashboard.php',
             'Supervisor Team'=>'supervisor_team.php',
             'Awaiting Verification' => 'submission_overview.php',
-            'Contact User'=>'contact_user.php',
+            'View Submissions'         =>'supervisor_view_all.php',
+
+            'Contact Admin'=>'contact_user.php',
 
         ],
         'top manager' => [//Top Manager
             'Dashboard'         =>'management_dashboard.php',
             'Submission Search'=>'research.php',
             'Assign'            =>'assign_roles.php',
-            'Contact User'=>'contact_user.php',
+            'Contact Admin'=>'contact_user.php',
 
         ],
         'admin' => [//Admin
