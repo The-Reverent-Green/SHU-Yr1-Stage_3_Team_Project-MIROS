@@ -3,16 +3,14 @@
   background-size: auto;
   background-repeat: repeat;
   border-bottom: 1px solid #ccc;
-  padding: 1%;
-  
-
+  padding: 0.5%;  /* Reduced padding for a thinner navbar */
 }
 
 .nav-link {
   color: black;
   font-weight: 700;
   font-size: 15px;
-  text-align: center;
+  text-align: center;  /* Ensures text is centered */
 }
 
 .nav-link.active {
@@ -26,37 +24,36 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  text-align: center;
-  margin: 1%;
+  text-align: center;  /* Ensures text is centered */
+  padding: 10px 15px;  /* Adjust padding to ensure labels are well-centered */
+  margin: 0.5%;  /* Reduced margin */
 }
+
 .nav-item:hover {
   background-color: #ffffff;
 }
+
 .nav-item.current-page {
   background-color: gold;
 }
 
 .dropdown-menu {
-  display: none; 
+  display: none;
   position: absolute;
   left: 0;
-  top: 100%; 
+  top: 100%;
   text-align: left;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .nav-item:hover .dropdown-menu {
-  display: block; 
+  display: block;
 }
 
 .dropdown-link {
   font-weight: 700;
 }
 
-/* New style for admin-mode */
-.admin-mode {
-  background-color: yellow; /* Sets the background color to yellow for admin mode */
-}
 .nav-item.dropdown {
   position: relative;
 }
