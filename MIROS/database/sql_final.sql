@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 10:34 AM
+-- Generation Time: Apr 14, 2024 at 10:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,15 +71,16 @@ CREATE TABLE `contact` (
 INSERT INTO `contact` (`Contact_ID`, `User_ID`, `contact_message`, `contact_email`, `First_Name`, `Last_Name`, `Status`) VALUES
 (1, NULL, 'wasedrfgthyju', 'george.colley@centreplain.co.uk', 'George', 'Colley', 'Closed'),
 (2, NULL, 'aesdfghyujikol', '12345\'@gmail.com', 'q', 'wertyghj', 'Closed'),
-(3, NULL, 'is guest? Yes!', 'hi@gmail.com', 'hello', 'hi', 'Opened'),
+(3, NULL, 'is guest? Yes!', 'hi@gmail.com', 'hello', 'hi', 'Closed'),
 (4, NULL, 'is guest? Yes!', 'hi@gmail.com', 'hello', 'hi', 'Opened'),
 (5, NULL, 'Should be guest', 'aasdfg@gmail.com', 'asedrftgyhuj', 'asdfgh', 'Opened'),
-(6, NULL, '123456', '1234@gmail.com', '12345', '12345', 'Opened'),
-(7, 12, 'test', NULL, NULL, NULL, 'Opened'),
-(8, 12, 'test', NULL, NULL, NULL, 'Opened'),
-(9, 12, 'test', NULL, NULL, NULL, 'Opened'),
+(6, NULL, '123456', '1234@gmail.com', '12345', '12345', 'In Progress'),
+(7, 12, 'test', NULL, NULL, NULL, 'Closed'),
+(8, 12, 'test', NULL, NULL, NULL, 'Closed'),
+(9, 12, 'test', NULL, NULL, NULL, 'Closed'),
 (10, NULL, 'Help i\'ve forgetten my password my word id is 837643', 'jc@gmail.com', 'Jack', 'towersevans', 'Closed'),
-(11, 12, 'test post admin to admin', NULL, NULL, NULL, 'Opened');
+(11, 12, 'test post admin to admin', NULL, NULL, NULL, 'Opened'),
+(12, NULL, 'I cant access my account!', 'Tintin@miros.com', 'TinTin', 'McTintin', 'Opened');
 
 -- --------------------------------------------------------
 
@@ -154,66 +155,77 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`Submission_ID`, `User_ID`, `Category_ID`, `Item_ID`, `Sub_Item_ID`, `Description`, `Date_Of_Submission`, `Verified`, `Evidence_attachment`) VALUES
-(1, 21, 2, 2, NULL, 'General road safety in Malaysia', '2024-03-21 00:00:00', 'yes', NULL),
-(2, 25, 2, 2, NULL, 'Keeping roads clear going forward ', '2024-02-02 00:00:00', 'yes', NULL),
-(3, 17, 2, 2, NULL, 'Road safety: A reflective account', '2024-02-22 00:00:00', 'yes', NULL),
-(4, 14, 2, 2, NULL, 'A quantitative survey of potholes', '2024-01-26 00:00:00', 'yes', NULL),
-(5, 17, 2, 2, NULL, 'Specific road safety in Malaysia', '2024-01-11 00:00:00', 'yes', NULL),
-(6, 28, 2, 2, NULL, 'Integration of different road types', '2024-03-06 00:00:00', 'yes', NULL),
-(7, 26, 2, 2, NULL, 'Are road crossings truly effective?', '2024-03-08 00:00:00', 'yes', NULL),
-(8, 22, 2, 2, NULL, 'Increasing road size despite government cutbacks', '2024-02-24 00:00:00', 'yes', NULL),
-(9, 19, 2, 2, NULL, 'Motoring in the age of electricity', '2024-03-21 00:00:00', 'yes', NULL),
-(10, 18, 2, 2, NULL, 'Rising cost of concrete', '2024-03-17 00:00:00', 'yes', NULL),
-(11, 24, 2, 2, NULL, 'Malaysian madness: are roads really necessary?', '2024-01-29 00:00:00', 'yes', NULL),
-(12, 24, 2, 2, NULL, 'Speed-zones in proximity to schools', '2024-01-04 00:00:00', 'yes', NULL),
-(13, 27, 2, 2, NULL, 'Wild weather and even wilder roads', '2024-02-25 00:00:00', 'yes', NULL),
-(14, 19, 2, 2, NULL, 'Hill gradients and possible problems that may arise', '2024-02-02 00:00:00', 'yes', NULL),
-(15, 15, 2, 2, NULL, 'Brakes breaks bones', '2024-01-07 00:00:00', 'yes', NULL),
-(16, 16, 2, 2, NULL, 'Are Malaysian road layouts the most efficient?', '2024-01-19 00:00:00', 'yes', NULL),
-(17, 21, 2, 2, NULL, 'Driving us all mad: A Paramedics story', '2024-03-05 00:00:00', 'yes', NULL),
-(18, 20, 2, 2, NULL, 'Pandemics, Paramedics and potholes', '2024-03-19 00:00:00', 'yes', NULL),
-(19, 24, 2, 2, NULL, 'Parking ticket price increase, cause for concern?', '2024-01-11 00:00:00', 'yes', NULL),
-(20, 23, 2, 2, NULL, 'A study of car horns and their decibel levels', '2024-02-17 00:00:00', 'yes', NULL),
-(40, 14, 2, 2, NULL, 'Efficiency of traffic light systems in Kuala Lumpur', '2024-04-01 00:00:00', 'yes', NULL),
-(41, 15, 2, 2, NULL, 'Impact of roadworks on commuter stress levels', '2024-04-02 00:00:00', 'yes', NULL),
-(42, 16, 2, 2, NULL, 'The role of street lighting in road safety in Penang', '2024-04-03 00:00:00', 'yes', NULL),
-(43, 17, 2, 2, NULL, 'Sustainability practices in Malaysian highway construction', '2024-04-04 00:00:00', 'yes', NULL),
-(44, 18, 2, 2, NULL, 'Analysis of pedestrian bridge usage in urban areas', '2024-04-05 00:00:00', 'yes', NULL),
-(45, 19, 2, 2, NULL, 'Adoption rates of electric vehicles and infrastructure in Malaysia', '2024-04-06 00:00:00', 'yes', NULL),
-(46, 20, 2, 2, NULL, 'Evaluating the condition of rural roads in East Malaysia', '2024-04-07 00:00:00', 'yes', NULL),
-(47, 14, 2, 2, NULL, 'Urban planning and road safety correlations in Malaysian cities', '2024-04-08 00:00:00', 'yes', NULL),
-(48, 15, 2, 2, NULL, 'The effects of seasonal weather on road integrity', '2024-04-09 00:00:00', 'yes', NULL),
-(49, 16, 2, 2, NULL, 'Traffic congestion patterns during festive seasons', '2024-04-10 00:00:00', 'yes', NULL),
-(50, 17, 2, 2, NULL, 'Road signage visibility and language inclusivity', '2024-04-11 00:00:00', 'yes', NULL),
-(51, 18, 2, 2, NULL, 'Exploring the usage of roundabouts for better traffic flow', '2024-04-12 00:00:00', 'yes', NULL),
-(52, 19, 2, 2, NULL, 'Impact of toll booths on traffic dispersion', '2024-04-13 00:00:00', 'yes', NULL),
-(53, 20, 2, 2, NULL, 'Smart city initiatives and the future of road transport', '2024-04-14 00:00:00', 'yes', NULL),
-(54, 14, 2, 2, NULL, 'Motorcycle safety on Malaysian expressways', '2024-04-15 00:00:00', 'yes', NULL),
-(55, 15, 2, 2, NULL, 'The prevalence of road rage incidents and their causes', '2024-04-16 00:00:00', 'yes', NULL),
-(56, 16, 2, 2, NULL, 'Effectiveness of speed bumps in residential areas', '2024-04-17 00:00:00', 'yes', NULL),
-(57, 17, 2, 2, NULL, 'Cross-border traffic issues and management', '2024-04-18 00:00:00', 'yes', NULL),
-(58, 18, 2, 2, NULL, 'Challenges faced by road maintenance crews', '2024-04-19 00:00:00', 'yes', NULL),
-(59, 14, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'yes', NULL),
-(61, 12, 4, 36, NULL, 'wow', '2024-04-05 10:17:36', 'yes', NULL),
-(62, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:18:28', 'yes', NULL),
-(63, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:09', 'yes', NULL),
-(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'yes', NULL),
-(65, 12, 5, 14, 32, 'How fast can a car really drive?', '2024-04-05 20:28:15', 'yes', NULL),
-(66, 12, 2, 3, NULL, 'Worked for another company for a week', '2024-04-05 20:38:48', 'yes', NULL),
-(67, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:44:23', 'yes', NULL),
-(68, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:46:08', 'yes', NULL),
-(69, 1, 5, 10, 19, 'Co-edited a book about fast roads and where to find them', '2024-04-05 20:46:36', 'yes', NULL),
-(70, 1, 3, 6, 3, 'Cat 3 ,sub c2 lead external', '2024-04-05 20:47:18', 'yes', NULL),
-(71, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:18', 'yes', NULL),
-(72, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:42', 'yes', NULL),
-(73, 1, 4, 8, NULL, 'a picture of tintin', '2024-04-11 17:33:17', 'yes', NULL),
+(1, 21, 2, 2, NULL, 'General road safety in Malaysia', '2024-03-21 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(2, 25, 2, 2, NULL, 'Keeping roads clear going forward ', '2024-02-02 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(3, 17, 2, 2, NULL, 'Road safety: A reflective account', '2024-02-22 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(4, 14, 2, 2, NULL, 'A quantitative survey of potholes', '2024-01-26 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(5, 17, 2, 2, NULL, 'Specific road safety in Malaysia', '2024-01-11 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(6, 28, 2, 2, NULL, 'Integration of different road types', '2024-03-06 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(7, 26, 2, 2, NULL, 'Are road crossings truly effective?', '2024-03-08 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(8, 22, 2, 2, NULL, 'Increasing road size despite government cutbacks', '2024-02-24 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(9, 19, 2, 2, NULL, 'Motoring in the age of electricity!!!! Cars are great', '2024-03-21 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(10, 18, 2, 2, NULL, 'Rising cost of concrete', '2024-03-17 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(11, 24, 2, 2, NULL, 'Malaysian madness: are roads really necessary?', '2024-01-29 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(12, 24, 2, 2, NULL, 'Speed-zones in proximity to schools', '2024-01-04 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(13, 27, 2, 2, NULL, 'Wild weather and even wilder roads', '2024-02-25 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(14, 19, 2, 2, NULL, 'Hill gradients and possible problems that may arise etc etc', '2024-02-02 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(16, 16, 2, 2, NULL, 'Are Malaysian road layouts the most efficient?', '2024-01-19 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(17, 21, 2, 2, NULL, 'Driving us all mad: A Paramedics story', '2024-03-05 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(18, 20, 2, 2, NULL, 'Pandemics, Paramedics and potholes', '2024-03-19 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(19, 24, 2, 2, NULL, 'Parking ticket price increase, cause for concern?', '2024-01-11 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(20, 23, 2, 2, NULL, 'A study of car horns and their decibel levels', '2024-02-17 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(40, 14, 2, 2, NULL, 'Efficiency of traffic light systems in Kuala Lumpur', '2024-04-01 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(41, 15, 2, 2, NULL, 'Impact of roadworks on commuter stress levels', '2024-04-02 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(42, 16, 2, 2, NULL, 'The role of street lighting in road safety in Penang', '2024-04-03 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(43, 17, 2, 2, NULL, 'Sustainability practices in Malaysian highway construction', '2024-04-04 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(44, 18, 2, 2, NULL, 'Analysis of pedestrian bridge usage in urban areas', '2024-04-05 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(45, 19, 2, 2, NULL, 'Adoption rates of electric vehicles and infrastructure in Malaysia. I love tintin', '2024-04-06 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(46, 20, 2, 2, NULL, 'Evaluating the condition of rural roads in East Malaysia', '2024-04-07 00:00:00', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(47, 14, 2, 2, NULL, 'Urban planning and road safety correlations in Malaysian cities', '2024-04-08 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(48, 15, 2, 2, NULL, 'The effects of seasonal weather on road integrity', '2024-04-09 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(49, 16, 2, 2, NULL, 'Traffic congestion patterns during festive seasons', '2024-04-10 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(50, 17, 2, 2, NULL, 'Road signage visibility and language inclusivity', '2024-04-11 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(51, 18, 2, 2, NULL, 'Exploring the usage of roundabouts for better traffic flow', '2024-04-12 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(52, 19, 2, 2, NULL, 'Impact of toll booths on traffic dispersion and other stuff', '2024-04-13 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(53, 20, 2, 2, NULL, 'Smart city initiatives and the future of road transport', '2024-04-14 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(54, 14, 2, 2, NULL, 'Motorcycle safety on Malaysian expressways', '2024-04-15 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(55, 15, 2, 2, NULL, 'The prevalence of road rage incidents and their causes', '2024-04-16 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(56, 16, 2, 2, NULL, 'Effectiveness of speed bumps in residential areas', '2024-04-17 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(57, 17, 2, 2, NULL, 'Cross-border traffic issues and management', '2024-04-18 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(58, 18, 2, 2, NULL, 'Challenges faced by road maintenance crews', '2024-04-19 00:00:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(59, 14, 7, 43, NULL, 'test', '2024-04-05 11:09:56', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(61, 12, 4, 36, NULL, 'wow', '2024-04-05 10:17:36', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(62, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:18:28', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(63, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:09', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(64, 12, 4, 36, NULL, 'Ran a workshop about sending some cars off the edge of a cliff\r\n', '2024-04-05 20:19:49', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(65, 12, 5, 14, 32, 'How fast can a car really drive?', '2024-04-05 20:28:15', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(66, 12, 2, 3, NULL, 'Worked for another company for a week', '2024-04-05 20:38:48', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(67, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:44:23', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(68, 1, 6, 38, 85, 'Gave a speech to the nation about what a great driver I am', '2024-04-05 20:46:08', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(69, 1, 5, 10, 19, 'Co-edited a book about fast roads and where to find them', '2024-04-05 20:46:36', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(70, 1, 3, 6, 3, 'Cat 3 ,sub c2 lead external', '2024-04-05 20:47:18', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(71, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:18', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(72, 1, 2, 3, NULL, 'Working with other countries to see who has the fastest roads!', '2024-04-11 17:06:42', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
+(73, 1, 4, 8, NULL, 'a picture of tintin', '2024-04-11 17:33:17', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages\\..\\database\\uploads\\Image_PlaceHolder.png'),
 (74, 1, 2, 2, 1, 'asdfgh', '2024-04-11 18:10:24', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
 (75, 1, 5, 10, 17, 'asdfghjkhgfdsa', '2024-04-11 18:16:25', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
 (76, 1, 6, 37, 52, 'Storage test', '2024-04-11 18:16:51', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/samuel-c-zYzBIcFuumQ-unsplash.jpg'),
 (77, 1, 1, 1, NULL, 'test', '2024-04-11 20:57:16', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/lesson_1_database.png'),
 (78, 1, 1, 1, NULL, 'test 2 ', '2024-04-11 20:58:40', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png'),
 (79, 1, 1, 1, NULL, 'test 3', '2024-04-11 20:59:27', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/jamie-street-9xULccEBWWI-unsplash.jpg'),
-(80, 1, 5, 10, 19, 'I was a co-editor on this piece', '2024-04-12 09:16:28', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png');
+(80, 1, 5, 10, 19, 'I was a co-editor on this piece', '2024-04-12 09:16:28', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png'),
+(81, 14, 4, 36, NULL, 'test', '2024-04-12 10:38:37', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/image_105-0223_6_260x260@2x.png'),
+(82, 1, 6, 40, 91, 'Some media coverage', '2024-04-12 11:37:08', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin2.png'),
+(83, 1, 6, 40, 92, 'This is my interview with a driver', '2024-04-12 11:44:47', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/discord-notification-4.mp3'),
+(84, 19, 5, 10, 14, 'Wrote a book about speed bumps', '2024-04-13 16:04:04', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/images.png'),
+(85, 19, 4, 8, NULL, 'Consulting on speed bumps for a private company', '2024-04-13 16:04:28', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/images.png'),
+(86, 15, 1, 1, NULL, 'Membership proof to the road bump club', '2024-04-13 16:13:17', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/images.png'),
+(87, 15, 3, 5, NULL, 'Should we allow cars on the road at night', '2024-04-13 16:13:51', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/navy_1.png'),
+(88, 15, 5, 10, 14, 'Check out this book I wrote myself', '2024-04-13 16:36:53', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder.png'),
+(89, 15, 5, 20, 45, 'Had a fun time at a conference', '2024-04-13 20:01:21', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder.png'),
+(90, 21, 5, 20, 44, 'Big presentation', '2024-04-13 21:17:33', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder.png'),
+(91, 21, 3, 5, NULL, 'LEAD ME', '2024-04-13 21:20:09', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder.png'),
+(92, 513, 5, 15, 34, 'I love tintin and cars so much!!', '2024-04-13 22:03:16', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/tintin1.png');
 
 -- --------------------------------------------------------
 
@@ -344,7 +356,7 @@ CREATE TABLE `user` (
   `account_status` enum('active','deactivated') NOT NULL DEFAULT 'active',
   `Last_Log_In` datetime DEFAULT NULL,
   `reset_token_hash` varchar(64) DEFAULT NULL,
-  `reset_token_expires_at` date DEFAULT NULL
+  `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -352,30 +364,31 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_birth`, `Email`, `PasswordHash`, `ROLE`, `Reports_To`, `account_status`, `Last_Log_In`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'test1', 'george', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-11 21:40:36', NULL, NULL),
-(12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', NULL, NULL, NULL),
+(1, 'test1', 'George', 'first', '1998-12-13', 'george@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'deactivated', '2024-04-12 19:59:07', NULL, NULL),
+(12, 'admin2', 'GEORGE', 'George', '2009-01-11', 'admin@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'admin', 31, 'active', '2024-04-14 00:45:18', NULL, NULL),
 (13, 'test123', 'Test1234', 'test123', '2003-02-01', 'test@gmail.com', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(14, 'Officer1', 'Joe', 'Hilton', '2003-04-05', 'joe@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', '2024-04-13 16:43:14', NULL, NULL),
+(15, 'Officer2', 'Bob', 'Mallard', '1988-11-29', 'bob@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 30, 'active', '2024-04-13 21:00:14', NULL, NULL),
+(16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 30, 'active', NULL, NULL, NULL),
 (17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
-(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
-(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
-(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
-(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
+(18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', '2024-04-13 22:57:40', NULL, NULL),
+(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-13 23:51:07', NULL, NULL),
+(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', '2024-04-13 22:07:55', NULL, NULL),
+(21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', '2024-04-13 22:15:18', NULL, NULL),
+(22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', NULL, 31, 'active', NULL, NULL, NULL),
 (23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
 (24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', NULL, NULL, NULL),
 (25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
 (26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
 (27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
 (28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Top Manager', NULL, 'active', '2024-04-01 16:23:02', NULL, NULL),
-(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Top Manager', NULL, 'active', '2024-04-14 00:57:19', NULL, NULL),
+(30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', '2024-04-14 10:36:34', NULL, NULL),
 (31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
 (32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
 (33, 'Supervisor4', 'Kate', 'Beckett', '1993-04-26', 'kate@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
-(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL);
+(34, 'Supervisor5', 'Leanne', 'Kilbride', '2004-07-22', 'leanne@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
+(513, 'Officer_TinTin', 'TinTin', 'McTintin', '1994-06-05', 'tintin@miros.com', '$2y$10$QYTPY9yxq8Op/vWoTMsN6uImOhgCIZM0fa8wBmbm5/L4YVwsUe5ca', 'Research Officer', 31, 'active', '2024-04-13 23:13:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -401,38 +414,39 @@ CREATE TABLE `user_scores` (
 --
 
 INSERT INTO `user_scores` (`UserScore_ID`, `User_ID`, `Cat_A`, `Cat_B`, `Cat_C`, `Cat_D`, `Cat_E`, `Cat_F`, `Cat_G`, `Total_Score`) VALUES
-(2, 1, 2.00, 6.67, 7.00, 2.50, 8.00, 7.00, 0.00, 33.17),
-(3, 14, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 1.50, 8.83),
-(4, 15, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(5, 16, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(6, 17, 0.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 8.00),
-(7, 18, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(8, 19, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(9, 20, 0.00, 6.67, 0.00, 0.00, 4.00, 0.00, 0.00, 10.67),
-(10, 21, 0.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(11, 22, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(12, 23, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(13, 24, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
-(14, 25, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(15, 26, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(16, 27, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(17, 28, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(18, 14, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 1.50, 8.83),
-(19, 15, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(20, 16, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(21, 17, 0.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00, 8.00),
-(22, 18, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(23, 19, 0.00, 7.33, 0.00, 0.00, 0.00, 0.00, 0.00, 7.33),
-(24, 20, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
-(25, 21, 0.00, 6.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00),
-(26, 22, 0.00, 3.00, 0.00, 0.00, 0.00, 0.50, 0.00, 3.50),
-(27, 23, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(28, 24, 0.00, 6.67, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67),
-(29, 25, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(30, 26, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(31, 27, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(32, 28, 0.00, 3.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00),
-(33, 12, 0.00, 3.00, NULL, 7.00, 4.00, NULL, NULL, 14.00);
+(2, 1, 2.00, 7.00, 7.00, 2.50, 10.00, 7.00, NULL, 35.50),
+(3, 14, NULL, 7.00, NULL, 2.50, NULL, NULL, 1.50, 11.00),
+(4, 15, 0.50, 6.00, 7.00, NULL, 8.00, NULL, NULL, 21.50),
+(5, 16, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(6, 17, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(7, 18, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(8, 19, NULL, 8.00, NULL, 2.50, 4.00, NULL, NULL, 14.50),
+(9, 20, NULL, 6.00, NULL, NULL, NULL, NULL, NULL, 6.00),
+(10, 21, NULL, 3.00, 7.00, NULL, 4.00, NULL, NULL, 14.00),
+(11, 22, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(12, 23, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(13, 24, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(14, 25, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(15, 26, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(16, 27, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(17, 28, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(18, 14, NULL, 7.00, NULL, 2.50, NULL, NULL, 1.50, 11.00),
+(19, 15, 0.50, 6.00, 7.00, NULL, 8.00, NULL, NULL, 21.50),
+(20, 16, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(21, 17, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(22, 18, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(23, 19, NULL, 8.00, NULL, 2.50, 4.00, NULL, NULL, 14.50),
+(24, 20, NULL, 6.00, NULL, NULL, NULL, NULL, NULL, 6.00),
+(25, 21, NULL, 3.00, 7.00, NULL, 4.00, NULL, NULL, 14.00),
+(26, 22, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(27, 23, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(28, 24, NULL, 7.00, NULL, NULL, NULL, NULL, NULL, 7.00),
+(29, 25, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(30, 26, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(31, 27, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(32, 28, NULL, 3.00, NULL, NULL, NULL, NULL, NULL, 3.00),
+(33, 12, NULL, 3.00, NULL, 7.00, 4.00, NULL, NULL, 14.00),
+(34, 513, NULL, NULL, NULL, NULL, 4.00, NULL, NULL, 4.00);
 
 --
 -- Triggers `user_scores`
@@ -529,7 +543,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `Contact_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Contact_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -541,7 +555,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `sub_items`
@@ -553,13 +567,13 @@ ALTER TABLE `sub_items`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=514;
 
 --
 -- AUTO_INCREMENT for table `user_scores`
 --
 ALTER TABLE `user_scores`
-  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `UserScore_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
