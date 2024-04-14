@@ -47,7 +47,8 @@ function return_Nav_Array(){
         'top manager' => [//Top Manager
             'Dashboard'         =>'management_dashboard.php',
             'Submission Search'=>'research.php',
-            'Assign'            =>'assign_roles.php',
+            'Assign  Supervisors' => 'manager_role-assign.php',
+            'Assign Roles'            =>'assign_roles.php',
             'Contact Admin'=>'contact_user.php',
 
         ],
