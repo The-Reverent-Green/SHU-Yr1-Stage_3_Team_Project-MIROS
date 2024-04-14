@@ -6,6 +6,18 @@ $officers = [];
 $supervisors = [];
 $successMessage = "";
 
+$usersWithoutSupervisors = [];
+
+try {
+    $getUsersWithoutSupervisors = "SELECT User_ID, username, First_Name, Last_Name FROM user WHERE Reports_To IS NULL";
+    $noSupervisorStmt = $mysqli->query($getUsersWithoutSupervisors);
+    while ($row = $noSupervisorStmt->fetch_assoc()) {
+        $usersWithoutSupervisors[] = $row;
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+
 if(isset($mysqli) && $mysqli instanceof mysqli) {
     try {
         $getOfficers = "SELECT User_ID, username FROM user WHERE role = 'Research Officer'";
@@ -81,6 +93,31 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
 
                     <input type="submit" value="Assign Officer" name="assign" class="btn btn-primary">
                 </form>
+            </div>
+        </div>
+
+        <div class="wrapper">
+                <h2>Users Without Supervisors</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($usersWithoutSupervisors as $user): ?>
+                            <tr>
+                                <td><?php echo $user['User_ID']; ?></td>
+                                <td><?php echo $user['username']; ?></td>
+                                <td><?php echo $user['First_Name']; ?></td>
+                                <td><?php echo $user['Last_Name']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
