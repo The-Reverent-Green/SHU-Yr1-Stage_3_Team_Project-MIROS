@@ -58,6 +58,19 @@ function getTopPerformingOfficersWithScores($pdo) {
 }
 
 $topOfficers = getTopPerformingOfficersWithScores($pdo);
+
+
+function submissions($pdo){
+
+    $stmt = $pdo->prepare("SELECT Description, Date_Of_Submission, Verified, Evidence_attachment FROM submissions WHERE Description LIKE :search");
+    $stmt->bindValue(':search', '%' . $_GET['searchTerm'] . '%');
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
+    json_encode(submissions($pdo));
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,69 +95,84 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
     </div>
 
     <div class="container">
-    <div class="mt-4">
-    <h2>Research Officer Count per Supervisor</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Supervisor ID</th>
-                <th>Supervisor Name</th>
-                <th>Research Officer Count</th>
-                <th>Verified Submissions Count</th>
-                <th>Average Submissions per Officer</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (empty($supervisorCounts)): ?>
-                <tr>
-                    <td colspan="5">No data available.</td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($supervisorCounts as $row): ?>
+        <div class="mt-4">
+            <h2>Research Officer Count per Supervisor</h2>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['supervisor_id']); ?></td>
-                        <td><?php echo htmlspecialchars($row['supervisor_firstname']) . ' ' . htmlspecialchars($row['supervisor_lastname']); ?></td>
-                        <td><?php echo htmlspecialchars($row['research_officer_count']); ?></td>
-                        <td><?php echo htmlspecialchars($row['verified_submissions_count']); ?></td>
-                        <td><?php echo htmlspecialchars(number_format($row['avg_submissions_per_officer'], 2)); ?></td>
+                        <th>Supervisor ID</th>
+                        <th>Supervisor Name</th>
+                        <th>Research Officer Count</th>
+                        <th>Verified Submissions Count</th>
+                        <th>Average Submissions per Officer</th>
                     </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
+                </thead>
+                <tbody>
+                    <?php if (empty($supervisorCounts)): ?>
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($supervisorCounts as $row): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['Date_Of_Submission']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Description']) . ' ' . htmlspecialchars($row['supervisor_lastname']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Verified']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
-<div class="mt-4">
-    <h2>Top Performing Officers</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Officer Name</th>
-                <th>Submission Count</th>
-                <th>Total Score</th>
-                <th>Supervisor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (empty($topOfficers)): ?>
-                <tr>
-                    <td colspan="4">No data available.</td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($topOfficers as $officer): ?>
+        <div class="mt-4">
+            <h2>Top Performing Officers</h2>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($officer['officer_firstname']) . ' ' . htmlspecialchars($officer['officer_lastname']); ?></td>
-                        <td><?php echo htmlspecialchars($officer['submission_count']); ?></td>
-                        <td><?php echo htmlspecialchars($officer['total_score']); ?></td>
-                        <td><?php echo htmlspecialchars($officer['supervisor_fullname']); ?></td>
+                        <th>Officer Name</th>
+                        <th>Submission Count</th>
+                        <th>Total Score</th>
+                        <th>Supervisor</th>
                     </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
+                </thead>
+                <tbody>
+                    <?php if (empty($topOfficers)): ?>
+                        <tr>
+                            <td colspan="4">No data available.</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($topOfficers as $officer): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($officer['officer_firstname']) . ' ' . htmlspecialchars($officer['officer_lastname']); ?></td>
+                                <td><?php echo htmlspecialchars($officer['submission_count']); ?></td>
+                                <td><?php echo htmlspecialchars($officer['total_score']); ?></td>
+                                <td><?php echo htmlspecialchars($officer['supervisor_fullname']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
-
+        <div class="mt-4">
+            <h2>Search Submissions</h2>
+            <input type="text" id="searchBar" placeholder="Search usernames...">
+            <script src="getUsernames.js"></script>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Officer Name</th>
+                        <th>Submission Count</th>
+                        <th>Total Score</th>
+                        <th>Supervisor</th>
+                    </tr>
+                </thead>
+                <tbody id="submissions-tbody">
+                    
+                </tbody>
+            </table>
+        </div>
 
     </section>
 </body>
