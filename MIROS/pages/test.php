@@ -117,5 +117,6 @@ $encodedData = json_encode($defaultChartData);
         });
     </script>
     </div>
+    <?php require("Script.php")?>
 </body>
 </html>
