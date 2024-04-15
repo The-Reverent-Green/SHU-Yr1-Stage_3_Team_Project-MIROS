@@ -61,7 +61,7 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
 
 
 function submissions($pdo){
-
+    echo 'urgruuueu';
     $stmt = $pdo->prepare("SELECT Description, Date_Of_Submission, Verified, Evidence_attachment FROM submissions WHERE Description LIKE :search");
     $stmt->bindValue(':search', '%' . $_GET['searchTerm'] . '%');
     $stmt->execute();
@@ -71,6 +71,7 @@ function submissions($pdo){
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
     json_encode(submissions($pdo));
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -115,9 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
                     <?php else: ?>
                         <?php foreach ($supervisorCounts as $row): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($row['Date_Of_Submission']); ?></td>
-                                <td><?php echo htmlspecialchars($row['Description']) . ' ' . htmlspecialchars($row['supervisor_lastname']); ?></td>
-                                <td><?php echo htmlspecialchars($row['Verified']); ?></td>
+                                <td><?php echo htmlspecialchars($row['supervisor_id']); ?></td>
+                                <td><?php echo htmlspecialchars($row['supervisor_firstname']) . ' ' . htmlspecialchars($row['supervisor_lastname']); ?></td>
+                                <td><?php echo htmlspecialchars($row['research_officer_count']); ?></td>
+                                <td><?php echo htmlspecialchars($row['verified_submissions_count']); ?></td>
+                                <td><?php echo htmlspecialchars(number_format($row['avg_submissions_per_officer'], 2)); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -162,10 +165,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Officer Name</th>
-                        <th>Submission Count</th>
-                        <th>Total Score</th>
-                        <th>Supervisor</th>
+                        <th>Date Of Submission</th>
+                        <th>Description</th>
+                        <th>Verified</th>
+                        <th>Evidence attachment</th>
                     </tr>
                 </thead>
                 <tbody id="submissions-tbody">
@@ -173,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
                 </tbody>
             </table>
         </div>
-
+        <br><br><br><br><br><br>
     </section>
 </body>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
