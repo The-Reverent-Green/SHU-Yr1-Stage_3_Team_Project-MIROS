@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 04:38 PM
+-- Generation Time: Apr 15, 2024 at 11:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -239,7 +239,32 @@ INSERT INTO `submissions` (`Submission_ID`, `User_ID`, `Category_ID`, `Item_ID`,
 (102, 19, 6, 38, 84, 'test F', '2024-04-14 12:32:17', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder (1).png', 0),
 (103, 19, 7, 41, NULL, 'Test 1 G', '2024-04-14 12:32:43', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder (1).png', 0),
 (104, 19, 7, 41, NULL, 'Test 2 G', '2024-04-14 12:32:52', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder (1).png', 0),
-(105, 19, 1, 1, NULL, 'Test A', '2024-04-14 12:33:58', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder (1).png', 0);
+(105, 19, 1, 1, NULL, 'Test A', '2024-04-14 12:33:58', 'yes', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/Image_PlaceHolder (1).png', 0),
+(110, 15, 3, 6, 4, 'General road safety research in Malaysia', '2024-04-15 08:05:34', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/1.docx', 0),
+(111, 17, 5, 12, 24, 'National effects of road development over time', '2024-04-15 08:06:19', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/2.docx', 0),
+(112, 26, 5, 10, 21, 'The science of cost-effective road creation', '2024-04-15 08:08:02', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/3.docx', 0),
+(113, 21, 5, 10, 16, 'The road safety hypothesis', '2024-04-15 08:08:59', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/4.docx', 0),
+(114, 15, 5, 9, 13, 'A 2024 manual to Malaysia and its complicated road network', '2024-04-15 08:10:11', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/5.docx', 0),
+(115, 18, 5, 9, 13, 'Malaysian governmental road safety policies revised', '2024-04-15 08:11:52', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/6.docx', 0),
+(116, 24, 3, 6, 3, 'New road developmental information', '2024-04-15 08:12:44', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/7.docx', 0),
+(117, 22, 5, 9, 12, 'Specific guidelines for safer travel throughout Kuala Lumpur', '2024-04-15 08:15:17', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/8.docx', 0),
+(118, 19, 5, 11, 22, 'The journal to end all journals: road safety 101', '2024-04-15 08:15:37', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/9.docx', 0),
+(119, 14, 5, 10, 14, 'Roads, roads and rhodes scholars', '2024-04-15 08:16:41', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/10.docx', 0),
+(120, 27, 3, 6, 4, 'Researching new tarmac alternatives', '2024-04-15 08:18:07', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/11.docx', 0),
+(121, 23, 3, 6, 2, 'Researching new road paint alternatives too', '2024-04-15 08:19:08', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/12.docx', 0),
+(122, 20, 5, 9, 9, 'MIROS road safety merchandise, a good idea?', '2024-04-15 08:22:55', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/13.docx', 0),
+(123, 28, 5, 9, 8, 'Policing policies and quantifying their effectiveness', '2024-04-15 08:23:36', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/14.docx', 0),
+(124, 25, 5, 9, 13, 'Policy papers or saving the environment', '2024-04-15 08:24:58', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/15.docx', 0),
+(125, 19, 5, 10, 16, 'Additional science around potholes', '2024-04-15 08:25:52', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/16.docx', 0),
+(126, 26, 5, 11, 23, 'Worldwide road safety practices', '2024-04-15 08:27:18', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/17.docx', 0),
+(127, 14, 2, 2, 1, 'Who is really running the gaff? Inside scoop into MIROS backroom staff', '2024-04-15 08:29:12', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/18.docx', 0),
+(128, 16, 5, 10, 18, 'A novel about roads', '2024-04-15 08:30:47', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/19.docx', 0),
+(129, 21, 3, 7, 7, 'The operational cost of new developments', '2024-04-15 08:31:26', 'no', 'C:\\xampp\\htdocs\\MIROS\\SHU-Yr1-Stage_3_Team_Project-MIROS\\MIROS\\pages/../database/uploads/20.docx', 0),
+(130, 21, 2, 2, NULL, 'General road safety in Malaysia', '2024-03-21 00:00:00', 'yes', NULL, 0),
+(131, 27, 7, 41, NULL, 'Collaborated with community members to clean-up roadsides', '2024-04-14 21:09:24', 'yes', 'C:\\xampp\\htdocs\\MIROS\\pages/../database/uploads/stockimage7.jpeg', 0),
+(132, 18, 4, 36, NULL, 'Organised a defensive driving workshop.', '2024-04-14 21:11:23', 'yes', 'C:\\xampp\\htdocs\\MIROS\\pages/../database/uploads/stockimage8.jpg', 0),
+(133, 18, 5, 12, 24, 'wrote a national journal titled: RoadSafe Research Review: Advancing Knowledge in Road Safety.', '2024-04-14 21:13:00', 'yes', 'C:\\xampp\\htdocs\\MIROS\\pages/../database/uploads/stockimage9.jpg', 0),
+(134, 18, 6, 37, 55, 'Supervised a thesis at maters level.', '2024-04-14 21:14:28', 'yes', 'C:\\xampp\\htdocs\\MIROS\\pages/../database/uploads/stockimage10.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -386,17 +411,17 @@ INSERT INTO `user` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Date_of_b
 (16, 'Officer3', 'Peter', 'Crocket', '1967-03-19', 'peter@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 30, 'active', NULL, NULL, NULL),
 (17, 'Officer4', 'Dave', 'Yannis', '2001-05-05', 'dave@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
 (18, 'Officer5', 'Jenny', 'Barber', '1998-07-28', 'jenny@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', '2024-04-14 16:21:22', NULL, NULL),
-(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-14 13:30:12', NULL, NULL),
-(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', '2024-04-13 22:07:55', NULL, NULL),
+(19, 'Officer6', 'Karen', 'Cellers', '2005-12-12', 'karen@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', '2024-04-15 10:34:13', NULL, NULL),
+(20, 'Officer7', 'Rebecca', 'Myles', '1987-08-12', 'rebecca@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', '2024-04-14 16:43:54', NULL, NULL),
 (21, 'Officer8', 'Thomas', 'Phillips', '1993-09-21', 'thomas@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 33, 'active', '2024-04-13 22:15:18', NULL, NULL),
 (22, 'Officer9', 'Ella', 'Boyden', '2000-07-26', 'ella@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', NULL, 31, 'active', NULL, NULL, NULL),
-(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
+(23, 'Officer10', 'Harry', 'Yellow', '1966-01-22', 'harry@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 31, 'active', NULL, NULL, NULL),
 (24, 'Officer11', 'John', 'Delta', '1985-07-11', 'john@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', '2024-04-14 12:44:15', NULL, NULL),
 (25, 'Officer12', 'Francis', 'Gardener', '1978-06-11', 'francis@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
 (26, 'Officer13', 'Lucy', 'Tipton', '1998-08-08', 'lucy@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 34, 'active', NULL, NULL, NULL),
 (27, 'Officer14', 'Millie', 'Musgraves', '2002-10-25', 'millie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
 (28, 'Officer15', 'Sarah', 'Grifton', '1991-09-14', 'sarah@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Research Officer', 32, 'active', NULL, NULL, NULL),
-(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Top Manager', NULL, 'active', '2024-04-14 00:57:19', NULL, NULL),
+(29, 'manager', 'Alex', 'Kerry', '1999-01-01', 'alex@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Top Manager', 29, 'active', '2024-04-15 10:44:52', NULL, NULL),
 (30, 'Supervisor1', 'Reece', 'Reinhart', '1982-02-27', 'reece@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', '2024-04-14 13:50:37', NULL, NULL),
 (31, 'Supervisor2', 'Daniel', 'Tillerson', '1988-11-02', 'daniel@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
 (32, 'Supervisor3', 'Rosie', 'Hellers', '2003-11-29', 'rosie@miros.my', '$2y$10$8RrY1vp/s2swWKVe76xLzu3n1DnNlsmA7GBb7novknV0ncRRnCgHy', 'Supervisor', 29, 'active', NULL, NULL, NULL),
@@ -569,7 +594,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `Submission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `sub_items`

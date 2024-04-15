@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-session_start(); // Start the session
+session_start(); 
 
 require_once __DIR__ . '/../database/db_config.php';
 
@@ -13,7 +13,6 @@ if (!isset($_SESSION['id'])) {
 
 $submission = null;
 
-// Handle GET request to fetch submission data for editing
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['edit_id'])) {
     $editId = $_GET['edit_id'];
     try {
@@ -32,10 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['edit_id'])) {
     }
 }
 
-// Handle POST request to update submission data
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submission_id'], $_POST['description'])) {
     $submissionId = $_POST['submission_id'];
-    $description = $_POST['description'];  // Validate and sanitize this input as needed.
+    $description = $_POST['description'];  
 
     try {
         $updateStmt = $pdo->prepare("UPDATE submissions SET Description = :description WHERE Submission_ID = :submissionId AND User_ID = :userId");
@@ -44,10 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submission_id'], $_POS
         $updateStmt->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
         $updateStmt->execute();
 
-        // Set a success message in the session
         $_SESSION['message'] = "Submission updated successfully!";
 
-        header("Location: officer_view_submissions.php");  // Redirect to the officer view submissions page
+        header("Location: officer_view_submissions.php");  
         exit();
     } catch (PDOException $e) {
         echo "Error updating submission: " . $e->getMessage();

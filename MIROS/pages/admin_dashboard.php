@@ -4,7 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../database/db_config.php';
 
-// Handling POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['roles'])) {
         foreach ($_POST['roles'] as $userId => $role) {
@@ -44,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Query for users without roles for initial page load
 $any_users_without_roles = "SELECT user_id, username, first_name, last_name, last_log_in FROM user WHERE role IS NULL";
 $result = $mysqli->query($any_users_without_roles);
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
