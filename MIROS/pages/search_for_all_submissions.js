@@ -3,7 +3,7 @@ document.getElementById('searchBar').addEventListener('input', function () {
     const selectElement = document.getElementById('submissions-tbody');
 
     if (searchTerm.length >= 3) {
-        fetch(`../database/management_dashboard.php?searchTerm=${encodeURIComponent(searchTerm)}`, {
+        fetch(`../pages/search_for_all_submissions.php?searchTerm=${encodeURIComponent(searchTerm)}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })

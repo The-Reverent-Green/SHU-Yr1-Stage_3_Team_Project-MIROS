@@ -60,17 +60,7 @@ function getTopPerformingOfficersWithScores($pdo) {
 $topOfficers = getTopPerformingOfficersWithScores($pdo);
 
 
-function submissions($pdo){
-    echo 'urgruuueu';
-    $stmt = $pdo->prepare("SELECT Description, Date_Of_Submission, Verified, Evidence_attachment FROM submissions WHERE Description LIKE :search");
-    $stmt->bindValue(':search', '%' . $_GET['searchTerm'] . '%');
-    $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);;
-}
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
-    json_encode(submissions($pdo));
-}
 
 ?>
 
@@ -161,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchTerm'])) {
         <div class="mt-4">
             <h2>Search Submissions</h2>
             <input type="text" id="searchBar" placeholder="Search usernames...">
-            <script src="getUsernames.js"></script>
+            <script src="search_for_all_submissions.js"></script>
             <table class="table">
                 <thead>
                     <tr>
