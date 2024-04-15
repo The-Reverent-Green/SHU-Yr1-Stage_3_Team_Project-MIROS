@@ -208,7 +208,7 @@ document.querySelector('.custom-file-input').addEventListener('change', function
 });
 </script>
 </section>
-
+<?php require("Script.php")?>
 </body>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
