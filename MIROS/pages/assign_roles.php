@@ -1,7 +1,5 @@
 <?php //assign_roles.php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+
 require_once __DIR__ . '/../database/db_config.php'; 
 
 if(isset($mysqli) && $mysqli instanceof mysqli) {
