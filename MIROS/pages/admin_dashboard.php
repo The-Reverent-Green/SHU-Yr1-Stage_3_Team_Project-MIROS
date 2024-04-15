@@ -171,5 +171,6 @@ function getUsersByRole($pdo, $role = null) {
     </section>
     <script src="../js/interaction.js"></script>
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+   <?php require("Script.php")?>
 </body>
 </html>
