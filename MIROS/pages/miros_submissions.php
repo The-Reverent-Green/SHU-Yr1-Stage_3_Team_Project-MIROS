@@ -130,5 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" value="Submit">
     </form>
 </body>
+<?php require("Script.php")?>
 
 </html>
