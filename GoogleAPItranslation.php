@@ -1,55 +1,25 @@
 <?php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Translate\V2\TranslateClient;
-
-// Set up Google Cloud Translation API credentials
-$projectId = 'YOUR_PROJECT_ID';
-$apiKey = 'AIzaSyCvYhmuQVyP-O-9tflpHafAVYrehO29oAc';
-
-// Create a TranslateClient object
-$translate = new TranslateClient([
-    'projectId' => $projectId,
-    'key' => $apiKey
-]);
-
-// Function to translate text
+// Function to translate text using Google Translate API
 function translateText($text, $targetLanguage) {
-    global $translate;
-    $result = $translate->translate($text, ['target' => $targetLanguage]);
-    return $result['text'];
+    $apiKey = 'AIzaSyCvYhmuQVyP-O-9tflpHafAVYrehO29oAc';
+    $url = 'https://www.googleapis.com/language/translate/v2?key=' . $apiKey . '&q=' . rawurlencode($text) . '&source=en&target=' . $targetLanguage;
+
+    $handle = curl_init($url);
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($handle);                 
+    $responseDecoded = json_decode($response, true);
+    curl_close($handle);
+
+    return $responseDecoded['data']['translations'][0]['translatedText'];
 }
 
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Language Toggle</title>
-</head>
-<body>
-
-<!-- Language Toggle Links -->
-<a href="?lang=en">English</a> | <a href="?lang=ms">Malaysian</a>
-
-<!-- Display Text Based on Language -->
-<h1><?php echo translateText('Welcome', 'en'); ?></h1>
-<p><?php echo translateText('Hello, how are you?', 'ms'); ?></p>
-
-</body>
-</html>
-
-<?php
-// Language toggle logic
-if (isset($_GET['lang'])) {
-    $lang = $_GET['lang'];
-    if ($lang == 'en' || $lang == 'ms') {
-        // You can store the selected language in session or cookie for persistence
-        // For simplicity, I'm just appending it to the URL
-        $redirectUrl = $_SERVER['PHP_SELF'] . '?lang=' . $lang;
-        header('Location: ' . $redirectUrl);
-        exit;
-    }
+// Check if the language toggle is triggered
+if(isset($_GET['lang']) && $_GET['lang'] == 'ms') {
+    // Translate the content
+    $translatedText = translateText($_GET['content'], 'ms');
+    echo $translatedText;
+} else {
+    // Display original content
+    echo $_GET['content'];
 }
 ?>
