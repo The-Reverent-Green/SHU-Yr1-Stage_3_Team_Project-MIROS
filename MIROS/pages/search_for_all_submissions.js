@@ -19,10 +19,10 @@ document.getElementById('searchBar').addEventListener('input', function () {
                 // Generate HTML for each submission
                 submissions.forEach(submission => {
                     const row = `<tr>
-                                    <td>${submission.officer_firstname} ${submission.officer_lastname}</td>
-                                    <td>${submission.submission_count}</td>
-                                    <td>${submission.total_score}</td>
-                                    <td>${submission.supervisor_fullname}</td>
+                    <td>${submission.Date_Of_Submission}</td>
+                    <td>${submission.Description}</td>
+                    <td>${submission.Verified}</td>
+                    <td>${submission.Evidence_attachment}</td>
                                 </tr>`;
                     selectElement.innerHTML += row;
                 });
