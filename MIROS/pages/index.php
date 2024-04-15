@@ -72,7 +72,7 @@ if ($role === 'research officer') {
     <link rel="stylesheet" href="../css/nav_bar.css">
 
     <script src="../includes/render_nav.js"></script>
-
+    <script src="get_notifications.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>

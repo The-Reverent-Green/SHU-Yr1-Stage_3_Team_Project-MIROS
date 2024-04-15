@@ -2,10 +2,11 @@
 header {
     width: 100%;
     display: table;
-    background-color: #212625;
+    background-image: url('../images/background.png');
+    background-size: auto;
+    background-repeat: repeat;
     border-bottom: 2px solid gold;
     padding-bottom: 5px;
-    
 }
 
 .outer {

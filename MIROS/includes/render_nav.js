@@ -9,6 +9,9 @@ function addStylesheet(href, integrity, crossorigin) {
     }
     document.head.appendChild(link);
 }
+function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function getUlClasses(data) {
     let ulClassArray = ['nav', 'nav-pills', 'nav-fill'];
@@ -21,9 +24,11 @@ function appendLink(ul, key, value) {
     const li = document.createElement('li');
     li.textContent = key;
     li.classList.add('nav-item');
-    /*if (thisPage() === value){
+
+    if (thisPage() === value){
         li.classList.add('current-page');
-    }*/
+    }
+
     if (typeof value === 'string') {
         li.addEventListener('click', () => {
             window.location.href = value;
@@ -33,13 +38,13 @@ function appendLink(ul, key, value) {
         
         // Create dropdown toggle link
         const a = document.createElement('a');
-        a.classList.add('nav-link', 'dropdown-toggle');
+        a.classList.add('nav-link', 'dropdown-toggle',);
         a.href = "#";
         a.setAttribute('role', 'button');
         a.setAttribute('data-toggle', 'dropdown');
         a.setAttribute('aria-haspopup', 'true');
         a.setAttribute('aria-expanded', 'false');
-        a.textContent = key;
+        a.textContent = capitaliseFirstLetter(key);
         li.textContent = ''; // Clear the text content as it's now in the toggle
         li.appendChild(a);
         
@@ -48,11 +53,11 @@ function appendLink(ul, key, value) {
         div.classList.add('dropdown-menu');
         
         Object.entries(value).forEach(([subKey, subValue]) => {
-            const subLi = document.createElement('a'); // Use 'a' for sub-links for better accessibility and styling
-            subLi.classList.add('dropdown-item');
-            subLi.textContent = subKey;
-            subLi.href = subValue;
-            div.appendChild(subLi);
+            const dropdowna = document.createElement('a'); // Use 'a' for sub-links for better accessibility and styling
+            dropdowna.classList.add('dropdown-item');
+            dropdowna.textContent = subKey;
+            dropdowna.href = subValue;
+            div.appendChild(dropdowna);
         });
         
         li.appendChild(div);
@@ -85,22 +90,18 @@ async function makeNavBar() {
     }
 }
 
-function thisPage(inputUrl){
-    const url = new URL(inputUrl);
+function thisPage(){
+    const url = new URL(window.location);
     const pathname = url.pathname;
-    const filename = pathname.substring(pathname.lastIndexOf('/') + 1);// Extract the last segment of the path, which is the file name
-    // Remove the extension and get the base file name
-    const basename = filename.split('.')[0]; // Split on the dot and take the first element
-    console.log(basename);
+    const filename = pathname.substring(pathname.lastIndexOf('/') + 1);
+    return filename;
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('render_nav.js was called from:', window.location);
-    thisPage(window.location);
+    console.log('render_nav.js was called from:', thisPage());
     addStylesheet('../css/nav_bar.css');
     addStylesheet('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css', 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', 'anonymous');
     addStylesheet('../css/bootstrap.css');
-
     makeNavBar();
 });

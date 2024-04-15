@@ -1,40 +1,44 @@
+:root {
+  --miros-gold: #fb9902;
+}
+
 .nav {
-  background-image: url('../images/background.png');
-  background-size: auto;
-  background-repeat: repeat;
+  background-color: #000;
   border-bottom: 1px solid #ccc;
-  padding: 0.5%;  /* Reduced padding for a thinner navbar */
+  padding: 0.5%;  
 }
 
 .nav-link {
-  color: black;
+  color: #fff;
   font-weight: 700;
   font-size: 15px;
-  text-align: center;  /* Ensures text is centered */
+  text-align: center;  
 }
 
 .nav-link.active {
-  background-color: gold;
+  background-color: var(--miros-gold);
 }
 
 .nav-item {
   position: relative;
-  background-color: #dde6e4;
-  color: rgb(0, 0, 0);
+  background-color: #000;
+  color: #fff;
   border: none;
-  border-radius: 12px;
+  border-radius: 2px;
   cursor: pointer;
-  text-align: center;  /* Ensures text is centered */
-  padding: 10px 15px;  /* Adjust padding to ensure labels are well-centered */
-  margin: 0.5%;  /* Reduced margin */
+  text-align: center;  
+  padding-top: 15px;
+  padding-bottom: 5px;
+  margin: 0.5%;  
 }
 
 .nav-item:hover {
-  background-color: #ffffff;
+  color: #000;
+  background-color: var(--miros-gold);
 }
 
 .nav-item.current-page {
-  background-color: gold;
+  background-color: var(--miros-gold);
 }
 
 .dropdown-menu {
@@ -45,8 +49,12 @@
   text-align: left;
   z-index: 1;
 }
-
+.nav-item.dropdown>.nav-link,
+.nav-item.dropdown.active>.nav-link {
+  color: #fff;
+}
 .nav-item:hover .dropdown-menu {
+    color: #fff;
   display: block;
 }
 
@@ -55,7 +63,10 @@
 }
 
 .nav-item.dropdown {
+      color: #fff;
   position: relative;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .dropdown-menu {

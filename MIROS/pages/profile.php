@@ -94,6 +94,7 @@ if (isset($_POST["delete_account"])) {
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
+    <script src="get_notifications.js"></script>
 </head>
 <body>
 <?php require_once __DIR__ . '/../includes/header.php';?>

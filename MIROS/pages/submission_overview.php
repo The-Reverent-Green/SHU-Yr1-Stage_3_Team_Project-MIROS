@@ -11,10 +11,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('location: login.php');
     exit;
 }
-
+function updateUnseenSubmissionsAsSeen(){
+    global $pdo;
+    try {
+        $update_unseen_submissions_as_seen = $pdo->prepare("UPDATE submissions SET seen = 1 WHERE seen = 0 AND User_ID IN (SELECT User_ID FROM user WHERE Reports_To = :id)");
+        $update_unseen_submissions_as_seen->bindValue(':id', $_SESSION['id']);
+        $update_unseen_submissions_as_seen->execute();
+    } catch (Exception $e) {
+        echo 'error trying to update unseen submissions: ' . $e->getMessage();
+    }
+}
 function fetchSubmissions() {
     global $pdo; // Ensure you use the PDO instance from the global scope
-
+    
     if(!isset($_POST['search'])){
         $id = $_SESSION['id'];
         $stmt = $pdo->prepare("SELECT * FROM submissions INNER JOIN user on submissions.User_ID = user.User_ID WHERE Reports_To = :id AND Verified = 'no'");
@@ -26,12 +35,14 @@ function fetchSubmissions() {
         $stmt->bindValue(':search', '%' . $search . '%');
         $stmt->bindValue(':id', $id);
     }
-
+    
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+updateUnseenSubmissionsAsSeen();
 $submissions = fetchSubmissions();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +54,7 @@ $submissions = fetchSubmissions();
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
+    <script src="get_notifications.js"></script>
     <style>
         body { font: 14px sans-serif; text-align: center; }
     </style>

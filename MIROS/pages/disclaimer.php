@@ -13,7 +13,7 @@ require_once __DIR__ . '/../database/db_config.php'; ?>
         <link rel="stylesheet" href="../css/extra.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="../includes/render_nav.js"></script>
-    
+        <script src="get_notifications.js"></script>
     </head>
     <body>
         <?php require_once __DIR__ . '/../includes/header.php';?>

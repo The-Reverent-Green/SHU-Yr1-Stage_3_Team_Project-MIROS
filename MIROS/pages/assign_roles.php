@@ -1,4 +1,4 @@
-<?php
+<?php //assign_roles.php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -42,6 +42,7 @@ if(isset($mysqli) && $mysqli instanceof mysqli) {
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
+    <script src="../database/getUsernames.js"></script>
 
 </head>
 <body>

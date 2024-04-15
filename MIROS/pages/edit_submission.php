@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submission_id'], $_POS
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/nav_bar.css">
-
+    <script src="get_notifications.js"></script>
     <script src="../includes/render_nav.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

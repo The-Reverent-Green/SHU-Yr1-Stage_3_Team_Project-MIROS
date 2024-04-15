@@ -1,6 +1,9 @@
 <?php // getUsernames.php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require_once 'db_config.php'; 
+require_once __DIR__ . '/../database/db_config.php'; 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['searchTerm'])){
     $searchTerm = $_GET['searchTerm'] . '%';
     $stmt = $mysqli->prepare("SELECT username FROM user WHERE username LIKE ?");

@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Submit to Submissions</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../includes/render_nav.js"></script>
+    <script src="get_notifications.js"></script>
     <script>
         $(document).ready(function() {
             $('#category').change(function() {

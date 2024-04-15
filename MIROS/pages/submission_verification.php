@@ -53,6 +53,7 @@ if (isset($_POST['verify'])){
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
+    <script src="get_notifications.js"></script>
     <style>
         body{ font: 14px sans-serif; text-align: center; }
         </style>
