@@ -26,6 +26,7 @@ if ($_SESSION["role"] !== $required_role) {
 </head>
 <body>
     <?php require_once __DIR__ . '/../includes/header.php';?>
+    <section class="vh-100">
     <nav id="navbar">Loading Navigation bar...</nav>
     <div class="container">
         <br>
@@ -44,6 +45,7 @@ if ($_SESSION["role"] !== $required_role) {
         }
         ?>
     </div>
-
+    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

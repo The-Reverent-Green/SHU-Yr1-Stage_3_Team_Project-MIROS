@@ -59,7 +59,7 @@ try {
     unset($_SESSION['message']); // Clear the message so it doesn't reappear on refresh
 }
 ?>
-<section class="vh-100">
+<section>
     <div class="wrapper">
         <br>
         <h1>Your Submissions</h1>

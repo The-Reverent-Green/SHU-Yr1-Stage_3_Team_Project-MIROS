@@ -55,7 +55,7 @@ $submissions = getSubmissions($supervisorId, $filterUserId);
     </style>
 </head>
 <body>
-
+<section class="vh-100">
     <nav id="navbar">Loading Navigation bar...</nav>
 
     <div class="container mt-4 mb-4">
@@ -97,7 +97,7 @@ $submissions = getSubmissions($supervisorId, $filterUserId);
         </div>
         </div>
     </div>
-
-    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+                    </section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

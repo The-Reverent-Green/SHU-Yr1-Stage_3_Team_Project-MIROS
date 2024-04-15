@@ -79,7 +79,7 @@ function getUsersByRole($pdo, $role = null) {
 <body>
     <?php require_once __DIR__ . '/../includes/header.php'; ?>
     <nav id="navbar">Loading Navigation bar...</nav>
-    <section class="vh-100">
+    <section>
         <div class="container">
             <h2>Manage User Roles</h2>
             <form method="POST">

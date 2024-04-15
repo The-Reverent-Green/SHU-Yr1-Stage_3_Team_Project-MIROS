@@ -99,7 +99,7 @@ $usersAboveThreshold = getUsersWithScoreAboveThreshold(42);
 </head>
 
 <body>
-
+    <section class="vh-100">
     <nav id="navbar">Loading Navigation bar...</nav>
 
     <div class="container">
@@ -165,7 +165,7 @@ $usersAboveThreshold = getUsersWithScoreAboveThreshold(42);
             </table>
         </div>
     </div>
-
-    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+</section>
 </body>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>
