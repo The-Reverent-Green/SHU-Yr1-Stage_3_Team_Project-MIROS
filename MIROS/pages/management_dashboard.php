@@ -78,7 +78,7 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
 
 <body>
     <nav id="navbar">Loading Navigation bar...</nav>
-    <section class="vh-100">
+    <section >
     <div class="container mt-5">
     <div class="jumbotron">
         <h1 class="display-4">Welcome to your management dashboard, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1> 
