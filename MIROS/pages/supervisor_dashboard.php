@@ -29,6 +29,7 @@ require_once __DIR__ . '/../includes/header.php';
         <p class="lead">From here you can view your assigned research officers, view their performances and verify submissions.</p>
     </div>
     </section>
-</body>
+</body>    
+<?php require("Script.php")?>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

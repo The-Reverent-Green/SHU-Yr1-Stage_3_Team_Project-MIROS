@@ -108,6 +108,7 @@ $categories = fetchCategories($pdo);
         </div>
     </section>
     <script src="../js/interaction.js"></script>
+    <?php require("Script.php")?>
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>

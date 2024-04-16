@@ -95,6 +95,7 @@ if (isset($_POST['verify'])){
             </form>
         </div>
     </section>
-</body>
+</body>    
+<?php require("Script.php")?>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

@@ -24,7 +24,7 @@ if(isset($_GET['lang']) && $_GET['lang'] == 'ms') {
 }
 ?>
 
-<!-- <button onclick="translateToMalay()">Translate to Malay</button>
+ <button onclick="translateToMalay()">Translate to Malay</button>
 
     <script>
         function translateToMalay() {
@@ -44,4 +44,4 @@ if(isset($_GET['lang']) && $_GET['lang'] == 'ms') {
             };
             xhr.send();
         }
-    </script> -->
+    </script> 
