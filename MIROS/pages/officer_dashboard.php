@@ -69,12 +69,12 @@ WHERE
 }
 
 $categories = ['Cat_A', 'Cat_B', 'Cat_C', 'Cat_D', 'Cat_E', 'Cat_F', 'Cat_G'];
-$hasMinimumInEachCategory = true; // Assume the user has minimum points in each category
+$hasMinimumInEachCategory = true; 
 
 foreach ($categories as $category) {
     if (empty($userScores[$category]) || $userScores[$category] < 0.1) {
         $hasMinimumInEachCategory = false;
-        break; // Exit the loop as soon as one category doesn't meet the criteria
+        break; 
     }
 }
 

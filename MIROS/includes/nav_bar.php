@@ -23,6 +23,7 @@ function return_Nav_Array(){
         ],
         'top manager' => [//Top Manager
             'Dashboard'         =>'management_dashboard.php',
+            'View Submissions' =>'management_search.php',
             'Assign  Supervisors' => 'manager_role-assign.php',
             'Assign Roles'            =>'assign_roles.php',
             'Contact Admin'=>'contact_user.php',

@@ -68,11 +68,13 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Management dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../includes/render_nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
@@ -84,6 +86,7 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
         <h1 class="display-4">Welcome to your management dashboard, <?php echo htmlspecialchars($_SESSION["firstname"]); ?>!</h1> 
         <p class="lead">From here you can view employees, search for submissions and see KPI's/targets.</p>
     </div>
+   
 
     <div class="container">
         <div class="mt-4">
@@ -116,7 +119,10 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
                     <?php endif; ?>
                 </tbody>
             </table>
+            
         </div>
+
+        
 
         <div class="mt-4">
             <h2>Top Performing Officers</h2>
@@ -148,25 +154,9 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
             </table>
         </div>
 
-        <div class="mt-4">
-            <h2>Search Submissions</h2>
-            <input type="text" id="searchBar" placeholder="Search usernames...">
-            <script src="search_for_all_submissions.js"></script>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date Of Submission</th>
-                        <th>Description</th>
-                        <th>Verified</th>
-                        <th>Evidence attachment</th>
-                    </tr>
-                </thead>
-                <tbody id="submissions-tbody">
-                    
-                </tbody>
-            </table>
-        </div>
-        <br><br><br><br><br><br>
+        
+
+
     </section>
 </body>
 <?php require("Script.php")?>
