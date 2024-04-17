@@ -49,7 +49,7 @@ $encodedData = json_encode($defaultChartData);
     <script src="get_notifications.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
     <form id="categoryForm">
         <label for="categorySelect">Select a category:</label>
         <select id="categorySelect" name="category">
@@ -82,9 +82,15 @@ $encodedData = json_encode($defaultChartData);
                 }]
             },
             options: {
+                indexAxis: 'y',
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        scaleOverride: true,
+                scaleSteps: 10,
+                max: 30,
+					
+				
                     }
                 },
                 plugins: {
