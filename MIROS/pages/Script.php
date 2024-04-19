@@ -1,4 +1,5 @@
 <button onclick="translateToMalay()">Translate to Malay</button>
+<button onclick ="window.location.reload();">Translate to English </button>
 
     <script>
         function translateToMalay() {
