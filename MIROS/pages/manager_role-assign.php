@@ -126,7 +126,7 @@ $topOfficers = getTopPerformingOfficersWithScores($pdo);
 <body>
 <?php require_once __DIR__ . '/../includes/header.php';?>
 <nav id="navbar">Loading Navigation bar...</nav>
-    <section class="vh-100">
+    <section>
         <div class="container mt-5">
             <?php if(!empty($successMessage)): ?>
                 <div class="alert alert-success" role="alert">
