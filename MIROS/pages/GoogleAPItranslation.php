@@ -37,7 +37,7 @@ if(isset($_GET['lang']) && $_GET['content']) {
 
 <script>
     function translateToMalay() {
-        var content = document.body.innerText; 
+        var content = document.body.innerText; // Using innerText to avoid capturing HTML tags
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'GoogleAPITranslation.php?content=' + encodeURIComponent(content) + '&lang=ms', true);

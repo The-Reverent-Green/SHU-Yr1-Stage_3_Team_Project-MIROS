@@ -56,7 +56,7 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Adjust this path to your actual Bootstrap CSS path -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> 
 </head>
 <body>
     <div class="container">
@@ -77,12 +77,10 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
         <canvas id="submissionsChart" width="400" height="400"></canvas>
 
     <script>
-    // ... other scripts remain the same
     
     const ctxSubmissions = document.getElementById('submissionsChart').getContext('2d');
     const submissionsData = <?php echo $encodedSubmissionsData; ?>;
 
-    // Generate a random color for each bar
     const barColors = submissionsData.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`);
 
     const submissionsChart = new Chart(ctxSubmissions, {
@@ -92,8 +90,8 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
             datasets: [{
                 label: 'Submissions per User',
                 data: submissionsData.map(item => item.SubmissionCount),
-                backgroundColor: barColors, // set unique color for each bar
-                borderColor: barColors.map(color => color.replace('0.5', '1')), // darken the border color
+                backgroundColor: barColors, 
+                borderColor: barColors.map(color => color.replace('0.5', '1')), 
                 borderWidth: 1
             }]
         },
@@ -110,7 +108,6 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
                     display: true
                 }
             },
-            // Set the background color to white
             layout: {
                 padding: {
                     left: 10,
@@ -123,7 +120,6 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
         }
     });
 
-    // ... rest of your scripts
 </script>
 
     </div>
