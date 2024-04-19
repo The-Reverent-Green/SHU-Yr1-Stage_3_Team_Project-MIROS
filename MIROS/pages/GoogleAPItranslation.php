@@ -1,6 +1,10 @@
+
 <?php
 // Function to translate text using Google Translate API
 function translateText($text, $targetLanguage) {
+    if ($targetLanguage == 'en') {
+        return $text; // Return the original text if the target language is English
+    }
     $apiKey = 'AIzaSyCvYhmuQVyP-O-9tflpHafAVYrehO29oAc';
     $url = 'https://www.googleapis.com/language/translate/v2?key=' . $apiKey . '&q=' . rawurlencode($text) . '&source=en&target=' . $targetLanguage;
 
@@ -14,39 +18,38 @@ function translateText($text, $targetLanguage) {
 }
 
 // Check if the language toggle is triggered
-if(isset($_GET['lang']) && $_GET['lang'] == 'ms') {
-    // Translate the content
-    $translatedText = translateText($_GET['content'], 'ms');
+if(isset($_GET['lang']) && $_GET['content']) {
+    $translatedText = translateText($_GET['content'], $_GET['lang']);
     echo $translatedText;
 } else {
-    // Display original content
-    echo $_GET['content'];
+    // Fallback or error handling
+    echo "No content provided.";
 }
 ?>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/nav_bar.css">
 
- <button onclick="translateToMalay()">Translate to Malay</button>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+<link rel="stylesheet" href="../css/bootstrap.css">
 
-    <script>
-        function translateToMalay() {
-            // Get the current page content
-            var content = document.body.innerHTML;
+<button onclick="translateToMalay()">Translate to Malay</button>
+<button onclick="window.location.reload();">Translate to English</button>
 
-            // Send a request to translate.php with the content and language parameter
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'GoogleAPITranslation.php?content=' + encodeURIComponent(content) + '&lang=ms', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Replace the current page content with the translated content
-                    document.open();
-                    document.write(xhr.responseText);
-                    document.close();
-                }
-            };
-            xhr.send();
-        }
-    </script> 
+<script>
+    function translateToMalay() {
+        var content = document.body.innerText; 
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'GoogleAPITranslation.php?content=' + encodeURIComponent(content) + '&lang=ms', true);
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                document.body.innerText = xhr.responseText;
+            } else {
+                console.error('Error translating content');
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+</script> 
