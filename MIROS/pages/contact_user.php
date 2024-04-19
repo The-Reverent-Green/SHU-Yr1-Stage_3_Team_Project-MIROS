@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 </div>
 
 </section>
-<?php require("Script.php")?>
 </body>
+<?php require("Script.php")?>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </html>

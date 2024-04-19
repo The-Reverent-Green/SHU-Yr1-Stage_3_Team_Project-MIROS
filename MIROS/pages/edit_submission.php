@@ -93,6 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submission_id'], $_POS
     <p>Submission not found or not accessible.</p>
     <?php endif; ?>
 </section>
-<?php require("Script.php")?>
 </body>
+<?php require("Script.php")?>
 </html>

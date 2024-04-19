@@ -212,7 +212,7 @@ foreach ($categories as $category) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-    <?php require("Script.php")?>
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </body>
+<?php require("Script.php")?>
 </html>
