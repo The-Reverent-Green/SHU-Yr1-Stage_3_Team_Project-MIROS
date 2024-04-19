@@ -123,6 +123,6 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
 </script>
 
     </div>
-    <?php require("Script.php")?> <!-- Adjust this path to your actual script file -->
 </body>
+<?php require("Script.php")?> <!-- Adjust this path to your actual script file -->
 </html>
