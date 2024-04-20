@@ -12004,3 +12004,16 @@ th {
 .btn {
     margin-bottom: 10px; /* Add margin between select dropdown and button */
 }
+
+.chart-container {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ccc; /* Light grey border */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  margin-top: 20px;
+}
+canvas {
+  background-color: #fff; /* Ensures canvas has a white background */
+  margin-bottom: 20px; /* Space between charts */
+}

@@ -127,7 +127,7 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
     </div>
    
 
-    <div class="container">
+    <div class="wrapper">
         <div class="mt-4">
             <h2>Research Officer Count per Supervisor</h2>
             <table class="table">
@@ -193,55 +193,60 @@ $encodedSubmissionsData = json_encode($submissionsPerUser);
             </table>
         </div>
 
-        <div class="container mt-5">
-        <canvas id="myChart" width="400" height="400"></canvas>
-        <canvas id="submissionsChart" width="400" height="400"></canvas>
-        <script>
-    
-    const ctxSubmissions = document.getElementById('submissionsChart').getContext('2d');
-    const submissionsData = <?php echo $encodedSubmissionsData; ?>;
+    </div>
 
-    const barColors = submissionsData.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`);
+        <div class="container chart-container">
+        <h1>User Submissions</h1>
 
-    const submissionsChart = new Chart(ctxSubmissions, {
-        type: 'bar',
-        data: {
-            labels: submissionsData.map(item => item.Username),
-            datasets: [{
-                label: 'Submissions per User',
-                data: submissionsData.map(item => item.SubmissionCount),
-                backgroundColor: barColors, 
-                borderColor: barColors.map(color => color.replace('0.5', '1')), 
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: 'y',
+    <canvas id="submissionsChart" width="400" height="400"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctxSubmissions = document.getElementById('submissionsChart').getContext('2d');
+        const submissionsData = <?php echo $encodedSubmissionsData; ?>;
 
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+        // Sort the data array from smallest to largest number of submissions
+        submissionsData.sort((a, b) => a.SubmissionCount - b.SubmissionCount);
+
+        const barColors = submissionsData.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`);
+
+        const submissionsChart = new Chart(ctxSubmissions, {
+            type: 'bar',
+            data: {
+                labels: submissionsData.map(item => item.Username),
+                datasets: [{
+                    label: 'Submissions per User',
+                    data: submissionsData.map(item => item.SubmissionCount),
+                    backgroundColor: barColors, 
+                    borderColor: barColors.map(color => color.replace('0.5', '1')), 
+                    borderWidth: 1
+                }]
             },
-            plugins: {
-                legend: {
-                    display: true
-                }
-            },
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 10,
-                    top: 10,
-                    bottom: 10
-                }
-            },
-            backgroundColor: 'white'
-        }
-    });
-
-</script>
+            options: {
+                indexAxis: 'x',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false // Set to false to hide the legend
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 10
+                    }
+                },
+                backgroundColor: 'white' // Note: This does not affect the canvas directly; it's better managed via CSS.
+            }
+        });
+    </script>
 </div>
+
 
     </section>
 </body>
