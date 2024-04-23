@@ -3,7 +3,6 @@
 session_start();
 require_once __DIR__ . '/../includes/header.php';
 
-//Connects to database using PDO
 $servername = "localhost";
 $dbname = "miros";
 $username = "root";
@@ -12,7 +11,6 @@ $password = "";
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//Displays the current target score of the selected user
 $any_users_rithout_roles = "SELECT * FROM user_scores WHERE User_ID = :user_id";
 $stmt = $conn->prepare($any_users_rithout_roles);
 $stmt->bindParam(':user_id', $_GET['User_ID']);
@@ -30,7 +28,6 @@ if (isset($_POST['submit'])){
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //Updates the target score accordingly based on what is submitted in the form
     $any_users_rithout_roles = "UPDATE user_scores SET Target_Score = :target WHERE User_ID = :user_id";
     $stmt = $conn->prepare($any_users_rithout_roles);
     $stmt->bindParam(':user_id',$_GET['User_ID']);

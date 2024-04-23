@@ -8,6 +8,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: /path/to/login.php');
     exit;
 }
+$loggedInUserId = $_SESSION['id'] ?? null;
+$role = $_SESSION['role'] ?? 'default_role';
+
 
 $loggedInUserId = $_SESSION['id'] ?? null;
 $userScores = [];
@@ -23,11 +26,11 @@ if ($loggedInUserId) {
             $result = $stmt->get_result();
             $userScores = $result->fetch_assoc();
         } else {
-            error_log("Error executing user scores statement: " . $stmt->error, 3, "/path/to/your/error.log");
+            error_log("Error executing user scores statement: " . $stmt->error, 3,);
         }
         $stmt->close();
     } else {
-        error_log("Error preparing user scores statement: " . $mysqli->error, 3, "/path/to/your/error.log");
+        error_log("Error preparing user scores statement: " . $mysqli->error, 3,);
     }
 
     $minimumRequiredScore = 42;
@@ -52,13 +55,31 @@ WHERE
     u1.User_ID = ?";
 
 
-$role = $_SESSION['role'] ?? null;  
-
-if ($role === 'research officer') {
+    
+    if ($stmt = $mysqli->prepare($sqlReportsTo)) {
+        $stmt->bind_param("i", $loggedInUserId);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $reportsToData = $result->fetch_assoc();
+        } else {
+            error_log("Error executing reports to statement: " . $stmt->error, 3,);
+        }
+        $stmt->close();
+    } else {
+        error_log("Error preparing reports to statement: " . $mysqli->error, 3,);
+    }
 }
 
-}
+$categories = ['Cat_A', 'Cat_B', 'Cat_C', 'Cat_D', 'Cat_E', 'Cat_F', 'Cat_G'];
+$hasMinimumInEachCategory = true; 
 
+foreach ($categories as $category) {
+    if (empty($userScores[$category]) || $userScores[$category] < 0.1) {
+        $hasMinimumInEachCategory = false;
+        break; 
+    }
+}
 
 ?>
 <!DOCTYPE html>
